@@ -1,0 +1,1175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SBC ERP Industry Whitepapers</title>
+  <meta name="description" content="Official SBC ERP whitepaper index for industry document sets, executive summaries, standards, architecture, governance, and controls.">
+  <meta name="keywords" content="SBC ERP, whitepaper, Oil and Gas, Logistics, executive summary, standards, governance, controls, architecture">
+  <meta name="author" content="SBC ERP">
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SBC ERP Industry Whitepapers">
+  <meta property="og:description" content="Official access point for SBC ERP industry whitepapers, executive summaries, and controlled product documentation.">
+  <meta property="og:site_name" content="SBC ERP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SBC ERP Industry Whitepapers">
+  <meta name="twitter:description" content="Official access point for SBC ERP industry whitepapers, executive summaries, and controlled product documentation.">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    :root {
+      --paper: #eef3f5;
+      --panel: rgba(255, 255, 255, 0.92);
+      --panel-strong: rgba(255, 255, 255, 0.97);
+      --ink: #12202a;
+      --muted: #5f6d77;
+      --rule: #d7e1e6;
+      --deep: #12384c;
+      --deep-2: #1f4f67;
+      --deep-3: #294e63;
+      --deep-ink: #edf4f7;
+      --accent: #b06a2c;
+      --accent-2: #d59a55;
+      --accent-soft: #f7efe6;
+      --success: #2c735d;
+      --success-soft: #e8f4ef;
+      --pending: #91602a;
+      --pending-soft: #f8efe2;
+      --shadow: 0 22px 54px rgba(20, 39, 51, 0.10);
+      --shadow-soft: 0 12px 28px rgba(20, 39, 51, 0.06);
+      --display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+      --body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      --measure: 72ch;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(176, 106, 44, 0.08), transparent 22%),
+        radial-gradient(circle at 100% 0%, rgba(31, 79, 103, 0.12), transparent 26%),
+        linear-gradient(180deg, #eef3f5 0%, #f7fafb 58%, #f3f7f8 100%);
+      font: 400 15px/1.62 var(--body);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.10), transparent 22%),
+        linear-gradient(135deg, var(--deep) 0%, var(--deep-2) 58%, var(--deep-3) 100%);
+      color: var(--deep-ink);
+      padding: clamp(26px, 4vw, 46px) 20px clamp(48px, 7vw, 82px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto;
+      border-radius: 999px;
+      filter: blur(8px);
+      opacity: 0.32;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 360px;
+      height: 360px;
+      top: -90px;
+      right: -120px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.22), transparent 70%);
+    }
+
+    .hero::after {
+      width: 260px;
+      height: 260px;
+      bottom: -70px;
+      left: -60px;
+      background: radial-gradient(circle, rgba(184, 107, 36, 0.35), transparent 72%);
+    }
+
+    .hero-inner,
+    .main {
+      width: min(1200px, calc(100% - 56px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      font: 500 11px/1 var(--mono);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.76;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 11ch;
+      font-family: var(--display);
+      font-stretch: 78%;
+      font-weight: 800;
+      font-size: clamp(2.3rem, 5.2vw, 4.65rem);
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+
+    .hero-sub {
+      margin: 16px 0 0;
+      max-width: 46rem;
+      font-size: clamp(0.98rem, 1.55vw, 1.18rem);
+      line-height: 1.52;
+      color: rgba(237, 244, 247, 0.86);
+    }
+
+    .hero-grid {
+      margin-top: 38px;
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .hero-panel,
+    .metric,
+    .suite,
+    .doc-card,
+    .note {
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .hero-panel {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.06));
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 24px;
+      padding: 24px 24px 22px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .hero-panel h2 {
+      margin: 0 0 12px;
+      font-family: var(--display);
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-panel p {
+      margin: 0 0 12px;
+      color: rgba(238, 245, 248, 0.82);
+      font-size: 0.98rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .button,
+    .button-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 15px;
+      border-radius: 999px;
+      font: 600 11px/1 var(--mono);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: transform 160ms ease, background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+    }
+
+    .button {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+      color: #fff7ef;
+      box-shadow: 0 10px 24px rgba(176, 106, 44, 0.22);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      background: linear-gradient(135deg, #a86124 0%, #cf9050 100%);
+    }
+
+    .button-ghost {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: var(--deep-ink);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .button-ghost:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .metric {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.07));
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 22px;
+      padding: 16px 18px 18px;
+      min-height: 138px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .metric b {
+      display: block;
+      margin-bottom: 10px;
+      font-family: var(--display);
+      font-stretch: 80%;
+      font-weight: 750;
+      font-size: clamp(1.55rem, 2.5vw, 2.15rem);
+      line-height: 1;
+    }
+
+    .metric span {
+      display: block;
+      font-size: 0.95rem;
+      line-height: 1.48;
+      color: rgba(238, 245, 248, 0.78);
+    }
+
+    .main {
+      padding: 44px 0 86px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 34px;
+      margin-bottom: 40px;
+    }
+
+    .note,
+    .suite,
+    .doc-card {
+      background: linear-gradient(180deg, var(--panel-strong), var(--panel));
+      border: 1px solid rgba(213, 222, 228, 0.9);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .note {
+      border-radius: 24px;
+      padding: 30px 28px 28px;
+    }
+
+    .note h2,
+    .section-heading,
+    .suite h2 {
+      margin: 0 0 12px;
+      font-family: var(--display);
+      font-stretch: 82%;
+      font-weight: 760;
+      letter-spacing: -0.01em;
+      line-height: 1.04;
+    }
+
+    .note h2,
+    .suite h2 {
+      font-size: clamp(1.2rem, 1.9vw, 1.65rem);
+    }
+
+    .note p {
+      margin: 0 0 10px;
+      max-width: var(--measure);
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .mini-list div {
+      padding: 16px 17px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(248, 251, 252, 0.94), rgba(242, 247, 248, 0.98));
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      font-size: 0.94rem;
+      box-shadow: 0 8px 18px rgba(20, 39, 51, 0.04);
+    }
+
+    .mini-list strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .section {
+      margin-top: 34px;
+    }
+
+    .section-heading {
+      font-size: clamp(1.24rem, 2vw, 1.72rem);
+      margin-bottom: 18px;
+    }
+
+    .suites {
+      display: grid;
+      gap: 28px;
+    }
+
+    .suite {
+      border-radius: 28px;
+      padding: 28px;
+    }
+
+    .suite-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .suite-head p {
+      margin: 0;
+      max-width: 50rem;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 11px;
+      border-radius: 999px;
+      font: 600 10px/1 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .badge-live {
+      color: var(--success);
+      background: var(--success-soft);
+      border: 1px solid rgba(27, 111, 87, 0.16);
+    }
+
+    .badge-progress {
+      color: var(--pending);
+      background: var(--pending-soft);
+      border: 1px solid rgba(140, 84, 23, 0.14);
+    }
+
+    .docs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .doc-card {
+      display: block;
+      border-radius: 22px;
+      padding: 20px;
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .doc-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(176, 106, 44, 0.30);
+      box-shadow: 0 20px 42px rgba(18, 39, 52, 0.09);
+    }
+
+    .doc-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+
+    .doc-kind {
+      font: 500 10px/1 var(--mono);
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .doc-card h3 {
+      margin: 0 0 9px;
+      font-family: var(--display);
+      font-size: 1.02rem;
+      line-height: 1.18;
+      color: var(--ink);
+    }
+
+    .doc-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.58;
+    }
+
+    .doc-link {
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font: 600 10px/1 var(--mono);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .viewer-shell {
+      display: none;
+      margin-top: 26px;
+    }
+
+    .viewer-shell.is-open {
+      display: block;
+    }
+
+    .viewer-frame {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(213, 222, 228, 0.96);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .viewer-topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      padding: 18px 24px;
+      background: linear-gradient(180deg, rgba(16, 32, 42, 0.02), rgba(16, 32, 42, 0.00));
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .viewer-eyebrow {
+      margin: 0 0 6px;
+      font: 500 11px/1 var(--mono);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .viewer-title {
+      margin: 0;
+      font-family: var(--display);
+      font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+      line-height: 1.08;
+    }
+
+    .viewer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .viewer-button,
+    .viewer-button-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: 999px;
+      font: 600 12px/1 var(--mono);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
+    }
+
+    .viewer-button {
+      border: 0;
+      background: var(--accent);
+      color: #fff8f1;
+    }
+
+    .viewer-button:hover,
+    .viewer-button-ghost:hover {
+      transform: translateY(-1px);
+    }
+
+    .viewer-button-ghost {
+      border: 1px solid var(--rule);
+      background: #ffffff;
+      color: var(--ink);
+    }
+
+    .viewer-body {
+      padding: 0;
+    }
+
+    .viewer-state {
+      padding: 22px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      background: linear-gradient(180deg, rgba(247, 250, 251, 0.92), rgba(243, 247, 249, 0.92));
+    }
+
+    .viewer-state[hidden] {
+      display: none;
+    }
+
+    .markdown-body {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 36px 28px 48px;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.74;
+    }
+
+    .markdown-body[hidden] {
+      display: none;
+    }
+
+    .markdown-body h1,
+    .markdown-body h2,
+    .markdown-body h3,
+    .markdown-body h4 {
+      font-family: var(--display);
+      color: var(--ink);
+      text-wrap: balance;
+    }
+
+    .markdown-body h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 0.98;
+    }
+
+    .markdown-body h2 {
+      margin: 42px 0 16px;
+      font-size: clamp(1.45rem, 2.6vw, 2rem);
+      line-height: 1.08;
+      padding-top: 10px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .markdown-body h3 {
+      margin: 30px 0 12px;
+      font-size: 1.25rem;
+      line-height: 1.15;
+    }
+
+    .markdown-body p,
+    .markdown-body li,
+    .markdown-body blockquote {
+      color: #243640;
+    }
+
+    .markdown-body a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .markdown-body ul,
+    .markdown-body ol {
+      padding-left: 1.4em;
+      margin: 0 0 18px;
+    }
+
+    .markdown-body li::marker {
+      color: var(--accent);
+    }
+
+    .markdown-body hr {
+      border: 0;
+      border-top: 1px solid var(--rule);
+      margin: 30px 0;
+    }
+
+    .markdown-body blockquote {
+      margin: 24px 0;
+      padding: 14px 18px;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      background: var(--accent-soft);
+    }
+
+    .markdown-body code {
+      font: 500 0.86em/1.5 var(--mono);
+      background: #eef3f6;
+      padding: 0.1em 0.34em;
+      border-radius: 4px;
+      overflow-wrap: anywhere;
+    }
+
+    .markdown-body pre {
+      margin: 18px 0 22px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: #10202a;
+      color: #eef5f8;
+      overflow-x: auto;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    }
+
+    .markdown-body pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+
+    .markdown-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0 24px;
+      font-size: 14px;
+      line-height: 1.55;
+      background: #ffffff;
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+      display: block;
+      overflow-x: auto;
+    }
+
+    .markdown-body thead,
+    .markdown-body tbody,
+    .markdown-body tr {
+      width: 100%;
+    }
+
+    .markdown-body th,
+    .markdown-body td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--rule);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .markdown-body th {
+      background: #f3f7f9;
+      color: var(--muted);
+      font: 600 11px/1.3 var(--mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .markdown-body tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .markdown-body img {
+      max-width: 100%;
+      border-radius: 12px;
+    }
+
+    .markdown-body .mermaid {
+      margin: 22px 0 26px;
+      padding: 18px;
+      border: 1px solid var(--rule);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(245, 249, 250, 0.98), rgba(255, 255, 255, 0.98));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      overflow-x: auto;
+    }
+
+    .markdown-body .mermaid svg {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    .footer {
+      margin-top: 42px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .intro,
+      .docs {
+        grid-template-columns: 1fr;
+      }
+
+      .suite-head {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-inline: 14px;
+      }
+
+      .hero-inner,
+      .main {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .suite,
+      .note,
+      .doc-card,
+      .hero-panel,
+      .metric {
+        border-radius: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Official Website Entry · Whitepaper Library</p>
+      <h1>SBC ERP Industry Whitepapers</h1>
+      <p class="hero-sub">A single, presentation-ready access point for executive summaries, full whitepapers, standards, architecture, governance, and control documentation across SBC ERP industry verticals.</p>
+      <div class="hero-grid">
+        <section class="hero-panel" aria-labelledby="entry-purpose">
+          <h2 id="entry-purpose">Website-ready document gateway</h2>
+          <p>This page is designed to sit at the root of a website section and act as the control surface for all published and in-progress industry documentation.</p>
+          <p>Each document set is grouped by vertical, status-labeled, and linked to its available HTML and Markdown outputs.</p>
+          <div class="hero-actions">
+            <a class="button" href="SBC-ERP-OIL-GAS-WHITEPAPER.html">Open Oil &amp; Gas Whitepaper</a>
+            <a class="button-ghost" href="#document-sets">Browse All Document Sets</a>
+          </div>
+        </section>
+        <section class="metrics" aria-label="Library metrics">
+          <div class="metric">
+            <b>2</b>
+            <span>industry document sets managed from one landing page</span>
+          </div>
+          <div class="metric">
+            <b>9</b>
+            <span>linked outputs across HTML, Markdown, and multilingual executive content</span>
+          </div>
+          <div class="metric">
+            <b>1</b>
+            <span>published vertical ready for review and external presentation</span>
+          </div>
+          <div class="metric">
+            <b>1</b>
+            <span>professional placeholder vertical currently being written</span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="viewer-shell" id="markdown-viewer" aria-labelledby="viewer-document-title">
+      <div class="viewer-frame">
+        <div class="viewer-topbar">
+          <div>
+            <p class="viewer-eyebrow">Markdown Viewer</p>
+            <h2 class="viewer-title" id="viewer-document-title">Document preview</h2>
+          </div>
+          <div class="viewer-actions">
+            <a class="viewer-button-ghost" id="viewer-source-link" href="#" target="_blank" rel="noopener noreferrer">Open source</a>
+            <button class="viewer-button" id="viewer-close" type="button">Back to library</button>
+          </div>
+        </div>
+        <div class="viewer-body">
+          <div class="viewer-state" id="viewer-state">Loading document...</div>
+          <article class="markdown-body" id="markdown-body" hidden></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro" aria-label="Repository introduction">
+      <article class="note">
+        <h2>Purpose</h2>
+        <p>This index page centralizes the SBC ERP whitepaper library for use inside a corporate website, product microsite, proposal portal, or partner-facing documentation area.</p>
+        <p>It provides a clean separation between published material and controlled in-progress content while keeping the navigation surface simple for executive, commercial, technical, and assurance audiences.</p>
+      </article>
+      <aside class="note">
+        <h2>What It Manages</h2>
+        <div class="mini-list">
+          <div>
+            <strong>Executive Summaries</strong>
+            Fast-entry documents for leadership and decision-makers.
+          </div>
+          <div>
+            <strong>Full Whitepapers</strong>
+            Complete narrative coverage in HTML and Markdown formats.
+          </div>
+          <div>
+            <strong>Status Control</strong>
+            Clear differentiation between published and in-progress sets.
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="document-sets" aria-labelledby="document-sets-heading">
+      <h2 class="section-heading" id="document-sets-heading">Document Sets</h2>
+      <div class="suites">
+        <section class="suite" aria-labelledby="oil-gas-heading">
+          <div class="suite-head">
+            <div>
+              <h2 id="oil-gas-heading">Oil &amp; Gas</h2>
+              <p>The current published industry collection for SBC ERP, including executive summaries and the full standards, architecture, governance, and controls whitepaper.</p>
+            </div>
+            <span class="badge badge-live">Published</span>
+          </div>
+          <div class="docs">
+            <a class="doc-card" href="SBC-ERP-OIL-GAS-WHITEPAPER.html">
+              <div class="doc-meta">
+                <span class="doc-kind">HTML Whitepaper</span>
+                <span class="badge badge-live">Live</span>
+              </div>
+              <h3>SBC ERP Oil &amp; Gas Whitepaper</h3>
+              <p>Presentation-ready HTML edition suitable for customer-facing review and website delivery.</p>
+              <span class="doc-link">Open document</span>
+            </a>
+            <a class="doc-card" href="?doc=SBC-ERP-OIL-GAS-STANDARDS-AND-CONTROLS-WHITEPAPER.md" data-md-doc="SBC-ERP-OIL-GAS-STANDARDS-AND-CONTROLS-WHITEPAPER.md">
+              <div class="doc-meta">
+                <span class="doc-kind">Markdown Whitepaper</span>
+                <span class="badge badge-live">Live</span>
+              </div>
+              <h3>Standards and Controls Whitepaper</h3>
+              <p>Full Markdown source for standards coverage, architecture, governance, and control design.</p>
+              <span class="doc-link">Open document</span>
+            </a>
+            <a class="doc-card" href="?doc=SBC-ERP-OIL-GAS-EXECUTIVE-SUMMARY.md" data-md-doc="SBC-ERP-OIL-GAS-EXECUTIVE-SUMMARY.md">
+              <div class="doc-meta">
+                <span class="doc-kind">Executive Summary</span>
+                <span class="badge badge-live">English</span>
+              </div>
+              <h3>Oil &amp; Gas Executive Summary</h3>
+              <p>Fast-entry summary for executive, commercial, and evaluation audiences.</p>
+              <span class="doc-link">Open document</span>
+            </a>
+            <a class="doc-card" href="?doc=SBC-ERP-OIL-GAS-EXECUTIVE-SUMMARY-AR.md" data-md-doc="SBC-ERP-OIL-GAS-EXECUTIVE-SUMMARY-AR.md">
+              <div class="doc-meta">
+                <span class="doc-kind">Executive Summary</span>
+                <span class="badge badge-live">Arabic</span>
+              </div>
+              <h3>Oil &amp; Gas Executive Summary, Arabic Edition</h3>
+              <p>Arabic-language version for regional stakeholders and Arabic-speaking decision-makers.</p>
+              <span class="doc-link">Open document</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="suite" aria-labelledby="logistics-heading">
+          <div class="suite-head">
+            <div>
+              <h2 id="logistics-heading">Logistics</h2>
+              <p>The Logistics vertical has been provisioned as a professional document set and is currently being written. The files below are managed as structured placeholders for website and repository continuity.</p>
+            </div>
+            <span class="badge badge-progress">In Progress</span>
+          </div>
+          <div class="docs">
+            <a class="doc-card" href="SBC-ERP-LOGISTICS-WHITEPAPER.html">
+              <div class="doc-meta">
+                <span class="doc-kind">HTML Whitepaper</span>
+                <span class="badge badge-progress">In progress</span>
+              </div>
+              <h3>SBC ERP Logistics Whitepaper</h3>
+              <p>Presentation-style HTML placeholder reserved for the final Logistics industry whitepaper.</p>
+              <span class="doc-link">Open document</span>
+            </a>
+            <a class="doc-card" href="?doc=SBC-ERP-LOGISTICS-STANDARDS-AND-CONTROLS-WHITEPAPER.md" data-md-doc="SBC-ERP-LOGISTICS-STANDARDS-AND-CONTROLS-WHITEPAPER.md">
+              <div class="doc-meta">
+                <span class="doc-kind">Markdown Whitepaper</span>
+                <span class="badge badge-progress">In progress</span>
+              </div>
+              <h3>Logistics Standards and Controls Whitepaper</h3>
+              <p>Controlled draft placeholder for the full Logistics standards, architecture, governance, and controls narrative.</p>
+              <span class="doc-link">Open document</span>
+            </a>
+            <a class="doc-card" href="?doc=SBC-ERP-LOGISTICS-EXECUTIVE-SUMMARY.md" data-md-doc="SBC-ERP-LOGISTICS-EXECUTIVE-SUMMARY.md">
+              <div class="doc-meta">
+                <span class="doc-kind">Executive Summary</span>
+                <span class="badge badge-progress">English</span>
+              </div>
+              <h3>Logistics Executive Summary</h3>
+              <p>English placeholder reserved for the final executive summary currently being written.</p>
+              <span class="doc-link">Open document</span>
+            </a>
+            <a class="doc-card" href="?doc=SBC-ERP-LOGISTICS-EXECUTIVE-SUMMARY-AR.md" data-md-doc="SBC-ERP-LOGISTICS-EXECUTIVE-SUMMARY-AR.md">
+              <div class="doc-meta">
+                <span class="doc-kind">Executive Summary</span>
+                <span class="badge badge-progress">Arabic</span>
+              </div>
+              <h3>Logistics Executive Summary, Arabic Edition</h3>
+              <p>Arabic placeholder reserved for the regional edition of the Logistics executive summary.</p>
+              <span class="doc-link">Open document</span>
+            </a>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <footer class="footer">
+      This page is intended to function as the website entry point for the SBC ERP whitepaper library. It can be published as-is or adapted into a broader website shell without changing the document links.
+    </footer>
+  </main>
+  <script>
+    (() => {
+      const allowedDocs = new Set([
+        'SBC-ERP-OIL-GAS-STANDARDS-AND-CONTROLS-WHITEPAPER.md',
+        'SBC-ERP-OIL-GAS-EXECUTIVE-SUMMARY.md',
+        'SBC-ERP-OIL-GAS-EXECUTIVE-SUMMARY-AR.md',
+        'SBC-ERP-LOGISTICS-STANDARDS-AND-CONTROLS-WHITEPAPER.md',
+        'SBC-ERP-LOGISTICS-EXECUTIVE-SUMMARY.md',
+        'SBC-ERP-LOGISTICS-EXECUTIVE-SUMMARY-AR.md'
+      ]);
+
+      const viewerShell = document.getElementById('markdown-viewer');
+      const viewerState = document.getElementById('viewer-state');
+      const viewerBody = document.getElementById('markdown-body');
+      const viewerTitle = document.getElementById('viewer-document-title');
+      const viewerSourceLink = document.getElementById('viewer-source-link');
+      const viewerClose = document.getElementById('viewer-close');
+      const librarySections = Array.from(document.querySelectorAll('.intro, .section, .footer'));
+
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: 'strict',
+        theme: 'base',
+        flowchart: {
+          htmlLabels: false,
+          curve: 'basis'
+        },
+        themeCSS: `
+          .node.local rect,
+          .node.local polygon,
+          .node.local path,
+          .node.local circle,
+          .node.local ellipse {
+            fill: #12384c !important;
+            stroke: #12384c !important;
+          }
+
+          .node.local .label,
+          .node.local .label text,
+          .node.local tspan {
+            fill: #f4f8fa !important;
+          }
+
+          .node.local foreignObject div,
+          .node.local span,
+          .node.local p {
+            color: #f4f8fa !important;
+          }
+
+          .edgeLabel {
+            background-color: #ffffff !important;
+          }
+        `,
+        themeVariables: {
+          primaryColor: '#dce9ef',
+          primaryTextColor: '#163041',
+          primaryBorderColor: '#6f8fa1',
+          lineColor: '#527082',
+          secondaryColor: '#eef4f7',
+          tertiaryColor: '#f8fafb',
+          background: '#ffffff',
+          mainBkg: '#dce9ef',
+          secondBkg: '#edf4f7',
+          tertiaryBkg: '#f7fafb',
+          clusterBkg: '#f3f7f9',
+          clusterBorder: '#b7c9d3',
+          nodeBorder: '#6f8fa1',
+          defaultLinkColor: '#527082',
+          titleColor: '#163041',
+          textColor: '#1d3645',
+          pie1: '#1f4f67',
+          pie2: '#b06a2c',
+          pie3: '#5a7b5d',
+          pie4: '#7b8fa3',
+          pie5: '#d0a574',
+          pie6: '#87a7b7',
+          pie7: '#c6d5dc',
+          pie8: '#6f8fa1'
+        }
+      });
+
+      marked.setOptions({
+        gfm: true,
+        breaks: false,
+        headerIds: true,
+        mangle: false
+      });
+
+      function normalizeDocName(docName) {
+        if (!docName) {
+          return null;
+        }
+
+        const trimmed = docName.trim();
+        if (!allowedDocs.has(trimmed)) {
+          return null;
+        }
+
+        return trimmed;
+      }
+
+      function setLibraryMode() {
+        viewerShell.classList.remove('is-open');
+        viewerBody.hidden = true;
+        viewerBody.innerHTML = '';
+        viewerState.hidden = true;
+        librarySections.forEach((section) => {
+          section.hidden = false;
+        });
+        document.title = 'SBC ERP Industry Whitepapers';
+      }
+
+      function setViewerMode(title, sourceHref) {
+        viewerShell.classList.add('is-open');
+        librarySections.forEach((section) => {
+          section.hidden = true;
+        });
+        viewerTitle.textContent = title;
+        viewerSourceLink.href = sourceHref;
+        viewerSourceLink.setAttribute('aria-label', `Open source for ${title}`);
+        document.title = `${title} | SBC ERP Industry Whitepapers`;
+        viewerShell.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function setViewerState(message, isError) {
+        viewerState.hidden = false;
+        viewerState.textContent = message;
+        viewerState.style.color = isError ? '#8a2f2f' : '';
+        viewerBody.hidden = true;
+      }
+
+      function showRenderedMarkdown(html) {
+        viewerState.hidden = true;
+        viewerState.style.color = '';
+        viewerBody.innerHTML = html;
+        viewerBody.hidden = false;
+      }
+
+      function convertMermaidCodeBlocks(renderedHtml) {
+        const template = document.createElement('template');
+        template.innerHTML = renderedHtml;
+
+        template.content.querySelectorAll('pre > code.language-mermaid').forEach((codeElement) => {
+          const preElement = codeElement.parentElement;
+          const mermaidElement = document.createElement('div');
+          mermaidElement.className = 'mermaid';
+          mermaidElement.textContent = codeElement.textContent || '';
+          preElement.replaceWith(mermaidElement);
+        });
+
+        return template.innerHTML;
+      }
+
+      async function renderMermaidCharts() {
+        const mermaidNodes = viewerBody.querySelectorAll('.mermaid');
+        if (!mermaidNodes.length) {
+          return;
+        }
+
+        await mermaid.run({
+          nodes: mermaidNodes
+        });
+      }
+
+      async function openMarkdownDocument(docName, pushState = true) {
+        const normalizedDoc = normalizeDocName(docName);
+        if (!normalizedDoc) {
+          setLibraryMode();
+          return;
+        }
+
+        const title = normalizedDoc.replace(/\.md$/i, '').replace(/-/g, ' ');
+        setViewerMode(title, normalizedDoc);
+        setViewerState('Loading document...', false);
+
+        try {
+          const response = await fetch(normalizedDoc, { cache: 'no-store' });
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+
+          const markdown = await response.text();
+          const rendered = marked.parse(markdown);
+          const mermaidReady = convertMermaidCodeBlocks(rendered);
+          const sanitized = DOMPurify.sanitize(mermaidReady, {
+            USE_PROFILES: { html: true }
+          });
+          showRenderedMarkdown(sanitized);
+          await renderMermaidCharts();
+
+          const url = new URL(window.location.href);
+          url.searchParams.set('doc', normalizedDoc);
+          if (pushState) {
+            window.history.pushState({ doc: normalizedDoc }, '', url);
+          }
+        } catch (error) {
+          setViewerState('The Markdown document could not be loaded for preview. Use “Open source” to access the raw file directly.', true);
+        }
+      }
+
+      document.querySelectorAll('[data-md-doc]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          openMarkdownDocument(link.getAttribute('data-md-doc'));
+        });
+      });
+
+      viewerClose.addEventListener('click', () => {
+        const url = new URL(window.location.href);
+        url.searchParams.delete('doc');
+        window.history.pushState({}, '', url);
+        setLibraryMode();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      window.addEventListener('popstate', () => {
+        const docName = normalizeDocName(new URLSearchParams(window.location.search).get('doc'));
+        if (docName) {
+          openMarkdownDocument(docName, false);
+        } else {
+          setLibraryMode();
+        }
+      });
+
+      const initialDoc = normalizeDocName(new URLSearchParams(window.location.search).get('doc'));
+      if (initialDoc) {
+        openMarkdownDocument(initialDoc, false);
+      } else {
+        setLibraryMode();
+      }
+    })();
+  </script>
+</body>
+</html>
