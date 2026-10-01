@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SBC ERP Industry Whitepapers</title>
-  <meta name="description" content="Official SBC ERP whitepaper index for industry document sets, executive summaries, standards, architecture, governance, and controls.">
-  <meta name="keywords" content="SBC ERP, whitepaper, Oil and Gas, Logistics, executive summary, standards, governance, controls, architecture">
+  <title>SBC ERP Whitepaper Library</title>
+  <meta name="description" content="SBC ERP document entry with two controlled documents: the main whitepaper and ERPNext accounting engine rules.">
+  <meta name="keywords" content="SBC ERP, whitepaper, ERPNext, accounting rules, governance, controls">
   <meta name="author" content="SBC ERP">
   <meta name="robots" content="index,follow">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="SBC ERP Industry Whitepapers">
-  <meta property="og:description" content="Official access point for SBC ERP industry whitepapers, executive summaries, and controlled product documentation.">
+  <meta property="og:title" content="SBC ERP Whitepaper Library">
+  <meta property="og:description" content="Official access point for the SBC ERP whitepaper and ERPNext accounting engine rules.">
   <meta property="og:site_name" content="SBC ERP">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="SBC ERP Industry Whitepapers">
-  <meta name="twitter:description" content="Official access point for SBC ERP industry whitepapers, executive summaries, and controlled product documentation.">
+  <meta name="twitter:title" content="SBC ERP Whitepaper Library">
+  <meta name="twitter:description" content="Official access point for the SBC ERP whitepaper and ERPNext accounting engine rules.">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
@@ -23,24 +23,18 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <style>
     :root {
-      --paper: #f4f6f7;
-      --panel: rgba(255, 255, 255, 0.94);
-      --panel-strong: rgba(255, 255, 255, 0.98);
-      --ink: #16232c;
-      --muted: #64727c;
-      --rule: #dbe3e7;
-      --deep: #18394a;
-      --deep-2: #25495e;
-      --deep-ink: #f1f6f8;
-      --accent: #a86a33;
-      --accent-soft: #f6efe7;
-      --success: #2f6a57;
-      --success-soft: #eaf4f0;
-      --pending: #7c878f;
-      --pending-soft: #eff3f5;
-      --disabled-ink: #95a2ab;
-      --shadow: 0 16px 38px rgba(17, 30, 38, 0.07);
-      --shadow-soft: 0 8px 18px rgba(17, 30, 38, 0.04);
+      --panel: rgba(255, 255, 255, 0.95);
+      --panel-strong: rgba(255, 255, 255, 0.99);
+      --ink: #19272d;
+      --muted: #66757d;
+      --rule: #d8e0e4;
+      --deep: #173847;
+      --deep-2: #244c5d;
+      --deep-ink: #eef5f7;
+      --accent: #9d6130;
+      --accent-soft: #f7efe7;
+      --shadow: 0 18px 40px rgba(18, 34, 43, 0.07);
+      --shadow-soft: 0 10px 22px rgba(18, 34, 43, 0.05);
       --display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
       --body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
       --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -49,13 +43,14 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       color: var(--ink);
       background:
-        radial-gradient(circle at 0% 0%, rgba(168, 106, 51, 0.05), transparent 22%),
-        linear-gradient(180deg, #f3f6f7 0%, #f7f9fa 56%, #f2f5f6 100%);
-      font: 400 15px/1.62 var(--body);
+        radial-gradient(circle at top left, rgba(157, 97, 48, 0.08), transparent 24%),
+        linear-gradient(180deg, #f3f6f7 0%, #f7f9fa 55%, #f2f5f6 100%);
+      font: 400 15px/1.65 var(--body);
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
@@ -65,32 +60,24 @@
       text-decoration: none;
     }
 
-    a:focus-visible {
+    a:focus-visible,
+    button:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
-      border-radius: 8px;
+      border-radius: 10px;
     }
 
     .hero {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(180deg, #173948 0%, #21495d 100%);
+      background: linear-gradient(180deg, var(--deep) 0%, var(--deep-2) 100%);
       color: var(--deep-ink);
-      padding: clamp(26px, 4vw, 42px) 20px clamp(38px, 6vw, 58px);
+      padding: clamp(28px, 4vw, 44px) 20px clamp(42px, 6vw, 62px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .hero::before,
-    .hero::after {
-      display: none;
     }
 
     .hero-inner,
     .main {
-      width: min(1200px, calc(100% - 56px));
+      width: min(1120px, calc(100% - 56px));
       margin: 0 auto;
-      position: relative;
-      z-index: 1;
     }
 
     .eyebrow {
@@ -103,212 +90,88 @@
 
     h1 {
       margin: 0;
-      max-width: 10ch;
       font-family: var(--display);
       font-stretch: 78%;
       font-weight: 800;
-      font-size: clamp(2.15rem, 4.5vw, 4rem);
+      font-size: clamp(2.2rem, 4.6vw, 4.1rem);
       line-height: 0.92;
       letter-spacing: -0.02em;
-      text-wrap: balance;
+      white-space: nowrap;
     }
 
     .hero-sub {
       margin: 16px 0 0;
-      max-width: 40rem;
-      font-size: clamp(0.94rem, 1.35vw, 1.06rem);
-      line-height: 1.52;
-      color: rgba(241, 246, 248, 0.82);
+      max-width: 43rem;
+      font-size: clamp(0.96rem, 1.35vw, 1.08rem);
+      line-height: 1.56;
+      color: rgba(238, 245, 248, 0.84);
     }
 
-    .hero-grid {
+    .hero-note {
       margin-top: 28px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0;
-      align-items: start;
-    }
-
-    .hero-panel,
-    .metric,
-    .suite,
-    .doc-card,
-    .note {
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
-
-    .hero-panel {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
+      max-width: 46rem;
       padding: 18px 20px;
-      box-shadow: none;
-    }
-
-    .hero-panel h2 {
-      margin: 0 0 12px;
-      font-family: var(--display);
-      font-size: 1rem;
-      letter-spacing: 0.02em;
-    }
-
-    .hero-panel p {
-      margin: 0 0 12px;
-      color: rgba(238, 245, 248, 0.82);
-      font-size: 0.93rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .button,
-    .button-ghost {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 38px;
-      padding: 0 14px;
-      border-radius: 999px;
-      font: 600 11px/1 var(--mono);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: transform 160ms ease, background-color 160ms ease, color 160ms ease, border-color 160ms ease;
-    }
-
-    .button {
-      background: var(--accent);
-      color: #fff7ef;
-      box-shadow: none;
-    }
-
-    .button:hover {
-      transform: translateY(-1px);
-      background: #9e622f;
-    }
-
-    .button-ghost {
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      color: var(--deep-ink);
-      background: transparent;
-    }
-
-    .button-ghost:hover {
-      transform: translateY(-1px);
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    .metrics {
-      display: none;
-    }
-
-    .metric {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.07));
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      border-radius: 22px;
-      padding: 16px 18px 18px;
-      min-height: 138px;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    }
-
-    .metric b {
-      display: block;
-      margin-bottom: 10px;
-      font-family: var(--display);
-      font-stretch: 80%;
-      font-weight: 750;
-      font-size: clamp(1.55rem, 2.5vw, 2.15rem);
-      line-height: 1;
-    }
-
-    .metric span {
-      display: block;
-      font-size: 0.95rem;
-      line-height: 1.48;
-      color: rgba(238, 245, 248, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(238, 245, 248, 0.84);
     }
 
     .main {
-      padding: 44px 0 86px;
+      padding: 42px 0 84px;
     }
 
-    .intro {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 34px;
-      margin-bottom: 40px;
-    }
-
-    .note,
-    .suite,
-    .doc-card {
+    .intro,
+    .doc-card,
+    .viewer-frame {
       background: linear-gradient(180deg, var(--panel-strong), var(--panel));
       border: 1px solid rgba(213, 222, 228, 0.9);
       box-shadow: var(--shadow-soft);
     }
 
-    .note {
-      border-radius: 24px;
-      padding: 30px 28px 28px;
+    .intro {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 26px;
+      border-radius: 28px;
+      padding: 30px;
+      margin-bottom: 34px;
     }
 
-    .note h2,
+    .intro h2,
     .section-heading,
-    .suite h2 {
-      margin: 0 0 12px;
+    .doc-card h3,
+    .viewer-title,
+    .markdown-body h1,
+    .markdown-body h2,
+    .markdown-body h3,
+    .markdown-body h4 {
       font-family: var(--display);
+      color: var(--ink);
+    }
+
+    .intro h2,
+    .section-heading {
+      margin: 0 0 12px;
       font-stretch: 82%;
       font-weight: 760;
       letter-spacing: -0.01em;
       line-height: 1.04;
     }
 
-    .note h2,
-    .suite h2 {
-      font-size: clamp(1.2rem, 1.9vw, 1.65rem);
-    }
-
-    .note p {
-      margin: 0 0 10px;
+    .intro p,
+    .intro li {
+      color: var(--muted);
       max-width: var(--measure);
-      color: var(--muted);
-      font-size: 0.97rem;
     }
 
-    .mini-list {
-      display: grid;
-      gap: 18px;
-      margin-top: 22px;
-    }
-
-    .mini-list div {
-      padding: 16px 17px;
-      border-radius: 16px;
-      background: linear-gradient(180deg, rgba(248, 251, 252, 0.94), rgba(242, 247, 248, 0.98));
-      border: 1px solid var(--rule);
-      color: var(--muted);
-      font-size: 0.94rem;
-      box-shadow: 0 8px 18px rgba(20, 39, 51, 0.04);
-    }
-
-    .mini-list strong {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--ink);
-      font-weight: 600;
+    .intro ul {
+      margin: 14px 0 0;
+      padding-left: 1.2rem;
     }
 
     .section {
       margin-top: 34px;
-    }
-
-    .section-heading {
-      font-size: clamp(1.24rem, 2vw, 1.72rem);
-      margin-bottom: 18px;
     }
 
     .section-kicker {
@@ -319,75 +182,49 @@
       color: var(--muted);
     }
 
-    .suites {
-      display: grid;
-      gap: 28px;
-    }
-
-    .suite {
-      border-radius: 28px;
-      padding: 28px;
-    }
-
-    .suite-active {
-      border-color: rgba(33, 73, 93, 0.16);
-    }
-
-    .suite-disabled {
-      opacity: 0.68;
-      background: linear-gradient(180deg, rgba(250, 251, 252, 0.96), rgba(243, 246, 247, 0.96));
-      border-style: dashed;
-      border-color: rgba(149, 162, 171, 0.36);
-    }
-
-    .suite-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      gap: 20px;
+    .section-heading {
+      font-size: clamp(1.34rem, 2.1vw, 1.78rem);
       margin-bottom: 18px;
     }
 
-    .suite-title-row {
+    .documents {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .doc-card {
       display: flex;
-      gap: 14px;
-      align-items: flex-start;
+      flex-direction: column;
+      border-radius: 26px;
+      padding: 24px;
+      min-height: 100%;
     }
 
-    .suite-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      display: inline-flex;
+    .doc-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
       align-items: center;
-      justify-content: center;
-      flex: 0 0 auto;
-      border: 1px solid var(--rule);
+      margin-bottom: 14px;
     }
 
-    .suite-icon svg {
-      width: 22px;
-      height: 22px;
-      display: block;
+    .doc-kind,
+    .badge,
+    .doc-action,
+    .viewer-eyebrow,
+    .viewer-button,
+    .viewer-button-ghost,
+    .footer {
+      font-family: var(--mono);
+      text-transform: uppercase;
     }
 
-    .suite-icon-oil {
-      background: #edf4f7;
-      color: #21495d;
-      border-color: rgba(33, 73, 93, 0.14);
-    }
-
-    .suite-icon-logistics {
-      background: #f2f5f6;
-      color: #8c98a1;
-      border-color: rgba(140, 152, 161, 0.18);
-    }
-
-    .suite-head p {
-      margin: 0;
-      max-width: 50rem;
+    .doc-kind,
+    .viewer-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.12em;
       color: var(--muted);
-      font-size: 0.96rem;
     }
 
     .badge {
@@ -396,156 +233,42 @@
       min-height: 28px;
       padding: 0 11px;
       border-radius: 999px;
-      font: 600 10px/1 var(--mono);
+      font-size: 10px;
+      font-weight: 600;
       letter-spacing: 0.08em;
-      text-transform: uppercase;
+      color: #255845;
+      background: #e9f4ef;
+      border: 1px solid rgba(37, 88, 69, 0.14);
       white-space: nowrap;
     }
 
-    .badge-live {
-      color: var(--success);
-      background: var(--success-soft);
-      border: 1px solid rgba(27, 111, 87, 0.16);
-    }
-
-    .badge-progress {
-      color: var(--pending);
-      background: var(--pending-soft);
-      border: 1px solid rgba(124, 135, 143, 0.14);
-    }
-
-    .docs {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .doc-card {
-      display: block;
-      border-radius: 22px;
-      padding: 20px;
-      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
-    }
-
-    .doc-card-disabled {
-      background: linear-gradient(180deg, rgba(250, 251, 252, 0.94), rgba(245, 247, 248, 0.94));
-      border-style: dashed;
-      border-color: rgba(149, 162, 171, 0.26);
-      box-shadow: none;
-      cursor: not-allowed;
-    }
-
-    .doc-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(176, 106, 44, 0.30);
-      box-shadow: 0 20px 42px rgba(18, 39, 52, 0.09);
-    }
-
-    .doc-card-disabled:hover {
-      transform: none;
-      border-color: rgba(149, 162, 171, 0.26);
-      box-shadow: none;
-    }
-
-    .doc-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 12px;
-      align-items: center;
-    }
-
-    .doc-kind {
-      font: 500 10px/1 var(--mono);
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
     .doc-card h3 {
-      margin: 0 0 9px;
-      font-family: var(--display);
-      font-size: 1.02rem;
-      line-height: 1.18;
-      color: var(--ink);
+      margin: 0 0 10px;
+      font-size: 1.14rem;
+      line-height: 1.16;
     }
 
     .doc-card p {
-      margin: 0;
+      margin: 0 0 18px;
       color: var(--muted);
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       line-height: 1.58;
     }
 
-    .doc-link {
-      margin-top: 16px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--accent);
-      font: 600 10px/1 var(--mono);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .doc-link-disabled {
-      color: var(--disabled-ink);
-    }
-
-    .disabled-copy {
-      margin-top: 14px;
-      color: var(--disabled-ink);
-      font-size: 0.9rem;
-    }
-
-    .viewer-shell {
-      display: none;
-      margin-top: 26px;
-    }
-
-    .viewer-shell.is-open {
-      display: block;
-    }
-
-    .viewer-frame {
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(213, 222, 228, 0.96);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .viewer-topbar {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: center;
-      padding: 18px 24px;
-      background: linear-gradient(180deg, rgba(16, 32, 42, 0.02), rgba(16, 32, 42, 0.00));
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .viewer-eyebrow {
-      margin: 0 0 6px;
-      font: 500 11px/1 var(--mono);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .doc-points {
+      margin: 0 0 20px;
+      padding-left: 1.2rem;
       color: var(--muted);
     }
 
-    .viewer-title {
-      margin: 0;
-      font-family: var(--display);
-      font-size: clamp(1.15rem, 1.7vw, 1.5rem);
-      line-height: 1.08;
-    }
-
-    .viewer-actions {
+    .doc-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      margin-top: auto;
     }
 
+    .doc-action,
     .viewer-button,
     .viewer-button-ghost {
       display: inline-flex;
@@ -554,28 +277,72 @@
       min-height: 40px;
       padding: 0 14px;
       border-radius: 999px;
-      font: 600 12px/1 var(--mono);
+      font-size: 11px;
+      font-weight: 600;
       letter-spacing: 0.05em;
-      text-transform: uppercase;
-      cursor: pointer;
       transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
+      cursor: pointer;
     }
 
-    .viewer-button {
-      border: 0;
-      background: var(--accent);
-      color: #fff8f1;
-    }
-
+    .doc-action:hover,
     .viewer-button:hover,
     .viewer-button-ghost:hover {
       transform: translateY(-1px);
     }
 
+    .doc-action-primary,
+    .viewer-button {
+      background: var(--accent);
+      color: #fff8f1;
+      border: 0;
+    }
+
+    .doc-action-secondary,
     .viewer-button-ghost {
-      border: 1px solid var(--rule);
       background: #ffffff;
       color: var(--ink);
+      border: 1px solid var(--rule);
+    }
+
+    .viewer-shell {
+      display: none;
+      margin-bottom: 28px;
+    }
+
+    .viewer-shell.is-open {
+      display: block;
+    }
+
+    .viewer-frame {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .viewer-topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      padding: 18px 24px;
+      background: linear-gradient(180deg, rgba(16, 32, 42, 0.02), rgba(16, 32, 42, 0));
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .viewer-eyebrow {
+      margin: 0 0 6px;
+    }
+
+    .viewer-title {
+      margin: 0;
+      font-size: clamp(1.12rem, 1.7vw, 1.5rem);
+      line-height: 1.08;
+    }
+
+    .viewer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .viewer-body {
@@ -589,7 +356,8 @@
       background: linear-gradient(180deg, rgba(247, 250, 251, 0.92), rgba(243, 247, 249, 0.92));
     }
 
-    .viewer-state[hidden] {
+    .viewer-state[hidden],
+    .markdown-body[hidden] {
       display: none;
     }
 
@@ -600,19 +368,6 @@
       color: var(--ink);
       font-size: 15px;
       line-height: 1.74;
-    }
-
-    .markdown-body[hidden] {
-      display: none;
-    }
-
-    .markdown-body h1,
-    .markdown-body h2,
-    .markdown-body h3,
-    .markdown-body h4 {
-      font-family: var(--display);
-      color: var(--ink);
-      text-wrap: balance;
     }
 
     .markdown-body h1 {
@@ -758,22 +513,23 @@
     }
 
     .footer {
-      margin-top: 42px;
-      padding-top: 24px;
+      margin-top: 40px;
+      padding-top: 22px;
       border-top: 1px solid var(--rule);
       color: var(--muted);
-      font-size: 12px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
     }
 
     @media (max-width: 980px) {
-      .hero-grid,
       .intro,
-      .docs {
+      .documents {
         grid-template-columns: 1fr;
       }
 
-      .suite-head {
+      .viewer-topbar {
         flex-direction: column;
+        align-items: flex-start;
       }
     }
 
@@ -784,19 +540,17 @@
 
       .hero-inner,
       .main {
-        width: min(100% - 24px, 1180px);
+        width: min(100% - 24px, 1120px);
       }
 
-      .metrics {
-        grid-template-columns: 1fr;
-      }
-
-      .suite,
-      .note,
+      .intro,
       .doc-card,
-      .hero-panel,
-      .metric {
-        border-radius: 18px;
+      .viewer-frame {
+        border-radius: 20px;
+      }
+
+      .intro {
+        padding: 22px;
       }
     }
   </style>
@@ -804,20 +558,10 @@
 <body>
   <header class="hero">
     <div class="hero-inner">
-      <p class="eyebrow">Official Website Entry · Whitepaper Library</p>
-      <h1>SBC ERP Industry Whitepapers</h1>
-      <p class="hero-sub">A single, presentation-ready access point for executive summaries, full whitepapers, standards, architecture, governance, and control documentation across SBC ERP industry verticals.</p>
-      <div class="hero-grid">
-        <section class="hero-panel" aria-labelledby="entry-purpose">
-          <h2 id="entry-purpose">Website-ready document gateway</h2>
-          <p>This page is designed to sit at the root of a website section and act as the control surface for all published and in-progress industry documentation.</p>
-          <p>Each document set is grouped by vertical, status-labeled, and linked to its available HTML and Markdown outputs.</p>
-          <div class="hero-actions">
-            <a class="button" href="SBC-ERP-OIL-GAS-WHITEPAPER.html">Open Oil &amp; Gas Whitepaper</a>
-            <a class="button-ghost" href="#document-sets">Browse All Document Sets</a>
-          </div>
-        </section>
-      </div>
+      <p class="eyebrow">Official Document Entry</p>
+      <h1>SBC ERP Whitepaper Library</h1>
+      <p class="hero-sub">This entry point now exposes only two controlled documents: the main SBC ERP whitepaper and the ERPNext accounting engine rules baseline.</p>
+      <div class="hero-note">Only two sections are active on this page.</div>
     </div>
   </header>
 
@@ -841,165 +585,79 @@
       </div>
     </section>
 
-    <section class="intro" aria-label="Repository introduction">
-      <article class="note">
-        <h2>Purpose</h2>
-        <p>This index page centralizes the SBC ERP whitepaper library for use inside a corporate website, product microsite, proposal portal, or partner-facing documentation area.</p>
-        <p>It provides a clean separation between published material and controlled in-progress content while keeping the navigation surface simple for executive, commercial, technical, and assurance audiences.</p>
+    <section class="intro" aria-label="Library introduction">
+      <article>
+        <h2>Focused Structure</h2>
+        <p>The library has been reduced to a two-document structure so the website entry is simpler, cleaner, and easier to control.</p>
+        <p>The first document is the main whitepaper for standards, architecture, governance, and controls. The second document is the ERPNext accounting rules catalog that acts as the accounting engine baseline.</p>
       </article>
-      <aside class="note">
-        <h2>What It Manages</h2>
-        <div class="mini-list">
-          <div>
-            <strong>Executive Summaries</strong>
-            Fast-entry documents for leadership and decision-makers.
-          </div>
-          <div>
-            <strong>Full Whitepapers</strong>
-            Complete narrative coverage in HTML and Markdown formats.
-          </div>
-          <div>
-            <strong>Status Control</strong>
-            Clear differentiation between published and in-progress sets.
-          </div>
-        </div>
+      <aside>
+        <h2>Included Now</h2>
+        <ul>
+          <li>Main whitepaper</li>
+          <li>ERPNext accounting engine rules</li>
+          <li>Inline Markdown preview with Mermaid rendering</li>
+        </ul>
       </aside>
     </section>
 
-    <section class="section" id="document-sets" aria-labelledby="document-sets-heading">
-      <p class="section-kicker">Document Sets</p>
-      <h2 class="section-heading" id="document-sets-heading">Document Sets</h2>
-      <div class="suites">
-        <section class="suite suite-active" aria-labelledby="oil-gas-heading">
-          <div class="suite-head">
-            <div class="suite-title-row">
-              <span class="suite-icon suite-icon-oil" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2.5C12 2.5 6.5 10 6.5 14.25C6.5 17.9779 8.93808 21 12 21C15.0619 21 17.5 17.9779 17.5 14.25C17.5 10 12 2.5 12 2.5Z" fill="currentColor"/>
-                </svg>
-              </span>
-              <div>
-                <h2 id="oil-gas-heading">Oil &amp; Gas</h2>
-                <p>The current published industry collection for SBC ERP, including executive summaries and the full standards, architecture, governance, and controls whitepaper.</p>
-              </div>
-            </div>
-            <span class="badge badge-live">Published</span>
+    <section class="section" id="documents" aria-labelledby="documents-heading">
+      <p class="section-kicker">Documents</p>
+      <h2 class="section-heading" id="documents-heading">Two Active Documents</h2>
+      <div class="documents">
+        <article class="doc-card">
+          <div class="doc-meta">
+            <span class="doc-kind">Main Whitepaper</span>
+            <span class="badge">Active</span>
           </div>
-          <div class="docs">
-            <a class="doc-card" href="SBC-ERP-OIL-GAS-WHITEPAPER.html">
-              <div class="doc-meta">
-                <span class="doc-kind">HTML Whitepaper</span>
-                <span class="badge badge-live">Live</span>
-              </div>
-              <h3>SBC ERP Oil &amp; Gas Whitepaper</h3>
-              <p>Presentation-ready HTML edition suitable for customer-facing review and website delivery.</p>
-              <span class="doc-link">Open document</span>
-            </a>
-            <a class="doc-card" href="?doc=SBC-ERP-OIL-GAS-STANDARDS-AND-CONTROLS-WHITEPAPER.md" data-md-doc="SBC-ERP-OIL-GAS-STANDARDS-AND-CONTROLS-WHITEPAPER.md">
-              <div class="doc-meta">
-                <span class="doc-kind">Markdown Whitepaper</span>
-                <span class="badge badge-live">Live</span>
-              </div>
-              <h3>Standards and Controls Whitepaper</h3>
-              <p>Full Markdown source for standards coverage, architecture, governance, and control design.</p>
-              <span class="doc-link">Open document</span>
-            </a>
-            <a class="doc-card" href="?doc=SBC-ERP-OIL-GAS-EXECUTIVE-SUMMARY.md" data-md-doc="SBC-ERP-OIL-GAS-EXECUTIVE-SUMMARY.md">
-              <div class="doc-meta">
-                <span class="doc-kind">Executive Summary</span>
-                <span class="badge badge-live">English</span>
-              </div>
-              <h3>Oil &amp; Gas Executive Summary</h3>
-              <p>Fast-entry summary for executive, commercial, and evaluation audiences.</p>
-              <span class="doc-link">Open document</span>
-            </a>
-            <a class="doc-card" href="?doc=SBC-ERP-OIL-GAS-EXECUTIVE-SUMMARY-AR.md" data-md-doc="SBC-ERP-OIL-GAS-EXECUTIVE-SUMMARY-AR.md">
-              <div class="doc-meta">
-                <span class="doc-kind">Executive Summary</span>
-                <span class="badge badge-live">Arabic</span>
-              </div>
-              <h3>Oil &amp; Gas Executive Summary, Arabic Edition</h3>
-              <p>Arabic-language version for regional stakeholders and Arabic-speaking decision-makers.</p>
-              <span class="doc-link">Open document</span>
-            </a>
+          <h3>SBC ERP Standards and Controls Whitepaper</h3>
+          <p>The primary long-form document covering platform design, architecture, governance, workflows, standards alignment, and control posture.</p>
+          <ul class="doc-points">
+            <li>Full technical and governance narrative</li>
+            <li>Detailed standards and control baseline</li>
+            <li>Website-ready Markdown preview</li>
+          </ul>
+          <div class="doc-actions">
+            <a class="doc-action doc-action-primary" href="?doc=SBC-ERP-OIL-GAS-STANDARDS-AND-CONTROLS-WHITEPAPER.md" data-md-doc="SBC-ERP-OIL-GAS-STANDARDS-AND-CONTROLS-WHITEPAPER.md">Preview document</a>
+            <a class="doc-action doc-action-secondary" href="SBC-ERP-OIL-GAS-STANDARDS-AND-CONTROLS-WHITEPAPER.md" target="_blank" rel="noopener noreferrer">Open source</a>
           </div>
-        </section>
+        </article>
 
-        <section class="suite suite-disabled" aria-labelledby="logistics-heading" aria-disabled="true">
-          <div class="suite-head">
-            <div class="suite-title-row">
-              <span class="suite-icon suite-icon-logistics" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3 7.5H14.5V15.5H3V7.5Z" stroke="currentColor" stroke-width="1.7"/>
-                  <path d="M14.5 10H18L21 13V15.5H14.5V10Z" stroke="currentColor" stroke-width="1.7"/>
-                  <circle cx="7.5" cy="17.5" r="1.75" fill="currentColor"/>
-                  <circle cx="17.5" cy="17.5" r="1.75" fill="currentColor"/>
-                </svg>
-              </span>
-              <div>
-                <h2 id="logistics-heading">Logistics</h2>
-                <p>The Logistics vertical is reserved in the library but intentionally inactive until the final whitepaper and executive summary set are published.</p>
-              </div>
-            </div>
-            <span class="badge badge-progress">Coming Soon</span>
+        <article class="doc-card">
+          <div class="doc-meta">
+            <span class="doc-kind">Accounting Rules</span>
+            <span class="badge">Active</span>
           </div>
-          <div class="docs">
-            <div class="doc-card doc-card-disabled">
-              <div class="doc-meta">
-                <span class="doc-kind">HTML Whitepaper</span>
-                <span class="badge badge-progress">Inactive</span>
-              </div>
-              <h3>SBC ERP Logistics Whitepaper</h3>
-              <p>Reserved for the final Logistics industry whitepaper once publication is approved.</p>
-              <span class="doc-link doc-link-disabled">Unavailable</span>
-            </div>
-            <div class="doc-card doc-card-disabled">
-              <div class="doc-meta">
-                <span class="doc-kind">Markdown Whitepaper</span>
-                <span class="badge badge-progress">Inactive</span>
-              </div>
-              <h3>Logistics Standards and Controls Whitepaper</h3>
-              <p>Held back until the controlled draft is promoted to a publishable document set.</p>
-              <span class="doc-link doc-link-disabled">Unavailable</span>
-            </div>
-            <div class="doc-card doc-card-disabled">
-              <div class="doc-meta">
-                <span class="doc-kind">Executive Summary</span>
-                <span class="badge badge-progress">Inactive</span>
-              </div>
-              <h3>Logistics Executive Summary</h3>
-              <p>English executive summary content is not yet open for website release.</p>
-              <span class="doc-link doc-link-disabled">Unavailable</span>
-            </div>
-            <div class="doc-card doc-card-disabled">
-              <div class="doc-meta">
-                <span class="doc-kind">Executive Summary</span>
-                <span class="badge badge-progress">Inactive</span>
-              </div>
-              <h3>Logistics Executive Summary, Arabic Edition</h3>
-              <p>Arabic edition remains reserved until the Logistics set moves into publication.</p>
-              <span class="doc-link doc-link-disabled">Unavailable</span>
-            </div>
+          <h3>ERPNext Accounting Engine Rules</h3>
+          <p>The accounting rule catalog that states the ERPNext engine behavior as a traceable, testable control baseline for SBC ERP.</p>
+          <ul class="doc-points">
+            <li>Rule-based accounting engine coverage</li>
+            <li>Stable control identifiers and traceability</li>
+            <li>Operational reference for finance and audit teams</li>
+          </ul>
+          <div class="doc-actions">
+            <a class="doc-action doc-action-primary" href="?doc=ERPNext-Accounting-Engine-Rules.md" data-md-doc="ERPNext-Accounting-Engine-Rules.md">Preview document</a>
+            <a class="doc-action doc-action-secondary" href="ERPNext-Accounting-Engine-Rules.md" target="_blank" rel="noopener noreferrer">Open source</a>
           </div>
-          <p class="disabled-copy">The Logistics vertical is visually separated and intentionally disabled in the website entry until the document set is complete.</p>
-        </section>
+        </article>
       </div>
     </section>
 
     <footer class="footer">
-      This page is intended to function as the website entry point for the SBC ERP whitepaper library. It can be published as-is or adapted into a broader website shell without changing the document links.
+      Controlled library scope: two published Markdown documents only.
     </footer>
   </main>
+
   <script>
     (() => {
-      const allowedDocs = new Set([
-        'SBC-ERP-OIL-GAS-STANDARDS-AND-CONTROLS-WHITEPAPER.md',
-        'SBC-ERP-OIL-GAS-EXECUTIVE-SUMMARY.md',
-        'SBC-ERP-OIL-GAS-EXECUTIVE-SUMMARY-AR.md',
-        'SBC-ERP-LOGISTICS-STANDARDS-AND-CONTROLS-WHITEPAPER.md',
-        'SBC-ERP-LOGISTICS-EXECUTIVE-SUMMARY.md',
-        'SBC-ERP-LOGISTICS-EXECUTIVE-SUMMARY-AR.md'
-      ]);
+      const documents = {
+        'SBC-ERP-OIL-GAS-STANDARDS-AND-CONTROLS-WHITEPAPER.md': {
+          title: 'SBC ERP Standards and Controls Whitepaper'
+        },
+        'ERPNext-Accounting-Engine-Rules.md': {
+          title: 'ERPNext Accounting Engine Rules'
+        }
+      };
 
       const viewerShell = document.getElementById('markdown-viewer');
       const viewerState = document.getElementById('viewer-state');
@@ -1084,11 +742,7 @@
         }
 
         const trimmed = docName.trim();
-        if (!allowedDocs.has(trimmed)) {
-          return null;
-        }
-
-        return trimmed;
+        return Object.prototype.hasOwnProperty.call(documents, trimmed) ? trimmed : null;
       }
 
       function setLibraryMode() {
@@ -1099,7 +753,7 @@
         librarySections.forEach((section) => {
           section.hidden = false;
         });
-        document.title = 'SBC ERP Industry Whitepapers';
+        document.title = 'SBC ERP Whitepaper Library';
       }
 
       function setViewerMode(title, sourceHref) {
@@ -1110,7 +764,7 @@
         viewerTitle.textContent = title;
         viewerSourceLink.href = sourceHref;
         viewerSourceLink.setAttribute('aria-label', `Open source for ${title}`);
-        document.title = `${title} | SBC ERP Industry Whitepapers`;
+        document.title = `${title} | SBC ERP Whitepaper Library`;
         viewerShell.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
@@ -1149,9 +803,7 @@
           return;
         }
 
-        await mermaid.run({
-          nodes: mermaidNodes
-        });
+        await mermaid.run({ nodes: mermaidNodes });
       }
 
       async function openMarkdownDocument(docName, pushState = true) {
@@ -1161,8 +813,8 @@
           return;
         }
 
-        const title = normalizedDoc.replace(/\.md$/i, '').replace(/-/g, ' ');
-        setViewerMode(title, normalizedDoc);
+        const metadata = documents[normalizedDoc];
+        setViewerMode(metadata.title, normalizedDoc);
         setViewerState('Loading document...', false);
 
         try {
@@ -1177,6 +829,7 @@
           const sanitized = DOMPurify.sanitize(mermaidReady, {
             USE_PROFILES: { html: true }
           });
+
           showRenderedMarkdown(sanitized);
           await renderMermaidCharts();
 
@@ -1186,7 +839,7 @@
             window.history.pushState({ doc: normalizedDoc }, '', url);
           }
         } catch (error) {
-          setViewerState('The Markdown document could not be loaded for preview. Use “Open source” to access the raw file directly.', true);
+          setViewerState('The Markdown document could not be loaded for preview. Use Open source to access the raw file directly.', true);
         }
       }
 
