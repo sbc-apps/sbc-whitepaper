@@ -1,0 +1,4101 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SBC ERP Oil &amp; Gas Whitepaper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: technical standards document — petrol-blue cover band, sticky part-grouped contents rail, single reading column with wide tables and diagrams scrolling in place */
+:root{
+  --paper:#f5f7f8; --panel:#ffffff; --ink:#13212b; --muted:#56646f; --rule:#d6dde2;
+  --deep:#0b3d5c; --deep-ink:#eef4f8; --accent:#a85a17; --accent-soft:#f6ebe0; --chip:#e9eff3;
+  --display:"Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --measure:72ch;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0d151b; --panel:#121d25; --ink:#e3e9ee; --muted:#9caab5; --rule:#24333e;
+  --deep:#0a2f47; --deep-ink:#e6eff5; --accent:#e39a55; --accent-soft:#2a1f15; --chip:#1a2832; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0d151b; --panel:#121d25; --ink:#e3e9ee; --muted:#9caab5; --rule:#24333e;
+  --deep:#0a2f47; --deep-ink:#e6eff5; --accent:#e39a55; --accent-soft:#2a1f15; --chip:#1a2832; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:2px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+
+/* cover */
+.cover{background:var(--deep);color:var(--deep-ink);padding-inline:clamp(16px,5vw,64px);padding-block:clamp(40px,7vw,88px) clamp(28px,4vw,48px)}
+.cover-inner{max-width:1180px;margin:0 auto;display:grid;gap:28px}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.cover h1{font-family:var(--display);font-stretch:78%;font-weight:800;font-size:clamp(2.4rem,6.4vw,4.6rem);line-height:.98;margin:0;letter-spacing:-.01em;text-wrap:balance;max-width:16ch}
+.cover .sub{font-family:var(--display);font-stretch:92%;font-weight:500;font-size:clamp(1.1rem,2.2vw,1.45rem);line-height:1.3;margin:0;max-width:44ch;opacity:.92}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:color-mix(in srgb,var(--deep-ink) 22%,transparent);border-block:1px solid color-mix(in srgb,var(--deep-ink) 22%,transparent)}
+.meta div{background:var(--deep);padding:14px 16px 14px 0;min-width:0}
+.meta dt{font:500 11px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-bottom:6px}
+.meta dd{margin:0;font-size:14px;line-height:1.45}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:20px}
+.figs div{border-left:2px solid var(--accent);padding-left:14px;min-width:0}
+.figs b{display:block;font-family:var(--display);font-stretch:80%;font-weight:700;font-size:clamp(1.8rem,3.4vw,2.4rem);line-height:1;font-variant-numeric:tabular-nums}
+.figs span{font-size:13px;opacity:.85;line-height:1.4;display:block;margin-top:6px}
+
+/* frame */
+.frame{max-width:1180px;margin:0 auto;padding-inline:clamp(16px,4vw,40px);padding-block:40px 80px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:56px;align-items:start}
+@media (max-width:980px){.frame{grid-template-columns:minmax(0,1fr);gap:24px}}
+
+/* contents rail */
+.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);max-height:calc(100vh - 40px);overflow:auto;font-size:13px;padding-right:6px}
+.toc details{border-top:2px solid var(--ink)}
+.toc summary{cursor:pointer;list-style:none;font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:12px 0}
+.toc summary::-webkit-details-marker{display:none}
+.toc ol{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:1px}
+.toc li a{display:grid;grid-template-columns:2.2em 1fr;gap:4px;padding:4px 0;color:var(--muted);text-decoration:none;line-height:1.35}
+.toc li a:hover{color:var(--ink)}
+.toc .tn{font:500 12px/1.35 var(--mono);color:var(--accent);font-variant-numeric:tabular-nums}
+.toc-part{margin:14px 0 4px;font-weight:600;color:var(--ink);line-height:1.3}
+.toc-part span{display:block;font:500 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+@media (max-width:980px){.toc{position:static;max-height:none}}
+
+/* reading column */
+main{min-width:0}
+main > *{max-width:var(--measure)}
+main > .tbl, main > figure.diagram, main > .part-divider{max-width:100%}
+h2,h3,h4{font-family:var(--display);text-wrap:balance;color:var(--ink)}
+h2{font-stretch:82%;font-weight:750;font-size:clamp(1.65rem,3vw,2.15rem);line-height:1.1;margin:64px 0 18px;display:flex;gap:14px;align-items:baseline;scroll-margin-top:20px}
+h2 .snum{font:500 .62em/1 var(--mono);color:var(--accent);min-width:2ch;font-variant-numeric:tabular-nums}
+h3{font-stretch:90%;font-weight:650;font-size:1.22rem;line-height:1.25;margin:36px 0 10px;scroll-margin-top:20px}
+h3 .ssnum{font:500 .78em/1 var(--mono);color:var(--muted);margin-right:10px}
+p,li{margin:0 0 12px}
+ul,ol{padding-left:1.3em}
+li::marker{color:var(--accent)}
+strong{font-weight:600}
+code{font:500 .86em/1.4 var(--mono);background:var(--chip);padding:.1em .35em;border-radius:3px;overflow-wrap:anywhere}
+hr{border:0;border-top:1px solid var(--rule);margin:48px 0}
+blockquote{margin:20px 0;padding:14px 18px;background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 4px 4px 0}
+blockquote p:last-child{margin:0}
+
+.part-divider{margin:88px 0 0;padding-top:18px;border-top:2px solid var(--ink);display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
+.part-divider span{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.part-divider strong{font-family:var(--display);font-stretch:80%;font-weight:700;font-size:1rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.part-divider + h2{margin-top:18px}
+
+/* tables */
+.tbl{overflow-x:auto;margin:16px 0 24px;border:1px solid var(--rule);border-radius:6px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}
+th,td{text-align:left;vertical-align:top;padding:9px 14px;border-bottom:1px solid var(--rule)}
+tr:last-child td{border-bottom:0}
+th{font:600 11.5px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:color-mix(in srgb,var(--chip) 70%,var(--panel));white-space:nowrap}
+td:first-child{font-weight:500}
+.tbl.controls td:first-child{width:1%;white-space:nowrap}
+td.cid span{font:500 12.5px/1 var(--mono);color:var(--deep);background:var(--chip);padding:4px 7px;border-radius:3px;font-variant-numeric:tabular-nums}
+:root[data-theme="dark"] td.cid span{color:#9fcbe6}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) td.cid span{color:#9fcbe6}}
+td{font-variant-numeric:tabular-nums}
+
+/* diagrams */
+figure.diagram{margin:20px 0 28px;padding:18px;background:var(--panel);border:1px solid var(--rule);border-radius:6px;overflow-x:auto}
+figure.diagram pre{margin:0;background:none;display:flex;justify-content:center;min-width:min-content}
+
+footer{border-top:1px solid var(--rule);margin-top:64px;padding-top:20px;color:var(--muted);font-size:13px}
+</style>
+
+</head><body><header class="cover">
+  <div class="cover-inner">
+    <p class="eyebrow">Whitepaper · Edition 2026</p>
+    <h1>SBC ERP for Oil &amp; Gas</h1>
+    <p class="sub">Standards, architecture, governance and control for upstream operators, joint-venture partners and their service ecosystems.</p>
+    <dl class="meta">
+      <div><dt>Platform</dt><dd>SBC Core with ten Oil &amp; Gas domain modules</dd></div>
+      <div><dt>Jurisdiction</dt><dd>IFRS reporting with Oman localization</dd></div>
+      <div><dt>Intelligence</dt><dd>Local AI and a self-hosted decision engine</dd></div>
+      <div><dt>Classification</dt><dd>Customer and partner distribution</dd></div>
+    </dl>
+    <div class="figs">
+      <div><b>10</b><span>domain modules on one system of record</span></div>
+      <div><b>41</b><span>tenant-scoped integration contracts</span></div>
+      <div><b>440+</b><span>accounting controls enforced and tested</span></div>
+      <div><b>330+</b><span>controls enforced inside PostgreSQL</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="frame">
+  <nav class="toc" aria-label="Contents">
+    <details open id="toc-details">
+      <summary>Contents</summary>
+      <p class="toc-part"><span>Part I</span>Orientation</p><ol>
+<li><a href="#1-executive-summary"><span class="tn">1</span>Executive summary</a></li>
+<li><a href="#2-purpose-and-scope"><span class="tn">2</span>Purpose and scope</a></li>
+<li><a href="#3-assurance-and-claim-policy"><span class="tn">3</span>Assurance and claim policy</a></li>
+</ol>
+<p class="toc-part"><span>Part II</span>Architecture</p><ol>
+<li><a href="#4-platform-architecture"><span class="tn">4</span>Platform architecture</a></li>
+<li><a href="#5-integration-architecture"><span class="tn">5</span>Integration architecture</a></li>
+</ol>
+<p class="toc-part"><span>Part III</span>Workflows</p><ol>
+<li><a href="#6-end-to-end-business-workflows"><span class="tn">6</span>End-to-end business workflows</a></li>
+</ol>
+<p class="toc-part"><span>Part IV</span>Standards</p><ol>
+<li><a href="#7-accounting-statutory-and-assurance-standards-coverage"><span class="tn">7</span>Accounting, statutory and assurance standards coverage</a></li>
+<li><a href="#8-reference-frameworks"><span class="tn">8</span>Reference frameworks</a></li>
+</ol>
+<p class="toc-part"><span>Part V</span>Control baseline</p><ol>
+<li><a href="#9-cross-cutting-mandatory-controls"><span class="tn">9</span>Cross-cutting mandatory controls</a></li>
+<li><a href="#10-accounting-module-control-catalog"><span class="tn">10</span>Accounting module control catalog</a></li>
+<li><a href="#11-procurement-and-contract-management-control-catalog"><span class="tn">11</span>Procurement and Contract Management control catalog</a></li>
+<li><a href="#12-inventory-and-warehouse-management-control-catalog"><span class="tn">12</span>Inventory and Warehouse Management control catalog</a></li>
+<li><a href="#13-asset-management-control-catalog"><span class="tn">13</span>Asset Management control catalog</a></li>
+<li><a href="#14-afe-management-control-catalog"><span class="tn">14</span>AFE Management control catalog</a></li>
+<li><a href="#15-block-management-and-joint-interest-control-catalog"><span class="tn">15</span>Block Management and Joint-Interest control catalog</a></li>
+<li><a href="#16-budget-management-control-catalog"><span class="tn">16</span>Budget Management control catalog</a></li>
+<li><a href="#17-treasury-and-banking-control-catalog"><span class="tn">17</span>Treasury and banking control catalog</a></li>
+<li><a href="#18-hr-and-workforce-control-catalog"><span class="tn">18</span>HR and workforce control catalog</a></li>
+<li><a href="#19-project-management-control-catalog"><span class="tn">19</span>Project Management control catalog</a></li>
+</ol>
+<p class="toc-part"><span>Part VI</span>Intelligence, operations and assurance</p><ol>
+<li><a href="#20-oil-gas-lifecycle-control-model"><span class="tn">20</span>Oil &amp; Gas lifecycle control model</a></li>
+<li><a href="#21-oman-tax-e-invoicing-and-statutory-localization"><span class="tn">21</span>Oman tax, e-invoicing and statutory localization</a></li>
+<li><a href="#22-security-deployment-and-operations"><span class="tn">22</span>Security, deployment and operations</a></li>
+<li><a href="#23-data-governance-and-interoperability"><span class="tn">23</span>Data governance and interoperability</a></li>
+<li><a href="#24-local-ai-decision-engine-and-management-intelligence"><span class="tn">24</span>Local AI, decision engine and management intelligence</a></li>
+<li><a href="#25-internal-control-audit-and-assurance-model"><span class="tn">25</span>Internal control, audit and assurance model</a></li>
+<li><a href="#26-testing-and-release-assurance"><span class="tn">26</span>Testing and release assurance</a></li>
+<li><a href="#27-document-and-evidence-governance"><span class="tn">27</span>Document and evidence governance</a></li>
+<li><a href="#28-enterprise-reconciliation-framework"><span class="tn">28</span>Enterprise reconciliation framework</a></li>
+<li><a href="#29-prohibited-design-patterns"><span class="tn">29</span>Prohibited design patterns</a></li>
+<li><a href="#30-minimum-evidence-package-for-customer-acceptance"><span class="tn">30</span>Minimum evidence package for customer acceptance</a></li>
+<li><a href="#31-primary-public-verification-anchors"><span class="tn">31</span>Primary public verification anchors</a></li>
+<li><a href="#32-governance-of-this-whitepaper"><span class="tn">32</span>Governance of this whitepaper</a></li>
+</ol>
+<p class="toc-part"><span>Back matter</span>Appendices</p><ol>
+<li><a href="#appendix-a-module-by-standard-responsibility-matrix"><span class="tn">·</span>Appendix A. Module-by-standard responsibility matrix</a></li>
+<li><a href="#appendix-b-glossary"><span class="tn">·</span>Appendix B. Glossary</a></li>
+<li><a href="#final-design-principle"><span class="tn">·</span>Final design principle</a></li>
+</ol>
+    </details>
+  </nav>
+  <main>
+    <blockquote>
+<p><strong>How to read this document.</strong> Part I introduces SBC ERP and its assurance philosophy. Part II explains how SBC Core and the Oil &amp; Gas modules fit together and how they exchange information. Part III walks through the main business workflows end to end. Part IV sets out the accounting, statutory and assurance standards the product supports. Parts V and VI define the enterprise control baseline that every module enforces.</p>
+</blockquote>
+<h3 id="document-map">Document map</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Sections</th>
+<th>Answers the question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I. Orientation</td>
+<td>1–3</td>
+<td>What is SBC ERP, and how should its capability statements be read?</td>
+</tr>
+<tr>
+<td>II. Architecture</td>
+<td>4–5</td>
+<td>How do SBC Core and the Oil &amp; Gas modules fit together, and which contracts connect them?</td>
+</tr>
+<tr>
+<td>III. Workflows</td>
+<td>6</td>
+<td>How do procure-to-pay, commitment control, inventory, assets, AFE, journals, period close, FX, block context and e-invoicing work end to end?</td>
+</tr>
+<tr>
+<td>IV. Standards</td>
+<td>7–8</td>
+<td>Which accounting, statutory, assurance and management-system standards does the product support, and where?</td>
+</tr>
+<tr>
+<td>V. Control baseline</td>
+<td>9–19</td>
+<td>Which controls does each module enforce?</td>
+</tr>
+<tr>
+<td>VI. Intelligence, operations and assurance</td>
+<td>20–32</td>
+<td>How do local AI, the decision engine and management analytics support managers; how is the platform deployed, protected and recovered; and how are lifecycle, localization, data, audit, testing, evidence and reconciliation governed?</td>
+</tr>
+</tbody>
+</table></div>
+<div class="part-divider" role="presentation"><span>Part I</span><strong>Orientation</strong></div><h2 id="1-executive-summary"><span class="snum">1</span>Executive summary</h2>
+<p>SBC ERP for Oil &amp; Gas is a modular, multi-tenant enterprise resource planning platform built for upstream operators, joint-venture partners and their service ecosystems. It runs on <strong>SBC Core</strong>, which provides identity, tenant isolation, role-based access control, documents, workflow and module lifecycle. Ten domain modules run on Core: Accounting, AFE Management, Assets, Block Management, Budget Management, Finance, HR, Inventory, Procurement and Project Management.</p>
+<p>The modules work as one system of record without sharing private data structures. They exchange information only through <strong>sanctioned, tenant-scoped integration contracts and domain events</strong>. Each master record has exactly one owner. Every financial effect is posted by Accounting, which is the single book of record.</p>
+<p>All AI in SBC ERP runs <strong>locally</strong>, inside the customer's own deployment. A self-hosted generative AI runtime and a self-hosted <strong>decision engine</strong> sit beside deterministic management analytics. Together they help managers analyze data across every module, find anomalies, measure readiness and reach decisions, with every recommendation governed by the same controls as the rest of the system (section 24).</p>
+<p>The platform is designed around one principle:</p>
+<blockquote>
+<p><strong>A transaction is valid only if the system can later prove who initiated it, under what authority, against which master data, with what evidence, under which rule version, and with what operational and accounting effect.</strong></p>
+</blockquote>
+<h3 id="11-at-a-glance"><span class="ssnum">1.1</span>At a glance</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>SBC ERP for Oil &amp; Gas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Domain modules</td>
+<td>10, independently deployable on SBC Core</td>
+</tr>
+<tr>
+<td>Sanctioned integration contracts</td>
+<td>41 tenant-scoped module actions</td>
+</tr>
+<tr>
+<td>Domain events</td>
+<td>More than 100 published business events</td>
+</tr>
+<tr>
+<td>Automated accounting controls</td>
+<td>More than 440 behavioral accounting rules enforced and covered by automated tests</td>
+</tr>
+<tr>
+<td>Database-level enforcement</td>
+<td>More than 330 controls enforced inside PostgreSQL as well as in the application</td>
+</tr>
+<tr>
+<td>Accounting standards supported</td>
+<td>IFRS and IAS coverage across ledger, inventory, fixed assets, FX, revenue, leases, presentation and cash flow (section 7)</td>
+</tr>
+<tr>
+<td>Oman localization</td>
+<td>VAT, withholding tax, Fawtara e-invoicing, Central Bank of Oman reference rates, commercial and labor law support</td>
+</tr>
+<tr>
+<td>Local AI</td>
+<td>Self-hosted generative AI and decision engine on the private platform network; no business data sent to external AI services</td>
+</tr>
+<tr>
+<td>Decision support</td>
+<td>Typed, confidence-scored decisions with mandatory human review below the confidence floor; readiness scoring, anomaly detection, KPIs, alerts and forecasting from authoritative data</td>
+</tr>
+<tr>
+<td>Deployment</td>
+<td>On-premises or private cloud, high-availability overlays, continuous off-site backup with point-in-time recovery</td>
+</tr>
+<tr>
+<td>Assurance model</td>
+<td>COSO-aligned control design, maker-checker, delegation of authority, immutable audit trail, reproducible audit evidence</td>
+</tr>
+</tbody>
+</table></div>
+<p>Distribution of the automated accounting controls enforced and tested, by domain:</p>
+<figure class="diagram"><pre class="mermaid">pie showData
+    title Automated accounting controls by domain — 442 enforced
+    &quot;General ledger, journals and chart of accounts&quot; : 72
+    &quot;Fiscal periods, close and immutability&quot; : 43
+    &quot;Multi-currency and FX&quot; : 36
+    &quot;Banking, reconciliation and treasury&quot; : 42
+    &quot;Stock and asset accounting&quot; : 60
+    &quot;Financial reporting and opening balances&quot; : 38
+    &quot;Budget, dimensions and cost centers&quot; : 36
+    &quot;Parties, invoices and payments&quot; : 55
+    &quot;Tax calculation&quot; : 20
+    &quot;Deferred revenue and expense&quot; : 24
+    &quot;Governance and methodology&quot; : 16
+</pre></figure>
+<h3 id="12-nine-design-commitments"><span class="ssnum">1.2</span>Nine design commitments</h3>
+<ol>
+<li><strong>One owner per master.</strong> Supplier belongs to Procurement, item to Inventory, physical asset to Assets, petroleum block to Block Management, and the posted books to Accounting. No module keeps a duplicate master.</li>
+<li><strong>Accounting is the single book of record.</strong> Operational modules submit governed posting requests. Accounting validates them, posts them and returns an auditable reference.</li>
+<li><strong>Defense in depth.</strong> Each control is checked in the user interface, again in the server action, again in the posting engine, and again by PostgreSQL constraints, triggers and row-level security.</li>
+<li><strong>Fail closed.</strong> A missing module, missing exchange rate, closed period, missing approval or unresolved block identity stops the transaction. The system never substitutes a silent default.</li>
+<li><strong>Immutable history.</strong> Posted journals, approved AFE baselines, stock movements and executed contracts are never edited in place. They are corrected through reversal, revision or amendment.</li>
+<li><strong>Effective-dated rules.</strong> Exchange rates, tax codes, participating interests, economic terms, approval limits and tolerances apply by date. Each transaction keeps the version it used.</li>
+<li><strong>Controls are tested.</strong> A control counts as enforced only when automated tests prove it, at both the application and database layers.</li>
+<li><strong>Evidence by design.</strong> Every material transaction links to its source document, approval history, posting reference and supporting evidence.</li>
+<li><strong>Local, governed intelligence.</strong> AI and decision models run inside the deployment. They inform and recommend, uncertain decisions go to people, and every action still passes the system's controls.</li>
+</ol>
+<h3 id="13-capability-highlights"><span class="ssnum">1.3</span>Capability highlights</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>What SBC ERP delivers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>General ledger and close</td>
+<td>Balanced double-entry posting enforced in the database, multi-book ledgers, multi-dimensional coding, maker-checker journal workflow, controlled period close and reopen, versioned financial-statement mapping</td>
+</tr>
+<tr>
+<td>Multi-currency</td>
+<td>Functional and transaction currency on every line, governed rate register sourced from the Central Bank of Oman, monthly rate approval, revaluation and realized FX</td>
+</tr>
+<tr>
+<td>Procure-to-pay</td>
+<td>Block-aware requisitions, budget and AFE commitment control, sourcing, contracts and call-offs, goods receipt and service entry, invoice matching, idempotent AP handoff, supplier settlement with open-item allocation</td>
+</tr>
+<tr>
+<td>Inventory</td>
+<td>Immutable stock ledger, FIFO and weighted-average valuation, net realizable value adjustment, quality hold, transit, repairables, owned and non-owned stock, automatic GL posting</td>
+</tr>
+<tr>
+<td>Assets</td>
+<td>Enterprise asset management aligned with ISO 55001 and ISO 14224, reliability and integrity, and a governed bridge to the fixed-asset register for capitalization, depreciation and disposal</td>
+</tr>
+<tr>
+<td>Oil &amp; Gas</td>
+<td>AFE lifecycle with technical and finance review, block and participating-interest master, effective-dated operatorship and economic terms</td>
+</tr>
+<tr>
+<td>Banking and treasury</td>
+<td>Bank statement import, reconciliation, bank-account currency guards, cash forecasting</td>
+</tr>
+<tr>
+<td>Local AI and decision intelligence</td>
+<td>Self-hosted generative AI, a typed decision engine with confidence gating and human review, close-readiness advisor, financial insights with anomaly detection, KPI alerts, Ask Accounting and cash forecasting</td>
+</tr>
+<tr>
+<td>Tax and e-invoicing</td>
+<td>Effective-dated tax codes, VAT and withholding, tax reporting, Fawtara e-invoicing with immutable submission evidence</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-purpose-and-scope"><span class="snum">2</span>Purpose and scope</h2>
+<p>This whitepaper defines the architecture and control model of SBC ERP for Oil &amp; Gas. It brings together the product's accounting rulebooks, module standards handbooks, integration contracts and international references in one customer-facing document.</p>
+<p>No ERP can make an organization compliant by itself. SBC ERP makes compliance, governance, accounting integrity, operational control, auditability and evidence enforceable through configuration, workflows, validations, approvals, posting controls, immutable records, integrations and automated tests. Each customer still owns its accounting policies, legal determinations and control environment.</p>
+<p>The scope covers:</p>
+<ul>
+<li>the SBC Core platform services the Oil &amp; Gas modules rely on;</li>
+<li>the ten Oil &amp; Gas domain modules and their ownership boundaries;</li>
+<li>the integration contracts and events that connect them;</li>
+<li>the end-to-end business workflows;</li>
+<li>the accounting, statutory, assurance and management-system standards the product supports;</li>
+<li>the enterprise control baseline (<code>WP-*</code> controls) for every module.</li>
+</ul>
+<p>Where the product's detailed rulebooks are more specific than this document, the detailed rules apply.</p>
+<hr />
+<h2 id="3-assurance-and-claim-policy"><span class="snum">3</span>Assurance and claim policy</h2>
+<p>SBC ERP keeps four concepts separate:</p>
+<ol>
+<li><strong>Requirement defined</strong>: the control is specified in an approved rulebook.</li>
+<li><strong>Implemented</strong>: code or configuration enforces it.</li>
+<li><strong>Verified</strong>: automated tests, or controlled manual evidence, prove the expected behavior.</li>
+<li><strong>Certified or legally compliant</strong>: an authorized external or internal authority has made that determination for a defined organization, scope, period and jurisdiction.</li>
+</ol>
+<p>SBC ERP supports an organization's compliance. It does not certify it. No product screen, brochure, tender response or report describes a module as certified to an external standard unless a valid certification exists for the defined scope. A statement that financial statements comply with IFRS can only be made by the reporting entity.</p>
+<h3 id="31-claim-classes"><span class="ssnum">3.1</span>Claim classes</h3>
+<p>Capability statements made to customers use one of these classes:</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Claim class</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Native</td>
+<td>Implemented and verified in SBC ERP.</td>
+</tr>
+<tr>
+<td>Integrated</td>
+<td>Verified through a governed external specialist service or integration.</td>
+</tr>
+<tr>
+<td>Partner-provided</td>
+<td>Delivered by a named external provider with defined responsibility.</td>
+</tr>
+<tr>
+<td>Manual controlled process</td>
+<td>Performed outside the system under an approved procedure with retained evidence.</td>
+</tr>
+<tr>
+<td>Out of scope</td>
+<td>Intentionally not provided.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="32-severity-model"><span class="ssnum">3.2</span>Severity model</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Required behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BLOCK</td>
+<td>The controlled transaction, posting, payment, filing, close, approval or configuration activation does not continue.</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>The result is invalid or incomplete and must be corrected before final release or posting.</td>
+</tr>
+<tr>
+<td>WARNING</td>
+<td>Continuing requires authorized review and explicit acknowledgement, where policy permits.</td>
+</tr>
+<tr>
+<td>INFO</td>
+<td>Guidance or disclosure, with no change to financial or control state.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Controls protecting the law, accounting integrity, tenant isolation and immutable history have no casual user-interface override.</p>
+<h3 id="33-control-metadata"><span class="ssnum">3.3</span>Control metadata</h3>
+<p>Each production control carries, where applicable: a stable identifier; title and domain; jurisdiction; industry scope; authoritative or policy source; effective-from and effective-to dates; entity, block, book, contract and transaction scope; conditions and calculation; posting or workflow result; severity; exception and override policy; required evidence; test cases; implementation reference; version history; and approval owner.</p>
+<div class="part-divider" role="presentation"><span>Part II</span><strong>Architecture</strong></div><h2 id="4-platform-architecture"><span class="snum">4</span>Platform architecture</h2>
+<h3 id="41-layered-architecture"><span class="ssnum">4.1</span>Layered architecture</h3>
+<p>SBC ERP has four layers. Each layer uses the layer below it only through published contracts.</p>
+<figure class="diagram"><pre class="mermaid">flowchart TB
+    subgraph L4[&quot;Layer 4 — Assurance&quot;]
+        direction LR
+        REG[&quot;Control registry&lt;br/&gt;status · owner · enforcement layer&quot;]
+        TST[&quot;Automated conformance tests&quot;]
+        EVD[&quot;Evidence packs&lt;br/&gt;fingerprinted results&quot;]
+        REL[&quot;Release assurance&lt;br/&gt;per module release&quot;]
+    end
+
+    subgraph L3[&quot;Layer 3 — Oil &amp; Gas domain modules&quot;]
+        direction LR
+        subgraph OGN[&quot;Oil &amp; Gas native&quot;]
+            BLK[&quot;Block Management&quot;]
+            AFE[&quot;AFE Management&quot;]
+        end
+        subgraph FIN[&quot;Financial core&quot;]
+            ACC[&quot;Accounting&lt;br/&gt;book of record&quot;]
+            BUD[&quot;Budget Management&quot;]
+            FNC[&quot;Finance&quot;]
+        end
+        subgraph OPS[&quot;Operations&quot;]
+            PRC[&quot;Procurement&quot;]
+            INV[&quot;Inventory&quot;]
+            AST[&quot;Assets&quot;]
+        end
+        subgraph PPL[&quot;People and delivery&quot;]
+            HR[&quot;HR&quot;]
+            PRJ[&quot;Project Management&quot;]
+        end
+    end
+
+    subgraph L2[&quot;Layer 2 — SBC Module Kit (the only sanctioned bridge)&quot;]
+        direction LR
+        ACT[&quot;Module actions&lt;br/&gt;discover · invoke&quot;]
+        EVT[&quot;Domain events&lt;br/&gt;publish · subscribe&quot;]
+        UIK[&quot;Shared UI components&quot;]
+        SRV[&quot;Server services&lt;br/&gt;tenant context · audit&quot;]
+        AIF[&quot;AI and decision façade&quot;]
+    end
+
+    subgraph L1[&quot;Layer 1 — SBC Core platform&quot;]
+        direction LR
+        IDN[&quot;Identity and tenancy&lt;br/&gt;authentication · sessions · MFA&quot;]
+        RBAC[&quot;Role-based access control&lt;br/&gt;capability keys&quot;]
+        DBR[&quot;PostgreSQL runtime&lt;br/&gt;row-level security&quot;]
+        FMG[&quot;File Manager&lt;br/&gt;controlled documents&quot;]
+        WFL[&quot;Workflow · Request Center&lt;br/&gt;Tasks · Scheduler&quot;]
+        NTF[&quot;Notifications · Webhooks&quot;]
+        MCT[&quot;Module Center&lt;br/&gt;install · upgrade · migrations&quot;]
+        LAI[&quot;Local AI runtime&lt;br/&gt;self-hosted models&quot;]
+        DEN[&quot;Decision Engine&lt;br/&gt;typed decisions · confidence gate&quot;]
+    end
+
+    L4 -. &quot;verifies&quot; .-&gt; L3
+    L3 --&gt; L2
+    L2 --&gt; L1
+</pre></figure>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Responsibility</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. SBC Core</td>
+<td>Tenancy, identity, access control, database runtime with row-level security, documents, workflow, scheduling, notifications, webhooks, module lifecycle, local AI runtime and decision engine</td>
+<td>Holds no Oil &amp; Gas business logic</td>
+</tr>
+<tr>
+<td>2. SBC Module Kit</td>
+<td>Module actions, domain events, shared UI components, tenant-scoped server services, AI and decision façades</td>
+<td>Never exposes one module's data structures to another</td>
+</tr>
+<tr>
+<td>3. Domain modules</td>
+<td>Masters, transactions, business rules, postings and reports for their own domain</td>
+<td>Never read or write another module's private data</td>
+</tr>
+<tr>
+<td>4. Assurance</td>
+<td>Control registry, automated tests, evidence, release assurance</td>
+<td>A control is never marked verified without passing evidence</td>
+</tr>
+</tbody>
+</table></div>
+<p>Logical module names are stable across industry editions. The Oil &amp; Gas edition provides its own specialized <code>accounting</code>, <code>procurement</code>, <code>assets</code> and <code>inventory</code> implementations under the same logical names, so platform services and integrations stay consistent.</p>
+<h3 id="42-system-of-record-model"><span class="ssnum">4.2</span>System-of-record model</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Authoritative module</th>
+<th>Consumers obtain it through</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Blocks, parties, participating interests, operatorship, petroleum agreements, economic terms</td>
+<td>Block Management</td>
+<td>Block identity and resolution services</td>
+</tr>
+<tr>
+<td>Supplier master, sourcing, contracts and procurement documents</td>
+<td>Procurement</td>
+<td>Supplier Master services and procurement events</td>
+</tr>
+<tr>
+<td>Item master, warehouses, bins and stock ledger</td>
+<td>Inventory</td>
+<td>Inventory events and stock-close services</td>
+</tr>
+<tr>
+<td>Physical and maintainable assets, reliability, maintenance, integrity</td>
+<td>Assets</td>
+<td>Asset services and asset events</td>
+</tr>
+<tr>
+<td>AFE authorization, estimates, revisions and commitments</td>
+<td>AFE Management</td>
+<td>AFE control services</td>
+</tr>
+<tr>
+<td>Budget authorization, holds, availability and control state</td>
+<td>Budget Management</td>
+<td>Budget control services</td>
+</tr>
+<tr>
+<td>Posted books, journals, fixed-asset register, financial statements</td>
+<td>Accounting</td>
+<td>Accounting posting and inquiry services, accounting events</td>
+</tr>
+<tr>
+<td>Operational cash workspace</td>
+<td>Finance, with Accounting as GL authority</td>
+<td>—</td>
+</tr>
+<tr>
+<td>People, employment and workforce processes</td>
+<td>HR</td>
+<td>HR events</td>
+</tr>
+<tr>
+<td>Projects, phases, tasks and milestones</td>
+<td>Project Management</td>
+<td>Project events</td>
+</tr>
+</tbody>
+</table></div>
+<p>A module never creates a second authoritative master because it needs the data. Database schema evolves only through forward-only migrations. Applied migrations are never altered.</p>
+<h3 id="43-module-dependency-map"><span class="ssnum">4.3</span>Module dependency map</h3>
+<p>Hard dependencies must be installed. Optional dependencies activate integrations when the related module is present.</p>
+<figure class="diagram"><pre class="mermaid">flowchart LR
+    BASE([&quot;SBC Core&quot;])
+    DOCS([&quot;Core File Manager&quot;])
+    CONT([&quot;Core Contacts&quot;])
+
+    ACC[&quot;Accounting&quot;] --&gt; BASE
+    AFE[&quot;AFE&quot;] --&gt; BASE
+    AFE --&gt; DOCS
+    AST[&quot;Assets&quot;] --&gt; BASE
+    BLK[&quot;Block Mgmt&quot;] --&gt; BASE
+    BUD[&quot;Budget&quot;] --&gt; BASE
+    FNC[&quot;Finance&quot;] --&gt; BASE
+    HR[&quot;HR&quot;] --&gt; BASE
+    INV[&quot;Inventory&quot;] --&gt; BASE
+    PRC[&quot;Procurement&quot;] --&gt; BASE
+    PRC --&gt; DOCS
+    PRJ[&quot;Project Mgmt&quot;] --&gt; BASE
+    PRJ --&gt; CONT
+
+    ACC -.-&gt; BUD &amp; AFE &amp; PRC
+    AFE -.-&gt; ACC &amp; FNC &amp; PRC &amp; BLK
+    PRC -.-&gt; AFE &amp; INV &amp; FNC &amp; ACC &amp; BLK &amp; BUD
+    INV -.-&gt; PRC &amp; ACC &amp; AFE &amp; BUD &amp; AST
+    AST -.-&gt; INV &amp; HR &amp; FNC &amp; PRC &amp; AFE &amp; BUD &amp; ACC
+    BUD -.-&gt; PRC &amp; ACC
+    BLK -.-&gt; AFE &amp; ACC &amp; PRC &amp; AST &amp; INV
+    FNC -.-&gt; ACC
+</pre></figure>
+<p>Solid arrows are hard dependencies. Dashed arrows are optional integrations.</p>
+<h3 id="44-defense-in-depth-at-the-posting-boundary"><span class="ssnum">4.4</span>Defense in depth at the posting boundary</h3>
+<p>Every financial write passes five independent control layers. If one layer is bypassed, for example by a direct API call, the remaining layers still hold.</p>
+<figure class="diagram"><pre class="mermaid">flowchart LR
+    U[&quot;1. User interface&lt;br/&gt;validation&lt;br/&gt;status shown as text&quot;] --&gt; S[&quot;2. Server action&lt;br/&gt;tenant from session&lt;br/&gt;capability check&lt;br/&gt;segregation of duties&quot;]
+    S --&gt; P[&quot;3. Posting engine&lt;br/&gt;posting rules · period guard&lt;br/&gt;exchange rate required&lt;br/&gt;idempotency key&quot;]
+    P --&gt; D[&quot;4. PostgreSQL&lt;br/&gt;double-entry guard&lt;br/&gt;posting-period guard&lt;br/&gt;row-level security&lt;br/&gt;monetary precision&quot;]
+    D --&gt; A[&quot;5. Audit and evidence&lt;br/&gt;immutable journal&lt;br/&gt;approval trail&lt;br/&gt;source reference&quot;]
+    S -. &quot;reject&quot; .-&gt; X([&quot;BLOCK / ERROR&lt;br/&gt;nothing written&quot;])
+    P -. &quot;reject&quot; .-&gt; X
+    D -. &quot;reject&quot; .-&gt; X
+</pre></figure>
+<p>Database-level guards include balanced double entry, open-period posting, mandatory tenant row-level security, non-negative debit and credit amounts, currency-aware monetary precision, fixed-currency bank accounts, protection of posted journals from reset tools, and restricted execution rights on accounting functions.</p>
+<hr />
+<h2 id="5-integration-architecture"><span class="snum">5</span>Integration architecture</h2>
+<h3 id="51-integration-principles"><span class="ssnum">5.1</span>Integration principles</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>How it works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Actions for decisions and writes</td>
+<td>Anything that changes money, stock, commitments or identity uses a synchronous module action that returns success or a typed error.</td>
+</tr>
+<tr>
+<td>Events for notification</td>
+<td>Events tell other modules that something happened. They never replace an authoritative read.</td>
+</tr>
+<tr>
+<td>Tenant from context</td>
+<td>The tenant comes only from the authenticated session. It is never accepted from a form or payload.</td>
+</tr>
+<tr>
+<td>Caller identity</td>
+<td>Every call names its source module, and providers check it. For example, the fixed-asset bridge accepts calls only from Assets, and the AP bill handoff only from Procurement.</td>
+</tr>
+<tr>
+<td>Idempotency</td>
+<td>Financial and stock actions carry a stable key. A replay returns the original result and never posts twice.</td>
+</tr>
+<tr>
+<td>Fail closed</td>
+<td>A missing provider, an unknown identifier or an invocation error stops the write. The consumer never falls back to free text or a local copy.</td>
+</tr>
+<tr>
+<td>Store identifiers, snapshot labels</td>
+<td>Consumers store the provider's identifier and may keep a display snapshot for printing. Live identity always comes from the provider.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="52-integration-contract-catalog"><span class="ssnum">5.2</span>Integration contract catalog</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Contract</th>
+<th>Purpose</th>
+<th>Consumers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Block Management</td>
+<td><code>block_management.listBlocks</code></td>
+<td>Block selector by identifier and name</td>
+<td>Procurement, AFE</td>
+</tr>
+<tr>
+<td>Block Management</td>
+<td><code>block_management.getBlock</code></td>
+<td>Resolve and validate a saved block</td>
+<td>Procurement, AFE</td>
+</tr>
+<tr>
+<td>Block Management</td>
+<td><code>block_management.resolveParticipation</code></td>
+<td>Participating interests and operator on a date</td>
+<td>Oil &amp; Gas consumers</td>
+</tr>
+<tr>
+<td>Block Management</td>
+<td><code>block_management.resolveEconomicTerms</code></td>
+<td>Government economic terms on a date</td>
+<td>Oil &amp; Gas consumers</td>
+</tr>
+<tr>
+<td>Budget</td>
+<td><code>budget.evaluateControl</code></td>
+<td>Warn or block against available budget</td>
+<td>Procurement, HR</td>
+</tr>
+<tr>
+<td>Budget</td>
+<td><code>budget.readAvailability</code></td>
+<td>Available budget by line</td>
+<td>Procurement</td>
+</tr>
+<tr>
+<td>Budget</td>
+<td><code>budget.applyDocumentHold</code></td>
+<td>Reserve budget for a requisition or order</td>
+<td>Procurement</td>
+</tr>
+<tr>
+<td>Budget</td>
+<td><code>budget.liquidateDocumentHold</code></td>
+<td>Consume the reservation on receipt</td>
+<td>Procurement</td>
+</tr>
+<tr>
+<td>Budget</td>
+<td><code>budget.reverseReceiptLiquidation</code></td>
+<td>Restore the reservation when a receipt is reversed</td>
+<td>Procurement</td>
+</tr>
+<tr>
+<td>Budget</td>
+<td><code>budget.releaseDocumentHold</code></td>
+<td>Release the unconsumed reservation</td>
+<td>Procurement</td>
+</tr>
+<tr>
+<td>Budget</td>
+<td><code>budget.allocateCallout</code></td>
+<td>Allocate budget to a contract call-off</td>
+<td>Procurement</td>
+</tr>
+<tr>
+<td>Budget</td>
+<td><code>budget.validateAccountingPosting</code></td>
+<td>Budget validation before a journal posts</td>
+<td>Accounting</td>
+</tr>
+<tr>
+<td>Budget</td>
+<td><code>budget.integrationStatus</code></td>
+<td>Integration health</td>
+<td>Accounting</td>
+</tr>
+<tr>
+<td>AFE</td>
+<td><code>afe.checkBudget</code></td>
+<td>AFE headroom check</td>
+<td>Procurement, HR</td>
+</tr>
+<tr>
+<td>AFE</td>
+<td><code>afe.postCommitment</code></td>
+<td>Record an AFE commitment</td>
+<td>Procurement</td>
+</tr>
+<tr>
+<td>AFE</td>
+<td><code>afe.liquidateCommitment</code></td>
+<td>Convert commitment to actual</td>
+<td>Procurement</td>
+</tr>
+<tr>
+<td>AFE</td>
+<td><code>afe.releaseCommitment</code></td>
+<td>Release unused commitment</td>
+<td>Procurement</td>
+</tr>
+<tr>
+<td>AFE</td>
+<td><code>afe.validateAccountingPosting</code></td>
+<td>AFE validation before a journal posts</td>
+<td>Accounting</td>
+</tr>
+<tr>
+<td>AFE</td>
+<td><code>afe.integrationStatus</code></td>
+<td>Integration health</td>
+<td>Accounting</td>
+</tr>
+<tr>
+<td>Inventory</td>
+<td><code>inventory.getStockCloseStatus</code></td>
+<td>Stock cut-off state for period close</td>
+<td>Accounting</td>
+</tr>
+<tr>
+<td>Assets</td>
+<td><code>assets.list</code></td>
+<td>Operational asset lookup</td>
+<td>Accounting</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.getBaseCurrency</code></td>
+<td>Company functional currency</td>
+<td>Procurement, Inventory, AFE, Budget</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.getRateToBase</code></td>
+<td>Governed exchange rate on a date</td>
+<td>AFE, Budget</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.getPostingPeriodStatus</code></td>
+<td>Open or closed period for a date</td>
+<td>Inventory</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.getJournalIntegrationSnapshot</code></td>
+<td>Posted actuals for commitment control</td>
+<td>AFE, Budget</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.acceptSourceFinancialContext</code></td>
+<td>GL coding and dimensions from a source document</td>
+<td>Procurement, Inventory</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.createApBillDraft</code></td>
+<td>Idempotent draft supplier bill from a matched invoice</td>
+<td>Procurement</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.postInventoryMovement</code></td>
+<td>Post a stock movement</td>
+<td>Inventory</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.reverseInventoryMovement</code></td>
+<td>Reverse a posted stock movement</td>
+<td>Inventory</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.getSourcePostingStatus</code></td>
+<td>Posting result for a source document</td>
+<td>Inventory</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.getInventoryGlBalance</code></td>
+<td>Inventory GL balance for reconciliation</td>
+<td>Inventory</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.ensureFixedAsset</code></td>
+<td>Link an operational asset to the fixed-asset register</td>
+<td>Assets</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.capitalizeFixedAsset</code></td>
+<td>Capitalize a linked asset</td>
+<td>Assets</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.postAssetDepreciation</code></td>
+<td>Post depreciation</td>
+<td>Assets</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.disposeFixedAsset</code></td>
+<td>Post disposal</td>
+<td>Assets</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.inquireAssetCapitalization</code></td>
+<td>Capitalization status</td>
+<td>Assets</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.listFixedAssetPostingOptions</code></td>
+<td>Categories and accounts for linking</td>
+<td>Assets</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.listOperationalAssetLinks</code></td>
+<td>Register links</td>
+<td>Assets</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td><code>accounting.getFixedAssetReconciliation</code></td>
+<td>Asset register to GL reconciliation</td>
+<td>Assets</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="53-module-integration-map"><span class="ssnum">5.3</span>Module integration map</h3>
+<figure class="diagram"><pre class="mermaid">flowchart LR
+    BLK[&quot;Block Management&lt;br/&gt;blocks · interests · terms&quot;]
+    PRC[&quot;Procurement&lt;br/&gt;Supplier Master · PR · PO · match&quot;]
+    BUD[&quot;Budget&lt;br/&gt;holds · availability&quot;]
+    AFE[&quot;AFE&lt;br/&gt;authorization · commitments&quot;]
+    INV[&quot;Inventory&lt;br/&gt;stock ledger · valuation&quot;]
+    AST[&quot;Assets&lt;br/&gt;asset master · maintenance&quot;]
+    HR[&quot;HR&lt;br/&gt;workforce&quot;]
+    ACC[(&quot;Accounting&lt;br/&gt;book of record&quot;)]
+
+    PRC -- &quot;listBlocks · getBlock&quot; --&gt; BLK
+    AFE -- &quot;listBlocks · getBlock&quot; --&gt; BLK
+    PRC -- &quot;evaluateControl · applyDocumentHold&lt;br/&gt;liquidate · release · allocateCallout&quot; --&gt; BUD
+    PRC -- &quot;checkBudget · postCommitment&lt;br/&gt;liquidate · release&quot; --&gt; AFE
+    HR -- &quot;evaluateControl&quot; --&gt; BUD
+    HR -- &quot;checkBudget&quot; --&gt; AFE
+    PRC -- &quot;createApBillDraft&lt;br/&gt;acceptSourceFinancialContext&quot; --&gt; ACC
+    INV -- &quot;postInventoryMovement · reverse&lt;br/&gt;getPostingPeriodStatus · getInventoryGlBalance&quot; --&gt; ACC
+    AST -- &quot;ensure · capitalize · depreciate&lt;br/&gt;dispose · reconcile&quot; --&gt; ACC
+    AFE -- &quot;getRateToBase&lt;br/&gt;getJournalIntegrationSnapshot&quot; --&gt; ACC
+    BUD -- &quot;getRateToBase&lt;br/&gt;getJournalIntegrationSnapshot&quot; --&gt; ACC
+    ACC -- &quot;validateAccountingPosting&quot; --&gt; AFE
+    ACC -- &quot;validateAccountingPosting&quot; --&gt; BUD
+    ACC -- &quot;getStockCloseStatus&quot; --&gt; INV
+    ACC -- &quot;assets.list&quot; --&gt; AST
+
+    classDef core fill:#0b3d5c,color:#fff,stroke:#0b3d5c
+    class ACC core
+</pre></figure>
+<p>Accounting sits at the center. Operational modules send it posting requests, and AFE and Budget validate each journal before it posts. This two-way validation means a journal cannot bypass AFE or budget control, and an AFE or budget actual always equals a posted Accounting figure.</p>
+<h3 id="54-event-map"><span class="ssnum">5.4</span>Event map</h3>
+<figure class="diagram"><pre class="mermaid">flowchart LR
+    subgraph EM[&quot;Publishers&quot;]
+        ACC_E[&quot;Accounting&lt;br/&gt;journal.posted · journal.reversed&lt;br/&gt;ap.bill.posted · ap.payment.completed&lt;br/&gt;ar.invoice.posted · ar.receipt.allocated&quot;]
+        PRC_E[&quot;Procurement&lt;br/&gt;purchase_order.approved&lt;br/&gt;service_entry.created&lt;br/&gt;contract.approved · invoice.match_completed&quot;]
+        INV_E[&quot;Inventory&lt;br/&gt;grn.posted · issue.posted · receipt.posted&lt;br/&gt;valuation.changed · nrv.adjusted&lt;br/&gt;quality · return · transit&quot;]
+        AFE_E[&quot;AFE&lt;br/&gt;status.changed&quot;]
+        HR_E[&quot;HR&lt;br/&gt;employee.updated · employee.terminated&lt;br/&gt;exit.completed&quot;]
+    end
+    subgraph LS[&quot;Subscribers&quot;]
+        AFE_L[&quot;AFE&quot;]
+        BUD_L[&quot;Budget&quot;]
+        AST_L[&quot;Assets&quot;]
+    end
+    ACC_E -- &quot;journal.posted&quot; --&gt; AFE_L
+    ACC_E -- &quot;journal.posted&quot; --&gt; BUD_L
+    ACC_E -- &quot;journal.posted · ap.bill.posted&lt;br/&gt;ap.payment.completed&quot; --&gt; AST_L
+    PRC_E --&gt; AST_L
+    INV_E --&gt; AST_L
+    AFE_E --&gt; AST_L
+    HR_E -- &quot;employee and exit events&quot; --&gt; AST_L
+</pre></figure>
+<p>Assets subscribes to procurement, inventory, accounting, AFE and HR events, so each asset keeps a complete lifecycle-cost and custody history without copying another module's data. Block Management publishes block, participation and agreement changes for any subscriber.</p>
+<h3 id="55-fail-closed-invocation-pattern"><span class="ssnum">5.5</span>Fail-closed invocation pattern</h3>
+<figure class="diagram"><pre class="mermaid">sequenceDiagram
+    autonumber
+    participant UI as Consumer UI
+    participant SV as Consumer server action
+    participant KIT as SBC Module Kit
+    participant PR as Provider module
+    UI-&gt;&gt;SV: Save with block identifier
+    SV-&gt;&gt;SV: Check the user&#x27;s permission in the consumer module
+    SV-&gt;&gt;KIT: Discover registered actions
+    alt provider not available
+        KIT--&gt;&gt;SV: Not registered
+        SV--&gt;&gt;UI: BLOCK — provider unavailable, nothing saved
+    else provider available
+        SV-&gt;&gt;KIT: Invoke getBlock with tenant from session and source module
+        KIT-&gt;&gt;PR: Execute inside tenant scope
+        alt unknown identifier or error
+            PR--&gt;&gt;SV: Not found or error
+            SV--&gt;&gt;UI: BLOCK — unknown block, nothing saved
+        else resolved
+            PR--&gt;&gt;SV: Identity and display label
+            SV-&gt;&gt;SV: Persist identifier and label snapshot
+            SV--&gt;&gt;UI: Saved
+        end
+    end
+</pre></figure>
+<div class="part-divider" role="presentation"><span>Part III</span><strong>Workflows</strong></div><h2 id="6-end-to-end-business-workflows"><span class="snum">6</span>End-to-end business workflows</h2>
+<p>Each diagram shows which module owns each step and which contract carries the step across module boundaries.</p>
+<h3 id="61-procure-to-pay"><span class="ssnum">6.1</span>Procure-to-pay</h3>
+<figure class="diagram"><pre class="mermaid">sequenceDiagram
+    autonumber
+    actor R as Requester
+    participant P as Procurement
+    participant B as Block Mgmt
+    participant G as Budget
+    participant F as AFE
+    participant I as Inventory
+    participant A as Accounting
+    actor T as Treasury
+
+    R-&gt;&gt;P: Create Purchase Request (block, AFE, cost object, need date)
+    P-&gt;&gt;B: getBlock — fail closed
+    P-&gt;&gt;G: evaluateControl and readAvailability
+    P-&gt;&gt;F: checkBudget (AFE headroom)
+    P-&gt;&gt;P: Delegation-of-authority approval, segregation of duties checked
+    P-&gt;&gt;G: applyDocumentHold (reservation)
+    P-&gt;&gt;P: RFQ, bid evaluation and award
+    P-&gt;&gt;P: Purchase Order approved
+    P-&gt;&gt;F: postCommitment
+    alt goods
+        I-&gt;&gt;I: Goods receipt against PO, quality hold where required
+        I-&gt;&gt;A: getPostingPeriodStatus, then postInventoryMovement (idempotent)
+        A--&gt;&gt;A: Dr Inventory / Cr Goods Received Not Invoiced
+    else services
+        P-&gt;&gt;P: Service Entry Sheet (period, quantity, technical verifier)
+    end
+    P-&gt;&gt;G: liquidateDocumentHold
+    P-&gt;&gt;F: liquidateCommitment
+    P-&gt;&gt;P: Supplier invoice matched to PO and receipt within tolerance
+    P-&gt;&gt;A: acceptSourceFinancialContext (GL coding, dimensions)
+    P-&gt;&gt;A: createApBillDraft — draft only, never a payment
+    A-&gt;&gt;A: Review and post supplier bill — Dr GRNI or expense, Dr input VAT / Cr AP control
+    A-&gt;&gt;G: validateAccountingPosting
+    A-&gt;&gt;F: validateAccountingPosting
+    T-&gt;&gt;A: Supplier settlement — Dr AP control / Cr bank
+    A-&gt;&gt;A: Allocate open items oldest-first or by amount, to the currency minor unit
+    T-&gt;&gt;A: Import bank statement and reconcile
+</pre></figure>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Enforced by</th>
+<th>Control reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Block identity comes only from Block Management</td>
+<td>Procurement server action</td>
+<td><code>WP-BLK-011</code>, <code>WP-BLK-012</code></td>
+</tr>
+<tr>
+<td>Budget and AFE are checked before commitment</td>
+<td>Budget and AFE contracts</td>
+<td><code>WP-PROC-006</code>, <code>WP-BUD-005</code>, <code>WP-AFE-014</code></td>
+</tr>
+<tr>
+<td>Over-receipt beyond tolerance is blocked</td>
+<td>Procurement and Inventory</td>
+<td><code>WP-PROC-014</code></td>
+</tr>
+<tr>
+<td>Suppliers come only from the Procurement Supplier Master</td>
+<td>Accounting supplier selection</td>
+<td><code>WP-ACC-022</code>, <code>WP-PROC-001</code></td>
+</tr>
+<tr>
+<td>Procurement cannot mark an invoice as paid</td>
+<td>AP handoff contract rejects payment fields</td>
+<td><code>WP-PROC-025</code></td>
+</tr>
+<tr>
+<td>Duplicate invoices are detected</td>
+<td>Idempotency key and supplier invoice number</td>
+<td><code>WP-ACC-024</code></td>
+</tr>
+<tr>
+<td>Settlement credits only a bank or cash account</td>
+<td>Supplier settlement controls</td>
+<td><code>WP-ACC-025</code></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="62-budget-and-afe-commitment-control"><span class="ssnum">6.2</span>Budget and AFE commitment control</h3>
+<figure class="diagram"><pre class="mermaid">stateDiagram-v2
+    direction LR
+    [*] --&gt; Available: Budget approved / AFE active
+    Available --&gt; Reserved: applyDocumentHold (PR / PO)
+    Reserved --&gt; Committed: PO approved — afe.postCommitment
+    Committed --&gt; Consumed: Receipt or SES — liquidateDocumentHold / liquidateCommitment
+    Consumed --&gt; Committed: Receipt reversed — reverseReceiptLiquidation
+    Reserved --&gt; Available: Cancelled — releaseDocumentHold
+    Committed --&gt; Available: PO closed short — releaseCommitment (unconsumed only)
+    Consumed --&gt; Actual: accounting.journal.posted
+    Actual --&gt; [*]
+</pre></figure>
+<p><strong>Control equation:</strong> Available = Approved + Transfers in − Transfers out − Reservations − Commitments − Actuals.</p>
+<p>Budget and AFE each keep their own control ledger, and neither fabricates the other's balances. Actuals come only from posted Accounting journals. A release frees only the unconsumed balance, exactly once.</p>
+<h3 id="63-inventory-movement-to-the-general-ledger"><span class="ssnum">6.3</span>Inventory movement to the general ledger</h3>
+<figure class="diagram"><pre class="mermaid">sequenceDiagram
+    autonumber
+    participant I as Inventory
+    participant A as Accounting
+    I-&gt;&gt;I: Movement written to the immutable stock ledger
+    I-&gt;&gt;A: getPostingPeriodStatus(company, date)
+    alt period closed or not configured
+        A--&gt;&gt;I: Closed — BLOCK (fail closed)
+    else open
+        I-&gt;&gt;A: acceptSourceFinancialContext(movement)
+        I-&gt;&gt;A: postInventoryMovement(key = movement id)
+        A-&gt;&gt;A: Posting rules, balanced journal, database double-entry guard
+        A--&gt;&gt;I: Journal reference (a replay returns the same reference)
+    end
+    Note over I,A: Corrections use reverseInventoryMovement — never an edit
+    A-&gt;&gt;I: getStockCloseStatus at period close
+    I-&gt;&gt;A: getInventoryGlBalance — stock ledger to GL reconciliation
+</pre></figure>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Movement</th>
+<th>Posting pattern (configured through posting rules)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goods receipt against PO</td>
+<td>Dr Inventory / Cr Goods Received Not Invoiced</td>
+</tr>
+<tr>
+<td>Issue to AFE, work order, well or project</td>
+<td>Dr AFE work in progress or expense / Cr Inventory</td>
+</tr>
+<tr>
+<td>Return to supplier</td>
+<td>Dr GRNI or AP / Cr Inventory</td>
+</tr>
+<tr>
+<td>Transfer between sites</td>
+<td>Dr Inventory in transit / Cr Inventory (origin), then Dr Inventory (destination) / Cr Inventory in transit</td>
+</tr>
+<tr>
+<td>Approved count variance</td>
+<td>Dr or Cr Inventory / Cr or Dr inventory adjustment</td>
+</tr>
+<tr>
+<td>Net realizable value write-down</td>
+<td>Dr NRV write-down expense / Cr Inventory allowance</td>
+</tr>
+<tr>
+<td>Bill-to-receipt price difference</td>
+<td>Purchase price variance</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="64-fixed-asset-bridge-capitalize-depreciate-dispose"><span class="ssnum">6.4</span>Fixed-asset bridge: capitalize, depreciate, dispose</h3>
+<figure class="diagram"><pre class="mermaid">sequenceDiagram
+    autonumber
+    participant S as Assets (physical master)
+    participant A as Accounting (fixed-asset register)
+    S-&gt;&gt;A: listFixedAssetPostingOptions
+    S-&gt;&gt;A: ensureFixedAsset — creates the governed register link
+    S-&gt;&gt;S: Commissioning and available-for-use evidence recorded
+    S-&gt;&gt;A: capitalizeFixedAsset (asset management and posting rights required)
+    A-&gt;&gt;A: Dr Property, plant and equipment / Cr CWIP or clearing
+    loop each period
+        S-&gt;&gt;A: postAssetDepreciation
+        A-&gt;&gt;A: Dr Depreciation expense / Cr Accumulated depreciation
+    end
+    S-&gt;&gt;A: disposeFixedAsset (sold, scrapped, disposed or lost)
+    A-&gt;&gt;A: Derecognise cost and accumulated depreciation, recognize gain or loss
+    S-&gt;&gt;A: getFixedAssetReconciliation — register to GL
+    Note over S,A: A linked asset cannot be marked lost or disposed in Assets&lt;br/&gt;until Accounting has posted the disposal.
+</pre></figure>
+<h3 id="65-journal-lifecycle-with-maker-checker"><span class="ssnum">6.5</span>Journal lifecycle with maker-checker</h3>
+<figure class="diagram"><pre class="mermaid">stateDiagram-v2
+    direction LR
+    [*] --&gt; draft
+    draft --&gt; submitted: Maker submits
+    submitted --&gt; reviewed: Reviewer
+    reviewed --&gt; approved: Approver (higher authority above threshold)
+    submitted --&gt; rejected
+    reviewed --&gt; rejected
+    rejected --&gt; draft: Corrected by maker
+    approved --&gt; posted: Poster — period open, balanced, rates present
+    posted --&gt; reversed: Reversal journal referencing the original
+    reversed --&gt; [*]
+    note right of posted
+        Immutable: no edit and no delete.
+        Maker and checker are always different people.
+        Every transition is recorded in the approval trail.
+    end note
+</pre></figure>
+<h3 id="66-afe-lifecycle"><span class="ssnum">6.6</span>AFE lifecycle</h3>
+<figure class="diagram"><pre class="mermaid">stateDiagram-v2
+    direction LR
+    [*] --&gt; draft
+    draft --&gt; submitted
+    submitted --&gt; technical_review
+    technical_review --&gt; finance_review: Technical review passed
+    finance_review --&gt; approved: Finance review and DOA approval
+    technical_review --&gt; returned_for_revision
+    finance_review --&gt; returned_for_revision
+    returned_for_revision --&gt; draft
+    submitted --&gt; rejected
+    finance_review --&gt; rejected
+    approved --&gt; active: Activated
+    active --&gt; active: Revision or supplement — baseline preserved
+    active --&gt; completed
+    completed --&gt; closed: New commitments refused
+    draft --&gt; cancelled
+    rejected --&gt; [*]
+    cancelled --&gt; [*]
+    closed --&gt; [*]
+</pre></figure>
+<p>An AFE approval authorizes expenditure. It does not decide accounting capitalization.</p>
+<h3 id="67-period-end-close"><span class="ssnum">6.7</span>Period-end close</h3>
+<figure class="diagram"><pre class="mermaid">flowchart TB
+    A[&quot;1. Cut-off&lt;br/&gt;receipts, service entries, invoices&quot;] --&gt; B[&quot;2. Stock close status&lt;br/&gt;from Inventory&quot;]
+    B --&gt; C[&quot;3. Depreciation run&lt;br/&gt;from Assets through the register bridge&quot;]
+    C --&gt; D[&quot;4. Monthly exchange rates approved&lt;br/&gt;Central Bank of Oman source&quot;]
+    D --&gt; E[&quot;5. FX revaluation&lt;br/&gt;monetary items at closing rate&quot;]
+    E --&gt; F[&quot;6. Accruals, deferrals, recurring journals&lt;br/&gt;revenue and lease schedules&quot;]
+    F --&gt; G[&quot;7. Reconciliations&lt;br/&gt;bank · AP · AR · GRNI · inventory · assets · tax&quot;]
+    G --&gt; H[&quot;8. Budget and AFE actuals refreshed&quot;]
+    H --&gt; I{&quot;9. Close checklist&lt;br/&gt;complete and signed off?&quot;}
+    I -- &quot;No&quot; --&gt; G
+    I -- &quot;Yes&quot; --&gt; J[&quot;10. Lock period&quot;]
+    J --&gt; K[&quot;11. Trial balance — no plug values&quot;]
+    K --&gt; L[&quot;12. Financial statements&lt;br/&gt;versioned mapping and parameters&quot;]
+    J -. &quot;exception only&quot; .-&gt; R[&quot;Reopen with elevated permission,&lt;br/&gt;reason and audit evidence&quot;]
+</pre></figure>
+<h3 id="68-exchange-rate-governance"><span class="ssnum">6.8</span>Exchange-rate governance</h3>
+<figure class="diagram"><pre class="mermaid">flowchart LR
+    S1[&quot;Central Bank of Oman&quot;] --&gt; RT[&quot;Rate register&lt;br/&gt;rate type · date · source · inversion&quot;]
+    S2[&quot;Commercial bank feed&quot;] --&gt; RT
+    S3[&quot;Authorized manual entry&quot;] --&gt; RT
+    RT --&gt; AP{&quot;Monthly reporting&lt;br/&gt;rate approved?&quot;}
+    AP -- &quot;No&quot; --&gt; BL([&quot;BLOCK: posting or close step&lt;br/&gt;never defaults to 1.0&quot;])
+    AP -- &quot;Yes&quot; --&gt; USE[&quot;Transaction, revaluation&lt;br/&gt;and reporting rates&quot;]
+    USE --&gt; JL[&quot;Each journal line stores&lt;br/&gt;the rate it used&quot;]
+</pre></figure>
+<h3 id="69-petroleum-block-and-participating-interest-context"><span class="ssnum">6.9</span>Petroleum block and participating-interest context</h3>
+<figure class="diagram"><pre class="mermaid">flowchart LR
+    subgraph BM[&quot;Block Management — source of truth&quot;]
+        BK[&quot;Block&lt;br/&gt;code · name · license · status&quot;]
+        PI[&quot;Participating interests&lt;br/&gt;effective-dated, versioned&quot;]
+        OP[&quot;Operatorship&lt;br/&gt;effective-dated&quot;]
+        ET[&quot;Economic terms&lt;br/&gt;effective-dated&quot;]
+        AG[&quot;Petroleum agreements&lt;br/&gt;Concession · EPSA · PSA · JOA&quot;]
+    end
+    PR[&quot;Procurement requisitions and orders&quot;] -- &quot;listBlocks · getBlock&quot; --&gt; BK
+    AF[&quot;AFE&quot;] -- &quot;listBlocks · getBlock&quot; --&gt; BK
+    RS[&quot;Resolution services&quot;] -- &quot;resolveParticipation(block, date)&quot; --&gt; PI
+    RS -- &quot;resolveEconomicTerms(block, date)&quot; --&gt; ET
+    AG --- PI
+    AG --- ET
+    OP --- PI
+</pre></figure>
+<p>Downstream records store the stable block identifier, never a free-text name. A change in participating interest never rewrites prior periods.</p>
+<h3 id="610-oman-fawtara-e-invoicing"><span class="ssnum">6.10</span>Oman Fawtara e-invoicing</h3>
+<figure class="diagram"><pre class="mermaid">sequenceDiagram
+    autonumber
+    participant A as Accounting (customer invoice)
+    participant G as E-invoice gateway
+    participant S as Accredited service provider
+    participant O as Oman Tax Authority
+    A-&gt;&gt;A: Post customer invoice with effective-dated tax codes
+    A-&gt;&gt;G: Submit (idempotency key = invoice)
+    G-&gt;&gt;S: Structured invoice payload over secure credentials
+    S-&gt;&gt;O: Submission
+    O--&gt;&gt;S: Validation result and identifier
+    S--&gt;&gt;G: Status, identifier, payload hash
+    G--&gt;&gt;A: Store immutable evidence
+    alt rejected or timed out
+        G--&gt;&gt;A: Error status, controlled retry without duplication
+    end
+    Note over A,O: Corrections use a linked credit or debit note — never an edit
+</pre></figure>
+<p>Rollout cohorts and technical specifications are effective-dated configuration, so the product follows Oman Tax Authority changes without code changes to historical invoices.</p>
+<h3 id="611-record-to-report"><span class="ssnum">6.11</span>Record to report</h3>
+<figure class="diagram"><pre class="mermaid">flowchart LR
+    subgraph SRC[&quot;Source modules&quot;]
+        P1[&quot;Procurement&quot;]
+        P2[&quot;Inventory&quot;]
+        P3[&quot;Assets&quot;]
+        P4[&quot;AFE and Budget&quot;]
+    end
+    subgraph ACC[&quot;Accounting&quot;]
+        SL[&quot;Subledgers&lt;br/&gt;AP · AR · fixed assets · leases&lt;br/&gt;revenue · deferrals · bank&quot;]
+        PE[&quot;Posting engine&lt;br/&gt;rules · period guard · FX · dimensions&quot;]
+        GL[(&quot;General ledger&lt;br/&gt;immutable, double-entry&quot;)]
+        TB[&quot;Trial balance&quot;]
+        FS[&quot;Financial statements&lt;br/&gt;versioned mapping · layouts&quot;]
+        LH[&quot;Ledger Health&lt;br/&gt;integrity checks&quot;]
+    end
+    P1 &amp; P2 &amp; P3 --&gt; SL --&gt; PE --&gt; GL --&gt; TB --&gt; FS
+    P4 -. &quot;validates&quot; .-&gt; PE
+    GL --&gt; LH
+    FS --&gt; OUT[&quot;Statement of financial position · profit or loss&lt;br/&gt;cash flows · changes in equity&lt;br/&gt;entity · book · period · currency · generation time&quot;]
+</pre></figure>
+<div class="part-divider" role="presentation"><span>Part IV</span><strong>Standards</strong></div><h2 id="7-accounting-statutory-and-assurance-standards-coverage"><span class="snum">7</span>Accounting, statutory and assurance standards coverage</h2>
+<p>This section lists the standards SBC ERP supports, the modules that carry each one, and how the product supports it. Applying a standard to an entity's financial statements remains the entity's responsibility. The product provides the controls, data and evidence that application requires.</p>
+<h3 id="71-ifrs-accounting-standards"><span class="ssnum">7.1</span>IFRS Accounting Standards</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Standard</th>
+<th>Title</th>
+<th>Modules</th>
+<th>How SBC ERP supports it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Conceptual Framework</td>
+<td>Conceptual Framework for Financial Reporting</td>
+<td>Accounting</td>
+<td>Accrual-based, double-entry ledger with immutable posted history, enforced in the application and the database</td>
+</tr>
+<tr>
+<td>IFRS 1</td>
+<td>First-time Adoption of International Financial Reporting Standards</td>
+<td>Accounting</td>
+<td>Controlled opening-balance process with reconciled source evidence</td>
+</tr>
+<tr>
+<td>IFRS 6</td>
+<td>Exploration for and Evaluation of Mineral Resources</td>
+<td>Accounting, AFE, Block Management</td>
+<td>Exploration and appraisal costs captured with block, AFE, well and cost-category context; journals validated against the AFE before posting</td>
+</tr>
+<tr>
+<td>IFRS 8</td>
+<td>Operating Segments</td>
+<td>Accounting</td>
+<td>Segment dimensions on journal lines for segment analysis</td>
+</tr>
+<tr>
+<td>IFRS 9</td>
+<td>Financial Instruments</td>
+<td>Accounting</td>
+<td>Receivables and payables held as open items with allocation, ageing and settlement history</td>
+</tr>
+<tr>
+<td>IFRS 10</td>
+<td>Consolidated Financial Statements</td>
+<td>Accounting</td>
+<td>Consolidation worksheet with a dedicated elimination book; source journals are never altered</td>
+</tr>
+<tr>
+<td>IFRS 11</td>
+<td>Joint Arrangements</td>
+<td>Block Management</td>
+<td>Effective-dated participating interests, parties and operatorship, resolved by date for any transaction</td>
+</tr>
+<tr>
+<td>IFRS 15</td>
+<td>Revenue from Contracts with Customers</td>
+<td>Accounting</td>
+<td>Revenue contracts with recognition schedules and methods, deferred-revenue accounts and controlled release to revenue</td>
+</tr>
+<tr>
+<td>IFRS 16</td>
+<td>Leases</td>
+<td>Accounting</td>
+<td>Lease register with lease schedules</td>
+</tr>
+<tr>
+<td>IFRS 18</td>
+<td>Presentation and Disclosure in Financial Statements</td>
+<td>Accounting</td>
+<td>Configurable statement layouts and versioned financial-statement mapping, ready for the new presentation requirements effective 1 January 2027</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="72-ias-standards"><span class="ssnum">7.2</span>IAS Standards</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Standard</th>
+<th>Title</th>
+<th>Modules</th>
+<th>How SBC ERP supports it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IAS 1</td>
+<td>Presentation of Financial Statements</td>
+<td>Accounting</td>
+<td>Complete, versioned financial-statement mapping; trial balance with no plug values; comparative periods</td>
+</tr>
+<tr>
+<td>IAS 2</td>
+<td>Inventories</td>
+<td>Inventory, Accounting</td>
+<td>FIFO and weighted-average cost, net realizable value write-down and reversal, automatic posting of every stock movement, stock-to-GL reconciliation at close</td>
+</tr>
+<tr>
+<td>IAS 7</td>
+<td>Statement of Cash Flows</td>
+<td>Accounting</td>
+<td>Cash flow statement with governed classification of cash and cash equivalents</td>
+</tr>
+<tr>
+<td>IAS 10</td>
+<td>Events after the Reporting Period</td>
+<td>Accounting</td>
+<td>Period lock, with reopening only under elevated permission, documented reason and audit evidence</td>
+</tr>
+<tr>
+<td>IAS 16</td>
+<td>Property, Plant and Equipment</td>
+<td>Assets, Accounting</td>
+<td>Physical asset master in Assets, statutory register in Accounting; capitalization on available-for-use evidence, depreciation, disposal with gain or loss, register-to-GL reconciliation</td>
+</tr>
+<tr>
+<td>IAS 21</td>
+<td>The Effects of Changes in Foreign Exchange Rates</td>
+<td>Accounting</td>
+<td>Functional and transaction currency, governed rate types and sources, monthly rate approval, revaluation of monetary items, realized FX, rate stored on every line</td>
+</tr>
+<tr>
+<td>IAS 34</td>
+<td>Interim Financial Reporting</td>
+<td>Accounting</td>
+<td>Monthly and quarterly fiscal periods with the same close controls as year end</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="73-oil-gas-industry-accounting-practice"><span class="ssnum">7.3</span>Oil &amp; Gas industry accounting practice</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Practice</th>
+<th>Modules</th>
+<th>How SBC ERP supports it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authorization for Expenditure</td>
+<td>AFE, Procurement, Accounting</td>
+<td>Full AFE lifecycle with technical and finance review, delegation of authority, revisions that preserve the baseline, commitments, actuals and estimate at completion</td>
+</tr>
+<tr>
+<td>Block, partner and interest master</td>
+<td>Block Management</td>
+<td>Blocks, parties, petroleum agreements, effective-dated participating interests and operatorship</td>
+</tr>
+<tr>
+<td>Concession, EPSA and PSA economic terms</td>
+<td>Block Management</td>
+<td>Effective-dated contractual economic terms, resolved by date</td>
+</tr>
+<tr>
+<td>Materials and spares (MRO)</td>
+<td>Inventory</td>
+<td>Critical spares, repairables, quality hold, owned and non-owned stock, valuation</td>
+</tr>
+<tr>
+<td>Maintenance cost capture</td>
+<td>Assets</td>
+<td>Planned and actual labor, materials and downtime linked to asset and cost object</td>
+</tr>
+<tr>
+<td>Reliability data</td>
+<td>Assets</td>
+<td>Failure modes, causes and reliability measures aligned with the ISO 14224 taxonomy</td>
+</tr>
+<tr>
+<td>Abandonment planning</td>
+<td>AFE, Assets</td>
+<td>Abandonment and decommissioning AFE types; versioned engineering estimates linked to assets</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="74-oman-statutory-tax-and-localization"><span class="ssnum">7.4</span>Oman statutory, tax and localization</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Modules</th>
+<th>How SBC ERP supports it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Royal Decree 121/2020 — Value Added Tax Law and Executive Regulations</td>
+<td>Accounting</td>
+<td>Effective-dated VAT codes, input and output tax, tax invoices, tax reporting and tax audit views</td>
+</tr>
+<tr>
+<td>Withholding tax</td>
+<td>Accounting</td>
+<td>Withholding captured and reported on supplier payments</td>
+</tr>
+<tr>
+<td>Fawtara e-invoicing</td>
+<td>Accounting</td>
+<td>Gateway integration with accredited providers, idempotent submission, immutable status and payload evidence</td>
+</tr>
+<tr>
+<td>Central Bank of Oman reference rates</td>
+<td>Accounting</td>
+<td>Governed rate source with monthly approval</td>
+</tr>
+<tr>
+<td>Royal Decree 18/2019 — Commercial Companies Law</td>
+<td>Accounting</td>
+<td>Books retention policies, equity categories, controlled company lifecycle</td>
+</tr>
+<tr>
+<td>Royal Decree 53/2023 — Labor Law</td>
+<td>HR</td>
+<td>Employment contracts, leave, attendance, rotations, final settlement and Omanization reporting</td>
+</tr>
+<tr>
+<td>Royal Decree 6/2022 — Personal Data Protection Law</td>
+<td>All modules</td>
+<td>Tenant isolation, least-privilege access, restricted medical and payroll data</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="75-internal-control-audit-and-records"><span class="ssnum">7.5</span>Internal control, audit and records</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Modules</th>
+<th>How SBC ERP supports it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COSO Internal Control — Integrated Framework (2013)</td>
+<td>All modules</td>
+<td>Maker-checker, delegation-of-authority matrix, segregation of duties, immutable audit trail, reconciliations, Ledger Health monitoring (section 25)</td>
+</tr>
+<tr>
+<td>IIA Global Internal Audit Standards (2024)</td>
+<td>Accounting</td>
+<td>Read-only audit access, traceability from source document through approval to posting</td>
+</tr>
+<tr>
+<td>International Standards on Auditing (ISA 230, 240, 315, 330, 450, 500, 501, 505, 510, 530, 540, 550, 560, 570, 600)</td>
+<td>Accounting</td>
+<td>Reproducible extracts, sampling exports, complete audit trail, period and mapping parameters on every report</td>
+</tr>
+<tr>
+<td>Record retention and audit trail</td>
+<td>All modules</td>
+<td>Retention policies, legal-hold-aware design, certificate for every implementation data reset</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="8-reference-frameworks"><span class="snum">8</span>Reference frameworks</h2>
+<p>SBC ERP uses the following standards as design references within their actual scope. Copyrighted standards are referenced, not reproduced. Using a standard as a design reference does not imply certification.</p>
+<h3 id="81-asset-maintenance-and-reliability"><span class="ssnum">8.1</span>Asset, maintenance and reliability</h3>
+<p>Design references include:</p>
+<ul>
+<li>ISO 55001:2024 — asset management system requirements;</li>
+<li>ISO 14224:2016 — Oil &amp; Gas reliability and maintenance data taxonomy and exchange;</li>
+<li>ISO 9001:2026 — quality management system requirements;</li>
+<li>ISO 14001:2026 — environmental management systems;</li>
+<li>ISO 45001:2018 and applicable amendments — occupational health and safety management;</li>
+</ul>
+<h3 id="82-governance-risk-audit-and-compliance"><span class="ssnum">8.2</span>Governance, risk, audit and compliance</h3>
+<p>Design references include:</p>
+<ul>
+<li>COSO Internal Control — Integrated Framework (2013 framework);</li>
+<li>2024 Global Internal Audit Standards, effective from 9 January 2025;</li>
+<li>International Standards on Auditing, where relevant to audit evidence and system support;</li>
+<li>ISO 31000:2018 — risk management guidelines;</li>
+<li>ISO 37301:2021 with applicable amendment — compliance management systems;</li>
+<li>ISO 37001:2025 — anti-bribery management systems;</li>
+<li>ISO 19011:2026 — management-system auditing guidance.</li>
+</ul>
+<h3 id="83-information-security-resilience-and-ai"><span class="ssnum">8.3</span>Information security, resilience and AI</h3>
+<p>Design references include:</p>
+<ul>
+<li>ISO/IEC 27001:2022 with applicable amendment — information security management systems;</li>
+<li>NIST Cybersecurity Framework 2.0;</li>
+<li>OWASP Application Security Verification Standard as a web-application security verification reference;</li>
+<li>ISO 22301:2019 with applicable amendment — business continuity management;</li>
+<li>ISO/IEC 20000-1:2018 — IT service management systems;</li>
+<li>ISO/IEC 42001:2023 — AI management systems.</li>
+</ul>
+<div class="part-divider" role="presentation"><span>Part V</span><strong>Control baseline</strong></div><h2 id="9-cross-cutting-mandatory-controls"><span class="snum">9</span>Cross-cutting mandatory controls</h2>
+<p>Sections 9 to 19 and section 24 set out the controls SBC ERP enforces, written in standards language. "SHALL" marks a mandatory control that the product enforces, and "SHOULD" marks a recommended practice that the product supports through configuration. Each control has a stable <code>WP-*</code> identifier for reference in implementation, testing and audit.</p>
+<div class="tbl controls"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cid"><span>WP-GOV-001</span></td>
+<td>Every record SHALL belong to the correct tenant and server-side authorization SHALL enforce tenant isolation.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-002</span></td>
+<td>Permissions SHALL use least privilege and explicit capability keys; UI hiding alone is not authorization.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-003</span></td>
+<td>High-risk actions SHALL support segregation of duties between creator, reviewer, approver, poster/releaser and administrator where applicable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-004</span></td>
+<td>A user SHALL NOT approve their own controlled transaction when the configured policy requires independent approval.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-005</span></td>
+<td>Delegation of Authority SHALL be role-based, amount-banded by document type, multi-step and auditable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-006</span></td>
+<td>Person names SHALL NOT be used as authorization logic.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-007</span></td>
+<td>All material master-data changes SHALL retain before/after values, actor, timestamp, reason and approval where required.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-008</span></td>
+<td>Posted, approved or legally relevant records SHALL be immutable except through controlled reversal, amendment, supersession or correction workflows.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-009</span></td>
+<td>Hard deletion SHALL be blocked for posted financial records and other retained evidence.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-010</span></td>
+<td>Business dates, accounting dates, tax dates, service dates, bank dates and effective dates SHALL remain distinct where they have different legal or accounting meaning.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-011</span></td>
+<td>Rules SHALL be selected using the effective version applicable to the transaction date and context, not the latest mutable configuration.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-012</span></td>
+<td>Historical transactions SHALL retain the rule version, rate, master-data identifiers and calculation inputs used at the time of execution.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-013</span></td>
+<td>Monetary calculations SHALL use decimal arithmetic with currency-specific precision; binary floating-point SHALL NOT be used for authoritative financial amounts.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-014</span></td>
+<td>Exchange rates, tax rates, thresholds and tolerances SHALL be effective-dated and source-traceable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-015</span></td>
+<td>Duplicate authoritative masters across modules are prohibited.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-016</span></td>
+<td>External integrations SHALL use stable IDs, idempotency keys and replay-safe behavior for financial or inventory-changing actions.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-017</span></td>
+<td>Concurrency controls SHALL prevent double approval, double posting, double receipt, double payment and double allocation.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-018</span></td>
+<td>Cross-module events SHALL carry the tenant, event type and source transaction identifier.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-019</span></td>
+<td>Integration failure SHALL be visible and retryable without silently duplicating business effects.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-020</span></td>
+<td>Each material transaction SHALL expose source document, approval history, posting/result references and linked evidence.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-021</span></td>
+<td>Exceptions and overrides SHALL require permission, reason, timestamp and immutable audit evidence.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-022</span></td>
+<td>Legal or accounting-integrity BLOCK controls SHALL fail closed when mandatory configuration or evidence is missing.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-023</span></td>
+<td>Data retention SHALL be policy-driven and legal-hold aware.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-024</span></td>
+<td>Sensitive personal, payroll, medical and financial data SHALL be access-controlled and minimized to business need.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-025</span></td>
+<td>Secrets, access tokens and private credentials SHALL NOT be stored in ordinary business tables or logs.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-026</span></td>
+<td>Security-relevant actions SHALL produce auditable security events without leaking secrets.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-027</span></td>
+<td>Backups, restore testing, recovery objectives and disaster-recovery procedures SHALL be defined for production deployments.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-028</span></td>
+<td>Critical scheduled jobs SHALL be idempotent and observable, with failure escalation.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-029</span></td>
+<td>Data quality rules SHALL detect missing keys, duplicate masters, invalid states, orphan references and inconsistent units/currencies.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-030</span></td>
+<td>Imported data SHALL preserve provenance and import batch identity.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-031</span></td>
+<td>Bulk changes SHALL provide validation preview, error reporting and controlled commit.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-032</span></td>
+<td>Every critical rule SHALL have positive, negative, boundary, permission and correction/reversal tests where applicable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-033</span></td>
+<td>Release gates SHALL prevent a feature from being described as verified when required evidence is missing.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-034</span></td>
+<td>User-facing terminology SHALL be consistent across modules; Supplier is the canonical procurement/AP term. Legacy internal keys may remain only for backward compatibility.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-035</span></td>
+<td>Forms, tables and modals SHALL be responsive, keyboard-usable and readable on supported screen sizes without unintended horizontal overflow.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-036</span></td>
+<td>Long forms SHALL preserve validation context and SHALL NOT hide critical actions or errors outside the user's reachable viewport.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-037</span></td>
+<td>Status SHALL always be represented by text, not color alone.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-038</span></td>
+<td>Destructive or irreversible actions SHALL clearly identify the affected record and consequence before execution.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-039</span></td>
+<td>AI-generated recommendations SHALL NOT bypass permissions, DOA, accounting validation, workflow or audit requirements.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-040</span></td>
+<td>AI-generated postings, approvals or master-data changes SHALL require an authorized deterministic transaction path; AI text alone SHALL NOT mutate the authoritative ledger.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-041</span></td>
+<td>Reports SHALL identify entity, book, period, currency, filter context and generation time.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-042</span></td>
+<td>Audit exports SHALL be reproducible from immutable or versioned source data.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-GOV-043</span></td>
+<td>Configuration changes that alter accounting, tax, approval or security behavior SHALL be versioned and subject to controlled activation.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="10-accounting-module-control-catalog"><span class="snum">10</span>Accounting module control catalog</h2>
+<div class="tbl controls"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cid"><span>WP-ACC-001</span></td>
+<td>All authoritative GL postings SHALL be double-entry and balanced by book, entity and posting transaction.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-002</span></td>
+<td>A journal entry SHALL contain at least two lines and total debit SHALL equal total credit within defined rounding rules.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-003</span></td>
+<td>Negative debit/credit input SHALL be normalized or rejected according to the approved posting model; users SHALL NOT use signs to bypass debit/credit semantics.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-004</span></td>
+<td>Posted journals SHALL be immutable; corrections SHALL use reversal, correcting journal or controlled adjustment.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-005</span></td>
+<td>Reversal SHALL reference the original posting and preserve both documents.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-006</span></td>
+<td>Group/header accounts SHALL NOT accept direct postings.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-007</span></td>
+<td>Frozen or blocked accounts SHALL NOT accept postings until an authorized state change.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-008</span></td>
+<td>Subledger-controlled accounts SHALL reject unauthorized manual journals unless a specifically approved policy permits them.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-009</span></td>
+<td>Reconciliation accounts SHALL preserve party/subledger identity required for reconciliation.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-010</span></td>
+<td>Account currency policy SHALL be explicit; bank and similar monetary accounts requiring a fixed currency SHALL reject ambiguous currency configuration.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-011</span></td>
+<td>Account-combination rules SHALL prevent economically invalid combinations such as depreciation/amortization postings directly against bank merely to force a balanced journal.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-012</span></td>
+<td>Depreciation/amortization processing SHALL normally post expense and accumulated depreciation/amortization or the approved equivalent, not fabricate a cash movement.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-013</span></td>
+<td>The chart of accounts SHALL support controlled hierarchy, normal balance, account type, posting eligibility, reconciliation ownership and reporting mappings.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-014</span></td>
+<td>Changes to account type, currency, control-account ownership or financial-statement mapping SHALL be governed after transactional use.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-015</span></td>
+<td>Base currency SHALL be controlled by entity/book and SHALL NOT be casually changed after postings exist.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-016</span></td>
+<td>Transaction currency, functional/base currency and reporting currency SHALL be separately represented where required.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-017</span></td>
+<td>FX rates SHALL identify rate type such as spot, monthly book, closing or average where policy requires.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-018</span></td>
+<td>Missing required FX rates SHALL block the affected posting or close step rather than silently use 1.0 or a stale rate.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-019</span></td>
+<td>Rate source, date, inversion rule, precision and accountant approval SHALL be retained.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-020</span></td>
+<td>Open and closed fiscal periods SHALL be explicit; closed periods SHALL reject new ordinary postings.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-021</span></td>
+<td>Reopening a closed period SHALL require elevated permission, reason and audit evidence.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-022</span></td>
+<td>Supplier identity for AP SHALL be consumed from the Procurement Supplier master rather than creating a second Accounting supplier master.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-023</span></td>
+<td>Supplier invoices SHALL retain supplier, invoice number/date, tax fields, PO/contract/GRN/SES links where applicable, due terms and approval history.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-024</span></td>
+<td>Duplicate supplier invoices SHALL be detected by supplier and supplier invoice number and through idempotent source references.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-025</span></td>
+<td>Supplier payment SHALL allocate against valid open items and SHALL NOT silently create expense a second time.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-026</span></td>
+<td>Customer invoices and receipts SHALL preserve open-item allocation and aging history.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-027</span></td>
+<td>Revenue recognition SHALL follow the configured contract recognition schedule and method, with deferred-revenue evidence.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-028</span></td>
+<td>Lease accounting SHALL maintain the approved lease schedule, liability movement, interest and right-of-use asset accounting where IFRS 16 applies.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-029</span></td>
+<td>Inventory accounting SHALL consume governed inventory valuation events; Accounting SHALL not recalculate warehouse facts from private Inventory tables.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-030</span></td>
+<td>Inventory costing policy SHALL support IAS 2 requirements including cost allocation and NRV write-down/reversal controls where applicable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-031</span></td>
+<td>Physical asset facts SHALL originate from the Assets module while Accounting remains authoritative for statutory measurement and GL posting.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-032</span></td>
+<td>PPE capitalization SHALL require approved accounting criteria and SHALL NOT be determined solely by an AFE approval or PO label.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-033</span></td>
+<td>Depreciation method, useful life and residual value SHALL be governed through asset categories and recorded on each register asset.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-034</span></td>
+<td>Exploration and evaluation costs SHALL preserve block, property, AFE and well cost context.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-035</span></td>
+<td>Consolidation eliminations SHALL occur in a controlled consolidation/group context and SHALL NOT mutate entity source journals.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-036</span></td>
+<td>Tax accounting SHALL separate tax payable and receivable, settlement and return reconciliation.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-037</span></td>
+<td>VAT, withholding tax and other tax engines SHALL be jurisdiction/effective-date aware and SHALL not assume one timeless rate.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-038</span></td>
+<td>E-invoicing SHALL retain provider/gateway status, invoice identifier, submission/validation result and immutable payload/hash evidence as required by the jurisdiction.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-039</span></td>
+<td>Period close SHALL use a controlled checklist covering subledger reconciliation, banks, inventory, fixed assets, FX, tax and financial statements.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-040</span></td>
+<td>Trial Balance SHALL reconcile to the posted ledger with no hidden plug values.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-041</span></td>
+<td>Balance Sheet and Profit or Loss mappings SHALL be complete, versioned and auditable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-042</span></td>
+<td>The cash flow statement SHALL reconcile opening cash, period flows and closing cash and cash equivalents.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-043</span></td>
+<td>Equity movements SHALL distinguish share capital, reserves, retained earnings and other approved equity categories.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-044</span></td>
+<td>Financial statements SHALL support comparative periods and configurable presentation layouts, including the IFRS 18 structure from its effective date.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-045</span></td>
+<td>Financial reports SHALL preserve mapping version and report parameters used to produce the result.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-046</span></td>
+<td>Opening balances SHALL be loaded through a controlled migration/opening process with reconciled source evidence.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-047</span></td>
+<td>Transaction reset/destructive tools, if present for implementation/testing, SHALL require elevated authorization and SHALL be disabled or tightly governed in live production.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-048</span></td>
+<td>Accounting rules SHALL be enforced server-side at the authoritative posting boundary, not only in forms.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-049</span></td>
+<td>Automated tests SHALL cover material posting patterns, reversals, FX, tax and integration events.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-050</span></td>
+<td>Accounting SHALL maintain requirement-to-test traceability for every enforced control.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-ACC-051</span></td>
+<td>Any statement of IFRS compliance SHALL be made only by the reporting entity when the financial statements meet all applicable requirements; the ERP itself SHALL not make that legal/accounting assertion automatically.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="11-procurement-and-contract-management-control-catalog"><span class="snum">11</span>Procurement and Contract Management control catalog</h2>
+<div class="tbl controls"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cid"><span>WP-PROC-001</span></td>
+<td>Procurement SHALL own the Supplier master used by procurement and AP.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-002</span></td>
+<td>The user-facing canonical term SHALL be Supplier; legacy Vendor routes/keys may exist only for backward compatibility.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-003</span></td>
+<td>Supplier records SHALL hold legal identity, sites, contacts, tax registration, status and supporting documents.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-004</span></td>
+<td>A Purchase Request SHALL identify requester, department/cost object, item/service, quantity, need date, justification, budget/AFE context and delivery/site context as applicable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-005</span></td>
+<td>PR approval SHALL follow effective DOA and SHALL fail closed when mandatory approval configuration is incomplete.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-006</span></td>
+<td>Budget/AFE availability SHALL be checked at the configured control point before commitment.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-007</span></td>
+<td>RFQs SHALL record the sourcing method, closing date, technical and commercial requirements and the quotations received.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-008</span></td>
+<td>Bid evaluation SHALL combine technical compliance and a technical score with a price score, using configured technical and price weightings.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-009</span></td>
+<td>Evaluation weightings, technical scores, compliance and the resulting ranking SHALL be recorded and auditable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-010</span></td>
+<td>Award SHALL reference the selected quotation and the required approvals.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-011</span></td>
+<td>Purchase Orders SHALL be created from approved commercial authority and SHALL preserve source PR/RFQ/award/contract references.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-012</span></td>
+<td>Call-out revisions SHALL be versioned (New, V1, V2 and onward), archive the released version and require complete re-approval.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-013</span></td>
+<td>Quantity, price, currency, tax, delivery, Incoterm where used, payment terms and accounting/budget dimensions SHALL be explicit.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-014</span></td>
+<td>Over-receipt SHALL be blocked or routed through authorized tolerance/exception policy.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-015</span></td>
+<td>Partial and multiple GRNs SHALL be supported without losing cumulative ordered, received, returned and invoiced quantities.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-016</span></td>
+<td>Service procurement SHALL support partial and multiple SES records against PO/contract/call-out limits.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-017</span></td>
+<td>Service entries SHALL record the service, quantity or value and link to the purchase order, contract or call-out.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-018</span></td>
+<td>Contracts SHALL maintain type, parties, scope, value and ceiling, validity dates, currency, price basis, guarantees, retention and variation history.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-019</span></td>
+<td>Price basis SHALL distinguish fixed price, unit rate, reimbursable, cost-plus and other approved models.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-020</span></td>
+<td>Contract amendments SHALL be versioned and SHALL NOT overwrite the executed baseline.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-021</span></td>
+<td>Call-outs/release orders SHALL remain within approved contract scope, dates and ceilings unless an authorized amendment exists.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-022</span></td>
+<td>Advance and performance bank guarantees SHALL retain amount, currency, issuer, expiry and a linked evidence document; a checkbox alone is not evidence.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-023</span></td>
+<td>Supplier invoice matching SHALL compare invoice against approved commercial document and receipt/SES evidence according to match policy.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-024</span></td>
+<td>Match tolerance SHALL be configurable, default to zero and fail closed; exceptions SHALL require explicit override permission and reason.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-025</span></td>
+<td>Procurement SHALL NOT mark an invoice paid; payment status SHALL come from the authoritative finance/accounting payment process.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-026</span></td>
+<td>Procurement SHALL expose matched/approved invoice context to Accounting through a sanctioned integration contract.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-027</span></td>
+<td>Taxes and withholding fields SHALL be captured for downstream tax determination but final accounting/tax posting authority remains in the approved tax/accounting process.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-028</span></td>
+<td>Only the approver assigned to the current approval step SHALL decide a requisition; module-wide approval permission alone SHALL NOT be sufficient.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PROC-029</span></td>
+<td>Procurement records SHALL link to Block, AFE, Budget, Inventory, Assets and Accounting by public identifiers rather than private-table access.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="12-inventory-and-warehouse-management-control-catalog"><span class="snum">12</span>Inventory and Warehouse Management control catalog</h2>
+<div class="tbl controls"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cid"><span>WP-INV-001</span></td>
+<td>Inventory SHALL own the material/item master and warehouse stock ledger.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-002</span></td>
+<td>Item codes SHALL be unique within the configured scope and SHALL not be recycled in a way that corrupts history.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-003</span></td>
+<td>Item master SHALL define base UOM, material class, stock behavior and lot or serial traceability policy.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-004</span></td>
+<td>Warehouse, storage location and bin hierarchy SHALL be explicit and site-aware.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-005</span></td>
+<td>Lot/batch, serial number and expiry tracking SHALL be enforced where item policy requires.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-006</span></td>
+<td>Barcode/QR/GS1 identifiers SHALL map unambiguously to the business object when used.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-007</span></td>
+<td>Every stock movement SHALL create an immutable Cardex/stock-ledger event with source reference, quantity, UOM, location and actor/system identity.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-008</span></td>
+<td>Stock on hand SHALL reconcile to the stock ledger; direct balance edits are prohibited.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-009</span></td>
+<td>Goods receipt SHALL reference the approved procurement source where applicable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-010</span></td>
+<td>Quality inspection/quarantine status SHALL prevent unrestricted issue before release when inspection is required.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-011</span></td>
+<td>Rejected material SHALL be segregated logically and, where process requires, physically.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-012</span></td>
+<td>Material issue SHALL identify destination/cost object such as AFE, asset, project, department, well or work order where required.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-013</span></td>
+<td>Reservations SHALL distinguish reserved, available and on-hand quantities.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-014</span></td>
+<td>Return transactions SHALL reference the original issue/receipt where appropriate and preserve valuation linkage.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-015</span></td>
+<td>Warehouse transfer SHALL record dispatch and receipt; in-transit stock SHALL not appear simultaneously available at both sites.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-016</span></td>
+<td>Negative stock SHALL be blocked for every ownership bucket.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-017</span></td>
+<td>Physical count variances SHALL be recorded line by line against system quantity and valued at unit cost before adjustment.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-018</span></td>
+<td>Stock adjustments SHALL never be a hidden substitute for missing receiving/issue transactions.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-019</span></td>
+<td>Reorder levels SHALL be item-specific and flag low and reorder status from available quantity.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-020</span></td>
+<td>Critical spares SHALL be identified on the item master.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-021</span></td>
+<td>Repairable/rotable items SHALL support condition/state, repair cycle, custody and return-to-stock history.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-022</span></td>
+<td>Customer-owned, partner-owned, consignment or other non-owned inventory SHALL be identified separately from company-owned stock.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-023</span></td>
+<td>Inventory valuation method SHALL be an approved accounting policy such as FIFO or weighted average where IAS 2 applies.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-024</span></td>
+<td>Standard cost, if used operationally, SHALL have controlled variance/revaluation treatment and SHALL not silently override statutory costing policy.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-025</span></td>
+<td>NRV assessment and write-down/reversal events SHALL be controlled and traceable where IAS 2 applies.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-026</span></td>
+<td>Expired and expiring inventory SHALL be identifiable for review and accounting action.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-027</span></td>
+<td>Inventory SHALL publish governed valuation and quantity events to Accounting rather than allowing Accounting to derive stock from private tables.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-028</span></td>
+<td>Inventory SHALL integrate with Assets for spare consumption, capitalization candidates and asset-linked material history without creating duplicate asset masters.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-INV-029</span></td>
+<td>Inventory SHALL preserve AFE/Budget coding on relevant material movements for cost-control reconciliation.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="13-asset-management-control-catalog"><span class="snum">13</span>Asset Management control catalog</h2>
+<div class="tbl controls"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cid"><span>WP-AST-001</span></td>
+<td>Assets SHALL own the physical/maintainable asset master; Accounting SHALL own statutory GL measurement.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-002</span></td>
+<td>Each asset SHALL have stable identity, category/class, lifecycle state, owner/custodian and location as applicable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-003</span></td>
+<td>Functional location and equipment hierarchy SHALL be represented independently from temporary custody.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-004</span></td>
+<td>Oil &amp; Gas equipment taxonomy SHOULD align with ISO 14224 where applicable to enable consistent reliability data.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-005</span></td>
+<td>Asset provenance SHALL identify creation/import/source and relevant procurement/GRN/project/AFE references.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-006</span></td>
+<td>Significant components SHALL be identifiable where maintenance or accounting policy requires component-level control.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-007</span></td>
+<td>Lifecycle states SHALL include acquisition/construction, installation/commissioning, in-service/available-for-use, maintenance, idle/mothballed, disposal and decommissioning states as applicable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-008</span></td>
+<td>State transitions SHALL be controlled and SHALL not rewrite historical dates.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-009</span></td>
+<td>Custody assignment, return, transfer and handover SHALL retain actor, dates and evidence.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-010</span></td>
+<td>Asset movement SHALL use request/approval where policy requires and SHALL preserve from/to location.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-011</span></td>
+<td>Maintenance plans SHALL be versioned; changing a plan SHALL not alter the historical plan used for completed work.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-012</span></td>
+<td>Preventive, predictive, condition-based and corrective maintenance types SHALL be distinguishable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-013</span></td>
+<td>Work execution SHALL capture planned vs actual labor, materials, downtime, findings and completion evidence as applicable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-014</span></td>
+<td>Controlled maintenance deferral SHALL require reason, risk/impact assessment, approval and next due date.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-015</span></td>
+<td>Emergency maintenance SHALL support after-the-fact review without fabricating prior approval.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-016</span></td>
+<td>Failure records SHALL capture failure mode, cause, consequence, detection and downtime at the appropriate level.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-017</span></td>
+<td>Reliability metrics such as MTBF/MTTR SHALL be calculated from governed source events and clearly define population and period.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-018</span></td>
+<td>Availability and downtime SHALL distinguish planned and unplanned states where required.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-019</span></td>
+<td>Condition/inspection measurements SHALL retain method, reading, unit, timestamp and source.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-020</span></td>
+<td>Criticality SHALL be governed and may drive maintenance priority, spares policy, inspection or approval.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-021</span></td>
+<td>Spare-part links SHALL reference Inventory item IDs and SHALL not create an independent spare master.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-022</span></td>
+<td>Warranty status SHALL identify supplier/manufacturer, terms, dates and claim references.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-023</span></td>
+<td>Insurance records/claims SHALL retain policy reference, coverage period, incident/claim status and evidence.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-024</span></td>
+<td>Integrity and regulatory inspections SHALL preserve due dates, results, findings, closure and evidence.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-025</span></td>
+<td>QR/barcode/RFID identifiers SHALL resolve to the correct asset and SHALL be replaceable without changing asset identity.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-026</span></td>
+<td>Physical verification SHALL support found/not-found, condition, location/custody confirmation and exception resolution.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-027</span></td>
+<td>Accounting link SHALL identify the approved fixed-asset/GL context without Assets posting directly to private Accounting tables.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-028</span></td>
+<td>Available-for-use/commissioning evidence SHALL be retained for depreciation/capitalization decisions.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-029</span></td>
+<td>Operational depreciation views SHALL not be represented as statutory accounting unless posted/approved by Accounting.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-030</span></td>
+<td>Impairment indicators may be recorded in Assets; Assets SHALL NOT post impairment to the ledger.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-031</span></td>
+<td>Decommissioning/restoration engineering estimates SHALL be versioned and linked to the affected asset/property.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-032</span></td>
+<td>Disposal SHALL require authorization, disposal method, proceeds/cost evidence and downstream Accounting result where applicable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-033</span></td>
+<td>Asset offboarding SHALL resolve custody, open maintenance, spare/loan items and document retention.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-034</span></td>
+<td>Data-quality controls SHALL detect duplicate IDs, invalid hierarchy, impossible lifecycle dates and orphaned integrations.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-035</span></td>
+<td>Field/offline asset updates SHALL be conflict-aware and SHALL not duplicate work or movement transactions.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-036</span></td>
+<td>Maintenance and reliability history SHALL remain available after asset retirement according to retention policy.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-037</span></td>
+<td>Asset-management dashboards SHALL separate physical condition, maintenance performance, reliability, financial context and risk rather than collapse them into one opaque score.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AST-038</span></td>
+<td>ISO 55001 and ISO 14224 references SHALL be treated as management/data design targets, not an automatic certification claim.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="14-afe-management-control-catalog"><span class="snum">14</span>AFE Management control catalog</h2>
+<div class="tbl controls"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cid"><span>WP-AFE-001</span></td>
+<td>Each AFE SHALL identify legal entity, responsible owner, block/asset, field, well/facility/project and other required cost dimensions.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-002</span></td>
+<td>AFE type SHALL be configurable for drilling, completion, workover, exploration/appraisal, development, facility, abandonment/decommissioning and other approved types.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-003</span></td>
+<td>AFE approval authorizes expenditure; it SHALL NOT by itself determine accounting capitalization.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-004</span></td>
+<td>Every AFE SHALL have a controlled lifecycle from draft through review/approval/active/revised/closed or equivalent states.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-005</span></td>
+<td>Approved baselines SHALL be immutable; scope/value changes SHALL use revision, supplement or approved change process.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-006</span></td>
+<td>Cost lines SHALL be structured by phase and mapped to approved cost categories and cost items.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-007</span></td>
+<td>Estimate lines SHALL record quantity and rate, with rates sourced from linked contracts and contract services where applicable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-008</span></td>
+<td>Contingency SHALL be held as an explicit amount and SHALL NOT be hidden inside line items.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-009</span></td>
+<td>Multi-currency estimates SHALL preserve transaction currency and approved conversion basis.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-010</span></td>
+<td>AFE totals SHALL reconcile to CBS lines and approved revisions.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-011</span></td>
+<td>Technical review SHALL verify scope/plan assumptions before or as configured in the approval chain.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-012</span></td>
+<td>Finance review SHALL verify cost, budget, coding, currency and financial-control requirements.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-013</span></td>
+<td>Final approval SHALL follow DOA based on effective amount/currency and business context.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-014</span></td>
+<td>Commitments SHALL originate from approved procurement/contract events or controlled manual sources with provenance.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-015</span></td>
+<td>Actual costs SHALL originate from authoritative posted financial/inventory/labor sources rather than editable dashboard totals.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-016</span></td>
+<td>Payments SHALL be distinguished from accounting actual cost and commitment.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-017</span></td>
+<td>AFE reporting SHALL distinguish approved amount, commitment, actual and forecast cost.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-018</span></td>
+<td>Closed AFE SHALL reject new ordinary commitments unless reopened/revised through authorized policy.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-019</span></td>
+<td>Well operation plans and daily operational context MAY inform AFE control but SHALL not replace approved accounting actuals.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-020</span></td>
+<td>AFE SHALL obtain block context from Block Management through public contracts.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-021</span></td>
+<td>Abandonment and decommissioning AFEs SHALL identify the relevant block, field and well.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-022</span></td>
+<td>AFE SHALL integrate with Budget without duplicating the authoritative budget ledger.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-023</span></td>
+<td>AFE SHALL integrate with Accounting through controlled cost/posting references; it SHALL not mutate GL private tables.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-024</span></td>
+<td>Revisions SHALL show the approved baseline and the proposed change.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AFE-025</span></td>
+<td>All approvals, overrides, revisions and closures SHALL retain evidence and immutable audit history.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="15-block-management-and-joint-interest-control-catalog"><span class="snum">15</span>Block Management and Joint-Interest control catalog</h2>
+<div class="tbl controls"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cid"><span>WP-BLK-001</span></td>
+<td>Block Management SHALL be the source of truth for petroleum blocks/assets within the Oil &amp; Gas domain.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BLK-002</span></td>
+<td>Legal entity and petroleum block SHALL be modeled separately; one entity may participate in multiple blocks and one block may have multiple parties.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BLK-003</span></td>
+<td>Parties SHALL have stable identifiers and roles separate from changing commercial interests.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BLK-004</span></td>
+<td>Participating interests SHALL be effective-dated and versioned.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BLK-005</span></td>
+<td>The system SHALL validate participating-interest totals according to the agreement model and flag invalid effective periods.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BLK-006</span></td>
+<td>Changes in participating interest SHALL not rewrite prior-period ownership.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BLK-007</span></td>
+<td>Operatorship SHALL be effective-dated and independently auditable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BLK-008</span></td>
+<td>Petroleum agreements SHALL retain agreement type, parties, dates and status.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BLK-009</span></td>
+<td>Concession/EPSA/PSA/JOA economic terms SHALL be stored as versioned contractual data and SHALL not be inferred from generic defaults.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BLK-010</span></td>
+<td>Cost-recovery ceilings, royalty, profit/cost petroleum splits and similar terms SHALL be effective-dated where applicable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BLK-011</span></td>
+<td>Block/partner context SHALL be exposed to Accounting, Procurement, Assets, Inventory and AFE only through supported integration contracts.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BLK-012</span></td>
+<td>Downstream modules SHALL store the stable block ID, not a free-text block name as the authoritative key.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BLK-013</span></td>
+<td>Deactivated/expired agreements SHALL remain available historically and SHALL not break prior transactions.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BLK-014</span></td>
+<td>Government/economic terms SHALL require controlled permission because changes can affect material financial results.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BLK-015</span></td>
+<td>Contract-specific tax or fiscal rates SHALL not be promoted to global defaults without legal/policy approval.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BLK-016</span></td>
+<td>Every block, participation, agreement and economic-term change SHALL be recorded in the audit log with actor and timestamp.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="16-budget-management-control-catalog"><span class="snum">16</span>Budget Management control catalog</h2>
+<div class="tbl controls"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cid"><span>WP-BUD-001</span></td>
+<td>Budget SHALL be an independent authorization/control ledger, not a duplicate of the General Ledger.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-002</span></td>
+<td>Budget plans SHALL move through draft, pending approval, approved, rejected and closed states.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-003</span></td>
+<td>Budget lines SHALL identify the fiscal year and the account and cost coding they control.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-004</span></td>
+<td>Approved budgets SHALL be immutable except through controlled revision/transfer/supplement process.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-005</span></td>
+<td>Budget checks SHALL occur at configured business control points such as PR, PO, contract, call-out or posting.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-006</span></td>
+<td>Reservation/pre-commitment, commitment, actual and available budget SHALL be distinct values.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-007</span></td>
+<td>Cancellation/closure of a commitment SHALL release only the valid unconsumed balance.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-008</span></td>
+<td>Actuals SHALL originate from authoritative posted source events.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-009</span></td>
+<td>Budget overrides SHALL require explicit permission, reason and approval.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-010</span></td>
+<td>Over-budget transactions SHALL warn or block according to policy and threshold.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-011</span></td>
+<td>Budget transfer SHALL preserve from/to lines, amount, reason and approval.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-012</span></td>
+<td>Budget currency and control currency SHALL be explicit; conversion SHALL use an approved rate policy.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-013</span></td>
+<td>Budget SHALL not silently consume funds twice for the same business commitment.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-014</span></td>
+<td>Reversals/cancellations SHALL be idempotent and restore the appropriate budget state exactly once.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-015</span></td>
+<td>AFE and Budget SHALL have a defined relationship; neither SHALL fabricate the other's authoritative balances.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-016</span></td>
+<td>Budget reporting SHALL reconcile opening authorization, amendments, commitments, actuals and available balance.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-017</span></td>
+<td>Closed fiscal budgets SHALL reject new ordinary allocations unless formally reopened/revised.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-018</span></td>
+<td>Budget control SHALL fail closed when a transaction requires a budget but no valid budget exists.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-BUD-019</span></td>
+<td>Budget rules SHALL be testable for concurrency so simultaneous transactions cannot overspend the same available balance.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="17-treasury-and-banking-control-catalog"><span class="snum">17</span>Treasury and banking control catalog</h2>
+<div class="tbl controls"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cid"><span>WP-FIN-001</span></td>
+<td>Bank and cash accounts SHALL have stable identity, currency and status.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-FIN-002</span></td>
+<td>Payments SHALL pass through the journal approval workflow, so that preparation and posting are performed by different people.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-FIN-003</span></td>
+<td>Supplier payment SHALL reference approved payable/open-item authority.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-FIN-004</span></td>
+<td>Customer receipt SHALL preserve payer, bank/value date, currency and allocation reference.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-FIN-005</span></td>
+<td>Bank transfer SHALL create two-sided cash movement with no artificial income/expense.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-FIN-006</span></td>
+<td>Bank fees and charges SHALL be posted through approved expense/clearing treatment, not hidden in reconciliation differences.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-FIN-007</span></td>
+<td>Bank statement imports SHALL preserve source file/hash, bank account and import batch identity.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-FIN-008</span></td>
+<td>Reconciliation matches SHALL be auditable and reversible without deleting bank-statement history.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-FIN-009</span></td>
+<td>Unreconciled items SHALL remain visible until resolved or formally adjusted.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-FIN-010</span></td>
+<td>Cash reporting SHALL distinguish book balance, bank statement balance and forecast.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-FIN-011</span></td>
+<td>Liquidity forecasts SHALL identify source and forecast horizon and SHALL not be represented as posted accounting.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-FIN-012</span></td>
+<td>Bank master data and supporting documentation SHALL be access-controlled.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-FIN-013</span></td>
+<td>Manual cash transactions SHALL require the same dimensions and approval controls as equivalent integrated transactions.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-FIN-014</span></td>
+<td>Treasury reports SHALL identify currency basis and rate assumptions.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-FIN-015</span></td>
+<td>Treasury SHALL not duplicate the statutory GL; Accounting remains the final posted-book authority.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="18-hr-and-workforce-control-catalog"><span class="snum">18</span>HR and workforce control catalog</h2>
+<div class="tbl controls"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cid"><span>WP-HR-001</span></td>
+<td>HR SHALL own the person/employee master for workforce processes.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-002</span></td>
+<td>Person identity and employment assignment SHALL be separate so rehire/history can be represented correctly.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-003</span></td>
+<td>Employee records SHALL retain employment status, legal entity, organization, position, manager and work location as applicable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-004</span></td>
+<td>Recruitment SHALL retain vacancy, applicant stage history, interviews and versioned offers.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-005</span></td>
+<td>Onboarding SHALL track mandatory documents, access/equipment requests and readiness tasks.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-006</span></td>
+<td>Employment contracts SHALL be versioned; amendments SHALL not overwrite executed prior terms.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-007</span></td>
+<td>Probation and contract expiry SHALL support alerts and controlled decisions.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-008</span></td>
+<td>Attendance/time data SHALL retain source and approval where it affects payroll or cost.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-009</span></td>
+<td>Leave balance SHALL be derived from approved entitlements, accrual/adjustment and approved leave events.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-010</span></td>
+<td>Oil &amp; Gas rotations/crew assignments SHALL support site, shift/rotation pattern and effective dates.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-011</span></td>
+<td>Training, competency and certification records SHALL support expiry and role/site requirements.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-012</span></td>
+<td>Medical/fitness-to-work data SHALL be minimized; operational users SHOULD see fitness status rather than unnecessary diagnosis detail.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-013</span></td>
+<td>PPE issue/return SHALL identify item, employee, date and status and may integrate with Inventory where appropriate.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-014</span></td>
+<td>HSE workforce incident records SHALL follow restricted access and evidence rules appropriate to the process.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-015</span></td>
+<td>Payroll calculation SHALL be separated from payment confirmation.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-016</span></td>
+<td>Payroll runs SHALL produce payslips from employee contract terms, attendance and leave inputs and allowances.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-017</span></td>
+<td>Approved payroll runs SHALL be locked against change.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-018</span></td>
+<td>Omanization/localization measures SHALL be configurable and reportable from governed employee/job data.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-019</span></td>
+<td>Personal and sensitive data SHALL comply with applicable privacy law, purpose limitation, access control and retention rules.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-020</span></td>
+<td>Offboarding SHALL track employment status, access, asset custody, documents and final settlement.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-021</span></td>
+<td>Final settlement SHALL be calculated from approved payroll/leave/benefit rules and SHALL be independently reviewable.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-022</span></td>
+<td>HR analytics SHALL report headcount, leave and attendance from governed employee data.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-023</span></td>
+<td>HR AI features SHALL not expose sensitive personal/medical/payroll data beyond the user's authorized scope.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-HR-024</span></td>
+<td>HR integration events SHALL use stable employee/person IDs and SHALL not replicate unrestricted personal data into other modules.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="19-project-management-control-catalog"><span class="snum">19</span>Project Management control catalog</h2>
+<div class="tbl controls"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cid"><span>WP-PRJ-001</span></td>
+<td>Each project SHALL have a stable identity and code, project type, priority, project manager, client context, status and start and end dates.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PRJ-002</span></td>
+<td>Project progress SHALL follow a configurable workflow of ordered stages, including defined closed and won stages.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PRJ-003</span></td>
+<td>Projects SHALL be structured into ordered phases with their own dates and status.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PRJ-004</span></td>
+<td>Milestones SHALL belong to a phase and carry a due date, status, completion percentage and completion date.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PRJ-005</span></td>
+<td>Tasks SHALL carry a title, assignee, status, priority, due date, estimated hours and completion date, and may be linked to a milestone.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PRJ-006</span></td>
+<td>Project budget, currency, actual cost, actual revenue and completion percentage SHALL be recorded on the project.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PRJ-007</span></td>
+<td>Team membership SHALL record each member's type and role on the project.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PRJ-008</span></td>
+<td>Follow-ups SHALL record an owner, due date, status and completion, so that no commitment is left unowned.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PRJ-009</span></td>
+<td>Project activity SHALL be logged with type, description and actor.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PRJ-010</span></td>
+<td>Project documents SHALL be stored through the Core File Manager.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PRJ-011</span></td>
+<td>Creating, updating, deleting and exporting projects, and managing workflows, teams, tasks, milestones, notes, follow-ups and attachments, SHALL each require an explicit capability.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PRJ-012</span></td>
+<td>Deleted project records SHALL be soft-deleted with the deleting actor retained.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-PRJ-013</span></td>
+<td>Project lifecycle changes SHALL publish domain events (created, updated, stage changed, completed, task completed, milestone completed) for downstream consumers.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="part-divider" role="presentation"><span>Part VI</span><strong>Intelligence, operations and assurance</strong></div><h2 id="20-oil-gas-lifecycle-control-model"><span class="snum">20</span>Oil & Gas lifecycle control model</h2>
+<p>SBC ERP keeps commercial authorization, physical operations and accounting recognition distinct throughout the Oil &amp; Gas lifecycle.</p>
+<figure class="diagram"><pre class="mermaid">flowchart LR
+    subgraph PH1[&quot;Exploration and appraisal&quot;]
+        A1[&quot;Block and agreement&lt;br/&gt;Block Management&quot;] --&gt; A2[&quot;Exploration AFE&lt;br/&gt;AFE&quot;]
+        A2 --&gt; A3[&quot;Seismic, drilling, testing&lt;br/&gt;Procurement · Inventory&quot;]
+    end
+    subgraph PH2[&quot;Development and construction&quot;]
+        B1[&quot;Development AFE&lt;br/&gt;AFE&quot;] --&gt; B2[&quot;Contracts, materials, CWIP&lt;br/&gt;Procurement · Inventory · Accounting&quot;]
+        B2 --&gt; B3[&quot;Commissioning evidence&lt;br/&gt;Assets&quot;]
+        B3 --&gt; B4[&quot;Capitalization to PPE&lt;br/&gt;Accounting&quot;]
+    end
+    subgraph PH3[&quot;Production and operations&quot;]
+        C1[&quot;Maintenance and reliability&lt;br/&gt;Assets&quot;] --&gt; C2[&quot;Operating cost by block, field, well&lt;br/&gt;Accounting&quot;]
+        C2 --&gt; C3[&quot;Revenue contracts and schedules&lt;br/&gt;Accounting&quot;]
+    end
+    subgraph PH4[&quot;Abandonment&quot;]
+        D1[&quot;Versioned engineering estimate&lt;br/&gt;Assets&quot;] --&gt; D2[&quot;Abandonment AFE&lt;br/&gt;AFE · Procurement&quot;]
+        D2 --&gt; D3[&quot;Retirement and disposal&lt;br/&gt;Assets · Accounting&quot;]
+    end
+    A3 --&gt; B1
+    B4 --&gt; C1
+    C3 --&gt; D1
+</pre></figure>
+<h3 id="201-exploration-and-appraisal"><span class="ssnum">20.1</span>Exploration and appraisal</h3>
+<ul>
+<li>Block and agreement context is established before costs are attributed to a petroleum property.</li>
+<li>Exploration and appraisal costs keep block, AFE, well and cost-category dimensions.</li>
+<li>Seismic, geological, drilling and testing costs keep their source and operational context.</li>
+<li>An unsuccessful outcome is handled through accounting review, never by deleting source costs.</li>
+</ul>
+<h3 id="202-development-and-construction"><span class="ssnum">20.2</span>Development and construction</h3>
+<ul>
+<li>Development AFEs, contracts, materials and assets share stable identifiers.</li>
+<li>Construction in progress is kept separate from assets available for use.</li>
+<li>Commissioning and available-for-use evidence drives capitalization and the start of depreciation.</li>
+<li>Transfer from construction to the fixed-asset register keeps full source traceability.</li>
+</ul>
+<h3 id="203-production-and-operations"><span class="ssnum">20.3</span>Production and operations</h3>
+<ul>
+<li>Operating expenses keep block, field, well, facility and cost-object context.</li>
+<li>Maintenance materials and services link to the asset, the work order and the financial dimensions.</li>
+<li>Participating interests and operatorship are resolved by date from Block Management.</li>
+<li>Inventory, AFE and budget actuals reconcile to Accounting without parallel ledgers.</li>
+</ul>
+<h3 id="204-abandonment"><span class="ssnum">20.4</span>Abandonment</h3>
+<ul>
+<li>Engineering estimates for abandonment and restoration are versioned and linked to the affected asset.</li>
+<li>Abandonment work is authorized through dedicated AFE types.</li>
+<li>Retirement keeps the asset's maintenance and reliability history available under the retention policy.</li>
+</ul>
+<hr />
+<h2 id="21-oman-tax-e-invoicing-and-statutory-localization"><span class="snum">21</span>Oman tax, e-invoicing and statutory localization</h2>
+<p>Oman localization works as a versioned, effective-dated jurisdiction configuration, not as conditions scattered through the code. Tax rates, tax points, e-invoicing specifications and contractual fiscal terms are never hard-coded as timeless constants.</p>
+<h3 id="211-value-added-tax"><span class="ssnum">21.1</span>Value added tax</h3>
+<p>SBC ERP supports:</p>
+<ul>
+<li>supplier and customer tax registration identifiers;</li>
+<li>standard-rated, zero-rated, exempt and out-of-scope treatment through effective-dated tax codes;</li>
+<li>input and output tax with recoverability treatment;</li>
+<li>linkage between tax invoices and credit and debit notes;</li>
+<li>tax reporting by return period, reconciled to the tax control accounts in the GL;</li>
+<li>tax audit views tracing every reported amount to its source document.</li>
+</ul>
+<h3 id="212-withholding-tax"><span class="ssnum">21.2</span>Withholding tax</h3>
+<p>SBC ERP:</p>
+<ul>
+<li>captures withholding on supplier payments;</li>
+<li>retains the gross amount, taxable base, rate, withheld amount and payment date;</li>
+<li>reconciles withholding payable to its settlement.</li>
+</ul>
+<h3 id="213-fawtara-e-invoicing"><span class="ssnum">21.3</span>Fawtara e-invoicing</h3>
+<p>SBC ERP supports Oman Tax Authority e-invoicing with:</p>
+<ul>
+<li>rollout cohort and effective-date configuration;</li>
+<li>integration with accredited service providers;</li>
+<li>structured invoice data and validation status;</li>
+<li>seller and buyer tax identifiers;</li>
+<li>unique invoice and validation references;</li>
+<li>linkage of corrections to credit and debit notes;</li>
+<li>submission, retry and error status without duplicate submission;</li>
+<li>immutable payload, hash and audit evidence;</li>
+<li>secure handling of provider credentials;</li>
+<li>reconciliation between the ERP invoice, the provider status and the Accounting posting.</li>
+</ul>
+<p>Technical specifications are versioned, so the product can follow changes during the national rollout.</p>
+<h3 id="214-contractual-fiscal-terms"><span class="ssnum">21.4</span>Contractual fiscal terms</h3>
+<p>Concession, EPSA and PSA economic terms are held in Block Management as effective-dated contractual data and resolved by date. Contract-specific terms are never promoted to global defaults.</p>
+<hr />
+<h2 id="22-security-deployment-and-operations"><span class="snum">22</span>Security, deployment and operations</h2>
+<h3 id="221-security-model"><span class="ssnum">22.1</span>Security model</h3>
+<p>The SBC ERP security model includes:</p>
+<ul>
+<li>server-side authentication and authorization on every action;</li>
+<li>tenant isolation enforced by PostgreSQL row-level security on every tenant table;</li>
+<li>least privilege through explicit capability keys, checked on the server;</li>
+<li>role-isolated database credentials: the application, the schema migrator and the backup service each use a separate database role with only the rights it needs;</li>
+<li>separation of privileged administration from business roles;</li>
+<li>MFA and session security through the SBC Core identity service;</li>
+<li>secret storage outside business tables and logs, with automated checks that secrets stay isolated per service;</li>
+<li>encryption in transit through the TLS reverse proxy;</li>
+<li>input validation and output encoding, with protection against common web vulnerabilities;</li>
+<li>audit logging of business, security and AI decision events;</li>
+<li>AI runtimes isolated from all database, storage, signing, backup and authentication credentials;</li>
+<li>legal hold and retention policies.</li>
+</ul>
+<p>Security controls are tested at the API and server boundary, not inferred from user-interface behavior.</p>
+<h3 id="222-deployment-architecture"><span class="ssnum">22.2</span>Deployment architecture</h3>
+<p>SBC ERP is delivered as a containerized platform that runs entirely inside the customer's chosen environment: an on-premises data center or a private cloud. Business data, documents, AI models and backups all stay inside that environment.</p>
+<figure class="diagram"><pre class="mermaid">flowchart TB
+    U[&quot;Users&lt;br/&gt;browser · mobile&quot;] --&gt; PX[&quot;TLS reverse proxy&lt;br/&gt;certificate management · hardening&quot;]
+    PX --&gt; APP[&quot;SBC ERP application tier&lt;br/&gt;SBC Core + Oil &amp; Gas modules&quot;]
+    APP --&gt; WK[&quot;Background worker tier&lt;br/&gt;scheduled jobs · integrations&quot;]
+    subgraph PRIV[&quot;Private platform network — no public ports&quot;]
+        PG[(&quot;PostgreSQL&lt;br/&gt;row-level security&quot;)]
+        RD[(&quot;Redis&lt;br/&gt;cache · queues&quot;)]
+        OB[(&quot;Object storage&lt;br/&gt;documents and files&quot;)]
+        AI[&quot;Local AI runtime&quot;]
+        DE[&quot;Decision Engine&quot;]
+    end
+    APP --&gt; PG &amp; RD &amp; OB &amp; AI &amp; DE
+    WK --&gt; PG &amp; RD &amp; OB
+    PG -- &quot;continuous WAL archiving&quot; --&gt; BK[(&quot;Off-site backup storage&lt;br/&gt;compressed base backups + WAL&quot;)]
+</pre></figure>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TLS reverse proxy</td>
+<td>Single public entry point with certificate management and hardened configuration</td>
+</tr>
+<tr>
+<td>Application tier</td>
+<td>SBC Core and the installed modules; schema changes run through a separate migrator with its own credentials</td>
+</tr>
+<tr>
+<td>Background worker tier</td>
+<td>Optional tier for scheduled jobs and integration work, idempotent and tenant-aware</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>System of record with row-level security and database-level accounting guards</td>
+</tr>
+<tr>
+<td>Redis</td>
+<td>Cache and queues</td>
+</tr>
+<tr>
+<td>Object storage</td>
+<td>Controlled documents and attachments managed by the Core File Manager</td>
+</tr>
+<tr>
+<td>Local AI runtime and Decision Engine</td>
+<td>Self-hosted on the private network, CPU or optional NVIDIA GPU</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="223-high-availability"><span class="ssnum">22.3</span>High availability</h3>
+<p>For deployments that need higher resilience, SBC ERP provides high-availability overlays:</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>High-availability design</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td>Patroni-managed PostgreSQL cluster with a three-node etcd consensus layer and HAProxy routing to the current primary, so applications reconnect automatically after failover</td>
+</tr>
+<tr>
+<td>Cache and queues</td>
+<td>Redis with Sentinel-managed failover</td>
+</tr>
+<tr>
+<td>Object storage</td>
+<td>Distributed object storage behind a load balancer</td>
+</tr>
+<tr>
+<td>Application</td>
+<td>Stateless application and worker tiers that can be scaled out</td>
+</tr>
+</tbody>
+</table></div>
+<p>Database credential boundaries are kept in the high-availability topology: only the provisioning job holds the cluster superuser credential.</p>
+<h3 id="224-backup-and-recovery"><span class="ssnum">22.4</span>Backup and recovery</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Design</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Continuous protection</td>
+<td>PostgreSQL write-ahead log archived continuously to off-site, S3-compatible storage</td>
+</tr>
+<tr>
+<td>Base backups</td>
+<td>Scheduled, compressed physical base backups pushed off-site</td>
+</tr>
+<tr>
+<td>Point-in-time recovery</td>
+<td>Restore to any moment, for example to the minute before an erroneous change, by replaying archived WAL onto a base backup</td>
+</tr>
+<tr>
+<td>Logical snapshots</td>
+<td>Database-level logical backups and restores for migration, audit copies and selective recovery</td>
+</tr>
+<tr>
+<td>Dedicated credentials</td>
+<td>Backup and archiving run under their own restricted database roles</td>
+</tr>
+<tr>
+<td>Verified restore</td>
+<td>Restored data is reviewed and verified before production traffic is switched over</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="225-operations-and-release-management"><span class="ssnum">22.5</span>Operations and release management</h3>
+<ul>
+<li><strong>Module lifecycle.</strong> Modules are installed and upgraded through the Core Module Center. Each module is versioned independently and evolves its schema only through forward-only migrations.</li>
+<li><strong>Release assurance.</strong> Every module release passes automated typecheck, tests, source-boundary checks and artifact build before publication. Production deployment runs preflight checks and contract tests.</li>
+<li><strong>Auxiliary services.</strong> After each production deployment, platform services such as the local AI runtime and the Decision Engine are checked and brought to the expected state automatically.</li>
+<li><strong>Offline capability.</strong> AI models can be preloaded so the platform runs without internet access.</li>
+<li><strong>Observability.</strong> Scheduled jobs are idempotent and observable, and failures are escalated.</li>
+</ul>
+<hr />
+<h2 id="23-data-governance-and-interoperability"><span class="snum">23</span>Data governance and interoperability</h2>
+<h3 id="231-master-data-principles"><span class="ssnum">23.1</span>Master-data principles</h3>
+<p>Every master domain SHALL define:</p>
+<ul>
+<li>owner module;</li>
+<li>stable key;</li>
+<li>display name;</li>
+<li>lifecycle/status;</li>
+<li>effective dates where relevant;</li>
+<li>duplicate detection;</li>
+<li>required attributes;</li>
+<li>change authorization;</li>
+<li>data-quality rules;</li>
+<li>external identifiers;</li>
+<li>retention behavior.</li>
+</ul>
+<p>Free-text names SHALL not replace authoritative IDs in cross-module relationships.</p>
+<h3 id="232-api-and-event-principles"><span class="ssnum">23.2</span>API and event principles</h3>
+<p>Public actions/events SHALL define:</p>
+<ul>
+<li>contract name and version;</li>
+<li>request/response schema;</li>
+<li>tenant and authorization requirements;</li>
+<li>idempotency behavior;</li>
+<li>error semantics;</li>
+<li>retry policy;</li>
+<li>correlation/source IDs;</li>
+<li>currency/UOM semantics;</li>
+<li>effective dates;</li>
+<li>compatibility/deprecation policy.</li>
+</ul>
+<p>A module SHALL NOT rely on another module's undocumented private table structure.</p>
+<h3 id="233-import-and-migration"><span class="ssnum">23.3</span>Import and migration</h3>
+<p>Migration SHALL include:</p>
+<ul>
+<li>source inventory;</li>
+<li>field mapping;</li>
+<li>cleansing rules;</li>
+<li>duplicate resolution;</li>
+<li>reconciliation totals;</li>
+<li>exception report;</li>
+<li>approval of transformed data;</li>
+<li>dry run;</li>
+<li>controlled production import;</li>
+<li>post-load reconciliation;</li>
+<li>retained provenance.</li>
+</ul>
+<p>Imported historical data SHALL not be presented as verified merely because it loaded successfully.</p>
+<hr />
+<h2 id="24-local-ai-decision-engine-and-management-intelligence"><span class="snum">24</span>Local AI, decision engine and management intelligence</h2>
+<p>All artificial intelligence in SBC ERP runs <strong>locally</strong>, inside the customer's own deployment. Generative AI and decision models are hosted on the platform's private network. Business data is never sent to an external AI service to be analyzed, and no AI component holds database, storage, signing, backup or authentication credentials.</p>
+<p>SBC ERP combines three capabilities to help managers decide faster and with better evidence:</p>
+<ol>
+<li>a <strong>local generative AI runtime</strong> for assistance, summaries and natural-language interaction;</li>
+<li>a <strong>local decision engine</strong> that returns typed, confidence-scored decisions instead of free text;</li>
+<li><strong>management intelligence</strong>: deterministic analytics, anomaly detection, readiness scoring, KPIs and alerts calculated directly from the authoritative ledgers.</li>
+</ol>
+<p>Every AI capability stays inside the ERP's control boundary. AI informs and recommends. Postings, approvals, payments and master-data changes still pass through the same deterministic validations, permissions, delegation of authority and audit trail as any other transaction.</p>
+<h3 id="241-architecture"><span class="ssnum">24.1</span>Architecture</h3>
+<figure class="diagram"><pre class="mermaid">flowchart TB
+    subgraph USERS[&quot;Managers and users&quot;]
+        M1[&quot;Executive and finance dashboards&quot;]
+        M2[&quot;Operational workspaces&quot;]
+        M3[&quot;AI assistant&quot;]
+    end
+
+    subgraph MOD[&quot;Oil &amp; Gas modules&quot;]
+        A1[&quot;Accounting · AFE · Budget&quot;]
+        A2[&quot;Procurement · Inventory · Assets&quot;]
+        A3[&quot;Block Management · HR · Projects&quot;]
+    end
+
+    subgraph KIT[&quot;SBC Module Kit — AI and decision bridge&quot;]
+        K1[&quot;Generation and tool-calling façade&quot;]
+        K2[&quot;Decision façade&quot;]
+        K3[&quot;Tenant context · permission check · audit&quot;]
+    end
+
+    subgraph CORE[&quot;SBC Core — private network, self-hosted&quot;]
+        LLM[&quot;Local generative AI runtime&lt;br/&gt;self-hosted open-weight models&lt;br/&gt;CPU or GPU&quot;]
+        DE[&quot;Decision Engine&lt;br/&gt;typed decisions · calibrated confidence&lt;br/&gt;no text generation&quot;]
+        AUD[(&quot;Decision and AI audit records&quot;)]
+    end
+
+    subgraph INT[&quot;Management intelligence (deterministic)&quot;]
+        I1[&quot;Close-readiness advisor&quot;]
+        I2[&quot;Financial insights&lt;br/&gt;trends · projection · anomalies&quot;]
+        I3[&quot;KPI dashboard and alerts&quot;]
+        I4[&quot;Ask Accounting&quot;]
+        I5[&quot;Ledger Health · data-quality runs&quot;]
+    end
+
+    M1 &amp; M2 --&gt; INT
+    M3 --&gt; K1
+    MOD --&gt; K1 &amp; K2
+    K1 --&gt; LLM
+    K2 --&gt; DE
+    K3 --&gt; AUD
+    DE --&gt; AUD
+    INT --&gt; A1 &amp; A2
+
+    classDef local fill:#0b3d5c,color:#fff,stroke:#0b3d5c
+    class LLM,DE local
+</pre></figure>
+<p>Modules never talk to an AI runtime directly. They use the SBC Module Kit, which applies tenant context, permission checks and audit before any request reaches a model.</p>
+<h3 id="242-local-generative-ai-runtime"><span class="ssnum">24.2</span>Local generative AI runtime</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Design</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hosting</td>
+<td>Self-hosted inside the deployment. Production exposes no AI port to the host or the internet.</td>
+</tr>
+<tr>
+<td>Models</td>
+<td>Open-weight models, selected and upgraded by configuration. Model files are cached on persistent local storage.</td>
+</tr>
+<tr>
+<td>Hardware</td>
+<td>Runs on CPU, with optional NVIDIA GPU acceleration.</td>
+</tr>
+<tr>
+<td>Isolation</td>
+<td>The AI runtime receives no database, storage, signing, backup or authentication credentials.</td>
+</tr>
+<tr>
+<td>Access</td>
+<td>Only through the Core AI façade, which supports generation, streaming and tool calling. Modules do not implement their own AI clients.</td>
+</tr>
+<tr>
+<td>Offline operation</td>
+<td>Models can be preloaded so the platform runs without internet access.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="243-decision-engine"><span class="ssnum">24.3</span>Decision engine</h3>
+<p>The decision engine is a dedicated, self-hosted service for <strong>typed business decisions</strong>. It is deliberately separate from generative AI: it does not write text. It answers structured questions about a given business state.</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Decision type</th>
+<th>Returns</th>
+<th>Example use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Choice</td>
+<td>One option from a named list</td>
+<td>Which approval route fits this purchase request?</td>
+</tr>
+<tr>
+<td>Score</td>
+<td>A position on an ordered rubric</td>
+<td>How critical is this asset finding?</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>True or false</td>
+<td>Is the available budget sufficient for this request?</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="diagram"><pre class="mermaid">sequenceDiagram
+    autonumber
+    participant MD as Module
+    participant KT as Module Kit
+    participant DE as Decision Engine (local)
+    actor HU as Manager
+    MD-&gt;&gt;KT: Business state + typed questions + required confidence
+    KT-&gt;&gt;KT: Tenant, actor, module, purpose, resource attached
+    KT-&gt;&gt;DE: Internal call on the private network
+    DE--&gt;&gt;KT: Answer + calibrated confidence
+    alt confidence below the platform floor or the caller&#x27;s threshold
+        KT--&gt;&gt;MD: requiresReview = true
+        MD-&gt;&gt;HU: Route to human review — no automatic action
+    else confident
+        KT--&gt;&gt;MD: Typed answer
+        MD-&gt;&gt;MD: Continue through normal validations, DOA and audit
+    end
+    KT-&gt;&gt;KT: Audit record — output, confidence, gate, correlation (no state payload)
+</pre></figure>
+<p>Key safeguards:</p>
+<ul>
+<li><strong>Confidence floor.</strong> The platform sets a minimum confidence. A caller may require a higher threshold but can never lower it.</li>
+<li><strong>Review routing.</strong> An uncertain answer is marked for review and goes to a person or an explicitly configured review path. The engine never turns a low-confidence result into an approval.</li>
+<li><strong>Privacy-preserving audit.</strong> Each decision is recorded with its output, confidence, gate and correlation identifiers. The submitted business state is not stored in the audit record.</li>
+<li><strong>Multilingual.</strong> English and Arabic requests are served by resident models without cold-start delay.</li>
+<li><strong>Pinned models.</strong> Model revisions are pinned to reviewed versions, not to a moving "latest".</li>
+</ul>
+<h3 id="244-management-intelligence"><span class="ssnum">24.4</span>Management intelligence</h3>
+<p>Management intelligence is calculated deterministically from posted, authoritative data, so every figure a manager sees reconciles to the books. It reuses the same ledger conventions as the financial statements and never creates a parallel set of numbers.</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>What it gives managers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Close-readiness advisor</td>
+<td>A 100-point readiness score for the period, with explicit recommendations: unposted work, overdue open periods, budget overruns, budgets awaiting approval, recurring documents due, and expense accounts rising quarter on quarter</td>
+</tr>
+<tr>
+<td>Financial insights</td>
+<td>A 12-month activity trend with next-month projection, expense trends, largest month-on-month movers, and statistical anomaly detection on expenses</td>
+</tr>
+<tr>
+<td>KPI dashboard and alerts</td>
+<td>Financial KPIs in base currency from posted data, with an alert feed</td>
+</tr>
+<tr>
+<td>Ask Accounting</td>
+<td>Instant answers to a catalog of management questions, parameterised by period, account and date, with every answer traceable to the ledger</td>
+</tr>
+<tr>
+<td>Ledger Health</td>
+<td>Continuous integrity checks across journals, subledgers, asset register links and control accounts</td>
+</tr>
+<tr>
+<td>AFE and budget control views</td>
+<td>Commitments, actuals, available budget and estimate at completion by AFE and budget line</td>
+</tr>
+<tr>
+<td>Asset data quality and strategy evidence</td>
+<td>Configurable data-quality rules and runs with findings, plus evidence supporting asset strategy and renewal decisions</td>
+</tr>
+<tr>
+<td>Cash forecasting</td>
+<td>Forward cash position projected from posted cash history with a statistical trend, using the same definition of cash as the cash flow statement</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="245-ai-assistants-with-governed-data-access"><span class="ssnum">24.5</span>AI assistants with governed data access</h3>
+<p>AI assistants reach business data through read-only tools exposed under the Model Context Protocol. Each tool declares the permission it needs, and that permission is checked against the owner of the access key on every call.</p>
+<figure class="diagram"><pre class="mermaid">flowchart LR
+    U[&quot;Authorized user&lt;br/&gt;AI access capability&quot;] --&gt; K[&quot;Personal access key&quot;]
+    K --&gt; AS[&quot;AI assistant&lt;br/&gt;local model&quot;]
+    AS --&gt; T[&quot;Read-only ERP tools&lt;br/&gt;overview · lists · reports&quot;]
+    T --&gt; C{&quot;Key owner holds&lt;br/&gt;the tool&#x27;s permission?&quot;}
+    C -- &quot;No&quot; --&gt; X([&quot;Refused&quot;])
+    C -- &quot;Yes&quot; --&gt; Q[&quot;Tenant-scoped query&lt;br/&gt;bounded row limit&quot;]
+    Q --&gt; AS
+    AS -. &quot;cannot post, approve,&lt;br/&gt;pay or change masters&quot; .-&gt; L[(&quot;Authoritative records&quot;)]
+</pre></figure>
+<h3 id="246-ai-and-decision-governance-controls"><span class="ssnum">24.6</span>AI and decision governance controls</h3>
+<div class="tbl controls"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cid"><span>WP-AI-001</span></td>
+<td>All generative AI and decision models SHALL run locally within the deployment. Business data SHALL NOT be sent to an external AI service.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AI-002</span></td>
+<td>AI runtimes SHALL run on the private platform network with no public port, and SHALL hold no database, storage, signing, backup or authentication credentials.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AI-003</span></td>
+<td>Modules SHALL reach AI only through the Core AI and decision façades, which apply tenant context, permissions and audit.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AI-004</span></td>
+<td>AI access SHALL require an explicit capability, and assistant access SHALL use a personal key issued to the authorizing user.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AI-005</span></td>
+<td>Every AI tool SHALL declare its required permission, checked against the key owner on each call, and SHALL return no data beyond that user's tenant and authorized scope.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AI-006</span></td>
+<td>AI tools SHALL be read-only. AI SHALL NOT post, approve, pay, release, delete or change a controlled master.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AI-007</span></td>
+<td>A decision SHALL be typed (choice, score or boolean) and carry a calibrated confidence.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AI-008</span></td>
+<td>A decision below the platform confidence floor or the caller's threshold SHALL be routed to review and SHALL NOT trigger an automatic action. Callers SHALL NOT lower the platform floor.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AI-009</span></td>
+<td>Every decision SHALL be audited with output, confidence, gate and correlation identifiers, without storing the submitted business state.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AI-010</span></td>
+<td>Any action that follows AI advice or a decision SHALL pass the same deterministic validations, permissions, delegation of authority and audit controls as one entered by a user.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AI-011</span></td>
+<td>Management analytics SHALL be calculated from posted, authoritative data, using the same conventions as the financial statements.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AI-012</span></td>
+<td>Model versions SHALL be pinned to reviewed revisions and changed only through configuration.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AI-013</span></td>
+<td>Sensitive personal, medical and payroll data SHALL reach AI only where the requesting user is already authorized to see it.</td>
+</tr>
+<tr>
+<td class="cid"><span>WP-AI-014</span></td>
+<td>AI governance SHALL use ISO/IEC 42001:2023 as a design reference, without implying certification.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="25-internal-control-audit-and-assurance-model"><span class="snum">25</span>Internal control, audit and assurance model</h2>
+<p>SBC ERP supports the five COSO control components through system design:</p>
+<ol>
+<li>Control environment — roles, responsibilities, policy acknowledgement and ethical controls.</li>
+<li>Risk assessment — risk registers, thresholds and change impact.</li>
+<li>Control activities — approvals, reconciliations, validation, SoD and access controls.</li>
+<li>Information and communication — reliable reporting, workflow, notifications and evidence.</li>
+<li>Monitoring — exception dashboards, access reviews, close checklists, audit and control testing.</li>
+</ol>
+<p>Internal audit support includes:</p>
+<ul>
+<li>read-only evidence access;</li>
+<li>immutable audit trail;</li>
+<li>sampling/export capability;</li>
+<li>traceability from source document to approval to posting/result;</li>
+<li>control owner and test evidence;</li>
+<li>protection of auditor independence from transaction approval.</li>
+</ul>
+<p>External-audit support provides reproducible extracts and source references without altering production history.</p>
+<h3 id="251-coso-components-mapped-to-sbc-erp-mechanisms"><span class="ssnum">25.1</span>COSO components mapped to SBC ERP mechanisms</h3>
+<figure class="diagram"><pre class="mermaid">flowchart LR
+    C1[&quot;1. Control environment&quot;] --&gt; M1[&quot;Roles and capability keys&lt;br/&gt;policy acknowledgement&lt;br/&gt;no person names in authorization&quot;]
+    C2[&quot;2. Risk assessment&quot;] --&gt; M2[&quot;Severity model BLOCK / ERROR / WARNING / INFO&lt;br/&gt;project risk registers&lt;br/&gt;asset criticality&quot;]
+    C3[&quot;3. Control activities&quot;] --&gt; M3[&quot;Maker-checker · DOA matrix&lt;br/&gt;budget and AFE control&lt;br/&gt;database guards · reconciliations&quot;]
+    C4[&quot;4. Information and communication&quot;] --&gt; M4[&quot;Versioned FS mapping&lt;br/&gt;source-to-posting traceability&lt;br/&gt;workflow notifications&quot;]
+    C5[&quot;5. Monitoring&quot;] --&gt; M5[&quot;Ledger Health · close checklist&lt;br/&gt;access reviews · data-quality runs&lt;br/&gt;rule-conformance tests&quot;]
+</pre></figure>
+<hr />
+<h2 id="26-testing-and-release-assurance"><span class="snum">26</span>Testing and release assurance</h2>
+<p>A world-class ERP control is incomplete until it is testable.</p>
+<p>Each critical rule SHOULD have the following test classes where relevant:</p>
+<ul>
+<li>positive case;</li>
+<li>negative/prohibited case;</li>
+<li>boundary/tolerance case;</li>
+<li>effective-date case;</li>
+<li>permission/SoD case;</li>
+<li>concurrency/idempotency case;</li>
+<li>reversal/correction case;</li>
+<li>cross-module integration case;</li>
+<li>migration/upgrade case.</li>
+</ul>
+<p>Financial modules SHOULD add:</p>
+<ul>
+<li>golden journal tests;</li>
+<li>Trial Balance reconciliation tests;</li>
+<li>subledger-to-GL reconciliation tests;</li>
+<li>period-close tests;</li>
+<li>FX precision tests;</li>
+<li>tax rounding tests;</li>
+<li>reversal tests.</li>
+</ul>
+<p>Inventory/Assets/AFE/Procurement SHOULD add:</p>
+<ul>
+<li>quantity/value conservation tests;</li>
+<li>overrun/over-receipt controls;</li>
+<li>partial receipt/SES scenarios;</li>
+<li>state-machine tests;</li>
+<li>version/amendment history tests;</li>
+<li>integration replay tests.</li>
+</ul>
+<p>Security tests SHOULD cover:</p>
+<ul>
+<li>tenant isolation;</li>
+<li>unauthorized action rejection;</li>
+<li>privilege escalation attempts;</li>
+<li>direct API calls without UI;</li>
+<li>sensitive-field leakage;</li>
+<li>audit-log creation.</li>
+</ul>
+<p>UI tests SHOULD cover:</p>
+<ul>
+<li>desktop/mobile layouts;</li>
+<li>modal and form responsiveness;</li>
+<li>keyboard operation;</li>
+<li>no unintended horizontal scroll;</li>
+<li>long values and localization;</li>
+<li>error focus and validation visibility.</li>
+</ul>
+<p>A release SHALL NOT change a requirement's status to Verified when tests or evidence have not actually passed.</p>
+<h3 id="261-requirement-to-release-traceability"><span class="ssnum">26.1</span>Requirement-to-release traceability</h3>
+<p>Each control moves from its authoritative source to a released, evidenced capability through seven linked steps. A control counts as verified only when every link is in place.</p>
+<figure class="diagram"><pre class="mermaid">flowchart LR
+    L[&quot;Authoritative source&lt;br/&gt;standard · law · contract&quot;] --&gt; CR[&quot;Control requirement&quot;]
+    CR --&gt; BR[&quot;Behavioral rule&lt;br/&gt;observable, testable&quot;]
+    BR --&gt; RG[&quot;Control registry&lt;br/&gt;owner · status · enforcement layer&quot;]
+    RG --&gt; IM[&quot;Implementation&lt;br/&gt;server action and database guard&quot;]
+    IM --&gt; TS[&quot;Automated test&quot;]
+    TS --&gt; EV[&quot;Evidence&lt;br/&gt;fingerprinted result&quot;]
+    EV --&gt; RL[&quot;Release&lt;br/&gt;release assurance record&quot;]
+</pre></figure>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Link</th>
+<th>Gate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Requirement to behavioral rule</td>
+<td>Rewritten as observable behavior with a source reference</td>
+</tr>
+<tr>
+<td>Rule to registry</td>
+<td>The registry is synchronized automatically with the rulebooks</td>
+</tr>
+<tr>
+<td>Registry to implementation and test</td>
+<td>A conformance test fails the build if an enforced control has no implementation or no test</td>
+</tr>
+<tr>
+<td>Test to evidence</td>
+<td>The conformance harness writes fingerprinted evidence</td>
+</tr>
+<tr>
+<td>Evidence to release</td>
+<td>Release assurance is regenerated for every release; no status is raised without passing evidence</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="27-document-and-evidence-governance"><span class="snum">27</span>Document and evidence governance</h2>
+<p>Controlled documents SHALL support:</p>
+<ul>
+<li>stable document identity;</li>
+<li>version/revision;</li>
+<li>owner;</li>
+<li>classification;</li>
+<li>effective date;</li>
+<li>approval status;</li>
+<li>linked transaction;</li>
+<li>checksum/hash where required;</li>
+<li>retention class;</li>
+<li>legal hold;</li>
+<li>supersession history.</li>
+</ul>
+<p>Replacing an attachment SHALL not erase the historical evidence that supported an earlier approval.</p>
+<p>Signed contracts, guarantees, invoices, approvals, engineering estimates, inspection certificates and other material evidence SHALL remain traceable to the business event they support.</p>
+<hr />
+<h2 id="28-enterprise-reconciliation-framework"><span class="snum">28</span>Enterprise reconciliation framework</h2>
+<p>The following reconciliations are available at period end or at operational intervals:</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Reconciliation</th>
+<th>Bridge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accounts payable</td>
+<td>Supplier open items ↔ AP control account</td>
+</tr>
+<tr>
+<td>Accounts receivable</td>
+<td>Customer open items ↔ AR control account</td>
+</tr>
+<tr>
+<td>Goods received not invoiced</td>
+<td>Receipts and service entries ↔ GRNI account</td>
+</tr>
+<tr>
+<td>Inventory</td>
+<td>Stock ledger quantity and value ↔ inventory GL</td>
+</tr>
+<tr>
+<td>Fixed assets</td>
+<td>Asset register ↔ PPE, construction in progress and accumulated depreciation accounts</td>
+</tr>
+<tr>
+<td>Bank</td>
+<td>Bank statement ↔ bank and cash GL</td>
+</tr>
+<tr>
+<td>Tax</td>
+<td>VAT and withholding schedules ↔ tax control accounts</td>
+</tr>
+<tr>
+<td>AFE</td>
+<td>Approved AFE ↔ commitments ↔ actuals ↔ estimate at completion</td>
+</tr>
+<tr>
+<td>Budget</td>
+<td>Approved budget ↔ transfers ↔ reservations ↔ commitments ↔ actuals ↔ available</td>
+</tr>
+<tr>
+<td>Procurement</td>
+<td>Order and contract value ↔ receipts and service entries ↔ matched invoices ↔ remaining commitment</td>
+</tr>
+</tbody>
+</table></div>
+<p>Every unreconciled difference has an owner, a reason, a status and resolution evidence.</p>
+<figure class="diagram"><pre class="mermaid">flowchart LR
+    subgraph SUB[&quot;Operational and subledger records&quot;]
+        S1[&quot;Supplier open items&quot;]
+        S2[&quot;Customer open items&quot;]
+        S3[&quot;Stock ledger&quot;]
+        S4[&quot;Asset register&quot;]
+        S5[&quot;Bank statements&quot;]
+        S6[&quot;Tax schedules · e-invoice status&quot;]
+        S7[&quot;AFE and budget ledgers&quot;]
+    end
+    subgraph GLC[&quot;General ledger&quot;]
+        G1[&quot;AP control&quot;]
+        G2[&quot;AR control&quot;]
+        G3[&quot;Inventory and GRNI&quot;]
+        G4[&quot;PPE · CWIP · accumulated depreciation&quot;]
+        G5[&quot;Bank and cash&quot;]
+        G6[&quot;VAT and withholding&quot;]
+        G7[&quot;Posted actuals by AFE and budget line&quot;]
+    end
+    S1 &lt;--&gt; G1
+    S2 &lt;--&gt; G2
+    S3 &lt;--&gt;|&quot;getInventoryGlBalance&quot;| G3
+    S4 &lt;--&gt;|&quot;getFixedAssetReconciliation&quot;| G4
+    S5 &lt;--&gt; G5
+    S6 &lt;--&gt; G6
+    S7 &lt;--&gt;|&quot;getJournalIntegrationSnapshot&quot;| G7
+    GLC --&gt; LH[&quot;Ledger Health&lt;br/&gt;integrity checks and exceptions&quot;]
+</pre></figure>
+<hr />
+<h2 id="29-prohibited-design-patterns"><span class="snum">29</span>Prohibited design patterns</h2>
+<p>The following patterns are prohibited unless an explicitly approved architecture decision says otherwise:</p>
+<ul>
+<li>direct cross-module writes to private tables;</li>
+<li>duplicate supplier masters in Accounting and Procurement;</li>
+<li>duplicate authoritative asset masters;</li>
+<li>editable posted journals;</li>
+<li>deleting posted history to correct errors;</li>
+<li>using a bank account as a balancing plug;</li>
+<li>hiding accounting errors with suspense/rounding entries without approval and cause;</li>
+<li>hard-coded person names for approvals;</li>
+<li>hard-coded tax or concession rates with no effective date;</li>
+<li>treating an AFE approval as automatic capitalization;</li>
+<li>treating a PO as proof that goods/services were received;</li>
+<li>treating payment as proof that an invoice was valid;</li>
+<li>treating a GRN/SES as a payment;</li>
+<li>treating an abandonment fund as automatic settlement of the decommissioning liability;</li>
+<li>silently changing participating interests historically;</li>
+<li>updating an approved contract/AFE/project baseline in place;</li>
+<li>using UI-only validation for financial integrity;</li>
+<li>using color alone to show status;</li>
+<li>allowing mobile/modals to hide inaccessible fields through horizontal overflow;</li>
+<li>AI bypass of business controls;</li>
+<li>reporting unverifiable figures with no source/period/currency context.</li>
+</ul>
+<hr />
+<h2 id="30-minimum-evidence-package-for-customer-acceptance"><span class="snum">30</span>Minimum evidence package for customer acceptance</h2>
+<p>For each critical business capability, implementation acceptance SHOULD include:</p>
+<ol>
+<li>Approved requirement/rule ID.</li>
+<li>Process and ownership definition.</li>
+<li>Configuration snapshot.</li>
+<li>Role/permission matrix.</li>
+<li>DOA/SoD rules.</li>
+<li>Master-data definition.</li>
+<li>Happy-path test.</li>
+<li>Negative/prohibited-path test.</li>
+<li>Boundary/tolerance test.</li>
+<li>Integration test.</li>
+<li>Audit-trail sample.</li>
+<li>Reversal/correction sample.</li>
+<li>Reconciliation evidence.</li>
+<li>Security/tenant-isolation evidence.</li>
+<li>UAT approval.</li>
+<li>Release/version reference.</li>
+</ol>
+<p>This evidence model allows a customer, auditor or implementation team to distinguish a feature demonstration from a controlled production capability.</p>
+<hr />
+<h2 id="31-primary-public-verification-anchors"><span class="snum">31</span>Primary public verification anchors</h2>
+<p>The following public pages are suitable verification anchors for standard/law identity and current status. They do not replace licensed standard text or professional/legal advice.</p>
+<ul>
+<li>IFRS Foundation standards: https://www.ifrs.org/issued-standards/list-of-standards/</li>
+<li>IFRS 6: https://www.ifrs.org/issued-standards/list-of-standards/ifrs-6-exploration-for-and-evaluation-of-mineral-resources/</li>
+<li>IFRS 11: https://www.ifrs.org/issued-standards/list-of-standards/ifrs-11-joint-arrangements/</li>
+<li>IFRS 15: https://www.ifrs.org/issued-standards/list-of-standards/ifrs-15-revenue-from-contracts-with-customers/</li>
+<li>IFRS 18: https://www.ifrs.org/issued-standards/list-of-standards/ifrs-18-presentation-and-disclosure-in-financial-statements/</li>
+<li>ISO 55001:2024: https://www.iso.org/standard/83054.html</li>
+<li>ISO 14224:2016: https://www.iso.org/standard/64076.html</li>
+<li>ISO/IEC 27001:2022: https://www.iso.org/standard/27001</li>
+<li>ISO 31000:2018: https://www.iso.org/standard/65694.html</li>
+<li>ISO 9001:2026: https://www.iso.org/standard/9001</li>
+<li>ISO 14001:2026: https://www.iso.org/standard/14001</li>
+<li>ISO 37001:2025: https://www.iso.org/standard/37001</li>
+<li>ISO 37301:2021: https://www.iso.org/standard/75080.html</li>
+<li>ISO/IEC 42001:2023: https://www.iso.org/standard/42001</li>
+<li>NIST CSF 2.0: https://www.nist.gov/cyberframework</li>
+<li>OWASP ASVS: https://owasp.org/projects/asvs</li>
+<li>COSO Internal Control: https://www.coso.org/internal-control</li>
+<li>IIA Global Internal Audit Standards: https://www.theiia.org/en/standards/</li>
+<li>Oman Tax Authority VAT guidance: https://tms.taxoman.gov.om/portal/vat-guidelines</li>
+<li>Oman Tax Authority VAT law/regulations: https://tms.taxoman.gov.om/portal/vat-law-regulations</li>
+<li>Oman Tax Authority Fawtara: https://fawtara.taxoman.gov.om/</li>
+<li>Oman Tax Authority Fawtara FAQs: https://tms.taxoman.gov.om/portal/web/taxportal/fawtara-faqs</li>
+<li>Oman Tax Authority withholding tax: https://tms.taxoman.gov.om/portal/withholding-tax</li>
+<li>Oman Commercial Companies Law (Royal Decree 18/2019): https://qanoon.om/p/2019/rd2019018/</li>
+<li>Oman Labor Law (Royal Decree 53/2023): https://qanoon.om/p/2023/rd2023053/</li>
+<li>Oman Personal Data Protection Law (Royal Decree 6/2022): https://qanoon.om/p/2022/rd2022006/</li>
+<li>IFRS Accounting Taxonomy: https://www.ifrs.org/issued-standards/ifrs-taxonomy/</li>
+<li>IAS 16: https://www.ifrs.org/issued-standards/list-of-standards/ias-16-property-plant-and-equipment/</li>
+<li>IAS 21: https://www.ifrs.org/issued-standards/list-of-standards/ias-21-the-effects-of-changes-in-foreign-exchange-rates/</li>
+<li>IAS 2: https://www.ifrs.org/issued-standards/list-of-standards/ias-2-inventories/</li>
+<li>IAASB International Standards on Auditing: https://www.iaasb.org/standards-pronouncements</li>
+<li>Central Bank of Oman: https://cbo.gov.om/</li>
+</ul>
+<hr />
+<h2 id="32-governance-of-this-whitepaper"><span class="snum">32</span>Governance of this whitepaper</h2>
+<p>This document is reviewed whenever any of the following changes:</p>
+<ul>
+<li>IFRS, IAS or IFRIC requirements or effective dates;</li>
+<li>Oman tax law, Tax Authority decisions or e-invoicing specifications;</li>
+<li>Oman commercial, labor, privacy or related law;</li>
+<li>editions of the reference standards used by the product;</li>
+<li>material concession, EPSA, PSA or JOA templates;</li>
+<li>module ownership boundaries or integration contracts;</li>
+<li>accounting, delegation-of-authority or segregation-of-duties policy;</li>
+<li>the cybersecurity baseline.</li>
+</ul>
+<p>Each edition is versioned. Earlier editions remain available for implementation and audit reference.</p>
+<hr />
+<h2 id="appendix-a-module-by-standard-responsibility-matrix">Appendix A. Module-by-standard responsibility matrix</h2>
+<p><strong>O</strong> = owns the authoritative data or posting. <strong>C</strong> = contributes source data or a control.</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Standard or area</th>
+<th style="text-align: center;">Acc</th>
+<th style="text-align: center;">AFE</th>
+<th style="text-align: center;">Assets</th>
+<th style="text-align: center;">Block</th>
+<th style="text-align: center;">Budget</th>
+<th style="text-align: center;">Finance</th>
+<th style="text-align: center;">HR</th>
+<th style="text-align: center;">Inv</th>
+<th style="text-align: center;">Proc</th>
+<th style="text-align: center;">Proj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IFRS 6 Exploration and evaluation</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>IFRS 11 Joint arrangements</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>IFRS 15 Revenue</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>IFRS 16 Leases</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>IFRS 18 Presentation</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>IAS 2 Inventories</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>IAS 7 Cash flows</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>IAS 16 Property, plant and equipment</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>IAS 21 Foreign exchange</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Budget and commitment control</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>VAT, withholding and Fawtara</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>COSO internal control</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">O</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b-glossary">Appendix B. Glossary</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AFE</td>
+<td>Authorization for Expenditure: approval to spend on a well, facility or project</td>
+</tr>
+<tr>
+<td>CBS</td>
+<td>Cost breakdown structure of an AFE</td>
+</tr>
+<tr>
+<td>CWIP</td>
+<td>Construction work in progress</td>
+</tr>
+<tr>
+<td>DOA</td>
+<td>Delegation of authority: who may approve what, up to which amount</td>
+</tr>
+<tr>
+<td>EAC</td>
+<td>Estimate at completion</td>
+</tr>
+<tr>
+<td>EPSA / PSA</td>
+<td>Exploration and production sharing agreement / production sharing agreement</td>
+</tr>
+<tr>
+<td>Fawtara</td>
+<td>Oman Tax Authority e-invoicing program</td>
+</tr>
+<tr>
+<td>GRN / GRNI</td>
+<td>Goods receipt note / goods received not invoiced</td>
+</tr>
+<tr>
+<td>JOA</td>
+<td>Joint operating agreement</td>
+</tr>
+<tr>
+<td>Decision engine</td>
+<td>Local service that answers typed business questions (choice, score, boolean) with a calibrated confidence and routes uncertain answers to review</td>
+</tr>
+<tr>
+<td>Local AI</td>
+<td>AI models hosted inside the customer's deployment, with no business data sent to external AI services</td>
+</tr>
+<tr>
+<td>Maker-checker</td>
+<td>The person who prepares a transaction cannot approve or post it</td>
+</tr>
+<tr>
+<td>Module action</td>
+<td>A sanctioned, tenant-scoped call from one module to another through the SBC Module Kit</td>
+</tr>
+<tr>
+<td>NRV</td>
+<td>Net realizable value</td>
+</tr>
+<tr>
+<td>RLS</td>
+<td>PostgreSQL row-level security, used for tenant isolation</td>
+</tr>
+<tr>
+<td>SES</td>
+<td>Service entry sheet: confirmation that services were performed</td>
+</tr>
+<tr>
+<td>SoD</td>
+<td>Segregation of duties</td>
+</tr>
+<tr>
+<td>WP-*</td>
+<td>Identifier of a control in this whitepaper</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="final-design-principle">Final design principle</h2>
+<p>SBC ERP behaves as a controlled system of record, not as a collection of independent forms.</p>
+<p>Every enterprise transaction can be understood end to end: who initiated it, under which authority, against which master data and contract, what evidence existed, which rule version applied, who approved it, what inventory, asset, AFE, budget and accounting effect it had, how it reconciles, and how the system proves that history later.</p>
+<p>That traceability is the foundation of every Oil &amp; Gas module in SBC ERP.</p>
+    <footer>SBC ERP for Oil &amp; Gas — Standards, Architecture, Governance and Control Whitepaper. Edition 2026. This document describes product design and controls. It is not a certification statement.</footer>
+  </main>
+</div>
+<script>
+(function(){
+  var d=document.getElementById('toc-details');
+  function fit(){ if(window.matchMedia('(max-width:980px)').matches){ d.removeAttribute('open'); } else { d.setAttribute('open',''); } }
+  fit();
+  d.addEventListener('click',function(e){ var a=e.target.closest('a'); if(a && window.matchMedia('(max-width:980px)').matches){ d.removeAttribute('open'); } });
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true,theme:window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"default"});</script></body></html>
